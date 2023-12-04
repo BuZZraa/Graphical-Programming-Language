@@ -46,9 +46,9 @@ namespace Graphical_Programming_Language
                 }
             }
 
-            catch (Exception err2)
+            catch (Exception err)
             {
-                MessageBox.Show(err2.Message, "Error");
+                MessageBox.Show(err.Message, "Error");
             }
         }
 
