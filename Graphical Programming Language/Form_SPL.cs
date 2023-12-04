@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Graphical_Programming_Language
 {
@@ -23,6 +24,9 @@ namespace Graphical_Programming_Language
 
         private void Btn_Syntax_Click(object sender, EventArgs e)
         {
+            Command_Parser syntaxCommand = new Command_Parser(textBox_SingleCmd.Text.ToLower());
+            syntaxCommand.ProcessCommand();
+            syntaxCommand.ValidateCommand();
             syntaxChecked = true;
         }
 
@@ -30,6 +34,10 @@ namespace Graphical_Programming_Language
         {        
             if (syntaxChecked == true)
             {
+                Command_Parser runCommand = new Command_Parser(textBox_SingleCmd.Text.ToLower());
+                runCommand.ProcessCommand();
+                runCommand.ValidateCommand();
+                runCommand.RunCommand(g);
                 syntaxChecked = false;
             }
 
@@ -39,7 +47,7 @@ namespace Graphical_Programming_Language
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
