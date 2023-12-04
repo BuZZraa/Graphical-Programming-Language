@@ -42,7 +42,7 @@ namespace Graphical_Programming_Language
 
                 if (!isValid)
                 {
-                    throw new Exception("Not a valid command.");
+                    throw new Exception("Please enter a valid command.");
                 }
             }
 
