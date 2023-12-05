@@ -14,7 +14,9 @@ namespace Graphical_Programming_Language
     public partial class Form_SPL : Form
     {
         Graphics g;
+        Command_Parser command = new Command_Parser();
         private Boolean syntaxChecked;
+
         public Form_SPL()
         {
             InitializeComponent();
@@ -24,26 +26,35 @@ namespace Graphical_Programming_Language
 
         private void Btn_Syntax_Click(object sender, EventArgs e)
         {
-            Command_Parser syntaxCommand = new Command_Parser(textBox_SingleCmd.Text.ToLower());
-            syntaxCommand.ProcessCommand();
-            syntaxCommand.ValidateCommand();
+            command.Command = textBox_SingleCmd.Text.ToLower().Trim().Split();
+            command.ValidateCommandName();
+            command.ValidateParameters();
             syntaxChecked = true;
         }
 
         private void Btn_Run_Click(object sender, EventArgs e)
-        {        
-            if (syntaxChecked == true)
+        {   
+            try
             {
-                Command_Parser runCommand = new Command_Parser(textBox_SingleCmd.Text.ToLower());
-                runCommand.ProcessCommand();
-                runCommand.ValidateCommand();
-                runCommand.RunCommand(g);
-                syntaxChecked = false;
-            }
+                if (syntaxChecked == true)
+                {
+                    if (command.IsValidCommand && command.IsValidParameters)
+                    {
+                        command.RunCommand(g);
+                    }
+                    syntaxChecked = false;
+                }
 
-            else
+                else
+                {
+                    throw new Exception("Please verify the syntax before running the code.");
+                }
+            }
+         
+
+            catch(Exception err) 
             {
-                MessageBox.Show("Please verify the syntax before running the code.", "Error");
+                MessageBox.Show(err.Message, "Error");
             }
         }
 
