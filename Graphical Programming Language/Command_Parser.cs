@@ -13,8 +13,11 @@ namespace Graphical_Programming_Language
         private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "pen", "fill" };
         private string[] command;
         private List<int> commandValues = new List<int>();
+        private int xPos = 0, yPos = 0;
         Boolean isValidCommand = false;
         Boolean isValidParameters = false;
+        Boolean fill = false;
+        Color color = Color.Black;
 
         public Command_Parser() { }
 
@@ -145,7 +148,7 @@ namespace Graphical_Programming_Language
                                 }
                             }
 
-                            else if (command[0].Equals("moveto") || command[0].Equals("drawto") || command[0].Equals("rectangle"))
+                            else if (command[0].Equals("moveto") || command[0].Equals("drawto") || command[0].Equals("rectangle") || command[0].Equals("triangle"))
                             {
                                 if (command.Length == 3)
                                 {
@@ -175,7 +178,66 @@ namespace Graphical_Programming_Language
 
         public void RunCommand(Graphics g)
         {
+            if (isValidCommand && isValidParameters)
+            {
+                switch (command[0])
+                {
+                    case "rectangle":
+                        Shape rectangle = new Rectangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+                        rectangle.Draw(g);
+                        break;
 
+                    case "circle":
+                        Shape circle = new Circle(color, fill, xPos, yPos, commandValues[0]);
+                        circle.Draw(g);
+                        break;
+
+                    case "triangle":
+                        Shape triangle = new Triangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+                        triangle.Draw(g);
+                        break;
+
+                    case "clear":
+                        g.Clear(SystemColors.ActiveBorder);
+                        break;
+
+                    case "reset":
+                        xPos = 0; yPos = 0;
+                        break;
+
+                    case "pen":
+                        color = Color.FromName(command[1]);
+                        break;
+
+                    case "moveto":
+                        xPos = commandValues[0];
+                        yPos = commandValues[1];
+                        break;
+
+                    case "drawto":
+                        Pen p = new Pen(color, 1);
+                        g.DrawLine(p, xPos, yPos, commandValues[0], commandValues[1]);
+                        break;
+
+                    case "fill":
+                        if (command[1].Equals("on"))
+                        {
+                            fill = true;
+                        }
+
+                        else
+                        {
+                            fill = false;
+                        }
+                        break;
+
+                    default:
+                        MessageBox.Show("Command provided is not valid.");
+                        break;
+                }
+            }
+            isValidCommand = false;
+            isValidParameters = false;
         }
     }
 }
