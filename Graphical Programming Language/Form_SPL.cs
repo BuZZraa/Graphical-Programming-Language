@@ -62,5 +62,10 @@ namespace Graphical_Programming_Language
         {
             Application.Exit();
         }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            g.Clear(SystemColors.ActiveBorder);
+        }
     }
 }
