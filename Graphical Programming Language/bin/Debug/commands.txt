@@ -11,3 +11,4 @@ moveto 150 150
 
 pen green
 rectangle 50 50
+reset
