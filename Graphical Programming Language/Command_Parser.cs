@@ -215,10 +215,12 @@ namespace Graphical_Programming_Language
 
                     case "clear":
                         g.Clear(SystemColors.ActiveBorder);
+                        color = Color.Black;
                         break;
 
                     case "reset":
                         xPos = 0; yPos = 0;
+                        color = Color.Black;
                         break;
 
                     case "pen":
