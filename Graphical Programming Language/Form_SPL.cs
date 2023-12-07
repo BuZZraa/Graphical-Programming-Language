@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace Graphical_Programming_Language
 
             catch (Exception err1)
             {
-                MessageBox.Show(err1.Message, "Error");
+                MessageBox.Show(err1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -109,6 +110,41 @@ namespace Graphical_Programming_Language
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             g.Clear(SystemColors.ActiveBorder);
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                File.WriteAllText("commands.txt", textBox_MultiCmd.Text);
+                MessageBox.Show("Commands saved to commands.txt.", "File Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            catch (Exception err2)
+            {
+                MessageBox.Show("An error occured: " + err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string commandsFile = File.ReadAllText("commands.txt");
+                textBox_MultiCmd.Text = commandsFile;
+                MessageBox.Show("Commands loaded from commands.txt.", "File Loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            catch (Exception err3)
+            {
+                MessageBox.Show("An error occured: " + err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Created By : Prashant Muni Bajracharya \n " +
+                "© All Rights Reserved.", "About", MessageBoxButtons.OK);
         }
     }
 }
