@@ -15,6 +15,7 @@ namespace Graphical_Programming_Language
     {
         Graphics g;
         Command_Parser command = new Command_Parser();
+        private string[] multiCommands;
         private Boolean syntaxChecked;
 
         public Form_SPL()
@@ -26,35 +27,77 @@ namespace Graphical_Programming_Language
 
         private void Btn_Syntax_Click(object sender, EventArgs e)
         {
-            command.Command = textBox_SingleCmd.Text.ToLower().Trim().Split();
-            command.ValidateCommandName();
-            command.ValidateParameters();
-            syntaxChecked = true;
+            try
+            {
+                if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
+                {
+                    command.Command = textBox_SingleCmd.Text.ToLower().Trim().Split();
+                    command.ValidateCommandName();
+                    command.ValidateParameters();
+                    syntaxChecked = true;
+                }
+
+                else if (textBox_SingleCmd.Text.Length == 0 && textBox_MultiCmd.Text.Length != 0)
+                {
+                    throw new Exception("Please enter run to run multi-line commands.");
+                }
+
+                else if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)
+                {
+                    if (textBox_SingleCmd.Text.ToLower().Equals("run"))
+                    {
+                        multiCommands = textBox_MultiCmd.Text.ToLower().Trim().Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+                        for (int i = 0; i < multiCommands.Length; i++)
+                        {
+                            command.Command = multiCommands[i].Trim().Split();
+                            command.ValidateCommandName();
+                            command.ValidateParameters();
+                            syntaxChecked = true;
+                        }
+                    }
+
+                    else
+                    {
+                        throw new Exception("Please enter run in single line command box to run multi-line commands.");
+                    }
+                }
+            }
+
+            catch (Exception err1)
+            {
+                MessageBox.Show(err1.Message, "Error");
+            }
         }
 
         private void Btn_Run_Click(object sender, EventArgs e)
-        {   
-            try
+        {
+            if (syntaxChecked == true)
             {
-                if (syntaxChecked == true)
+                if (command.IsValidCommand && command.IsValidParameters)
                 {
-                    if (command.IsValidCommand && command.IsValidParameters)
+                    if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)
+                    {
+                        for (int i = 0; i < multiCommands.Length; i++)
+                        {
+                            command.Command = multiCommands[i].Trim().Split();
+                            command.ValidateCommandName();
+                            command.ValidateParameters();
+                            command.RunCommand(g);
+                        }
+                    }
+
+                    else
                     {
                         command.RunCommand(g);
                     }
-                    syntaxChecked = false;
-                }
 
-                else
-                {
-                    throw new Exception("Please verify the syntax before running the code.");
                 }
+                syntaxChecked = false;
             }
-         
 
-            catch(Exception err) 
+            else
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show("Syntax not checked.");
             }
         }
 
@@ -63,7 +106,7 @@ namespace Graphical_Programming_Language
             Application.Exit();
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             g.Clear(SystemColors.ActiveBorder);
         }

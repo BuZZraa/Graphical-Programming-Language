@@ -24,6 +24,7 @@ namespace Graphical_Programming_Language
         public string[] Command
         {
             set { command = value; }
+            get { return command; }
         }
 
         public Boolean IsValidCommand
@@ -41,8 +42,10 @@ namespace Graphical_Programming_Language
             isValidCommand = false;
             try
             {
+
                 for (int i = 0; i < validCommands.Length; i++)
                 {
+
                     if (validCommands[i].Equals(command[0]))
                     {
                         isValidCommand = true;
@@ -67,10 +70,13 @@ namespace Graphical_Programming_Language
             isValidParameters = false;
             try
             {
+
                 if (isValidCommand)
                 {
+
                     if (command[0].Equals("clear") || command[0].Equals("reset"))
                     {
+
                         if (command.Length == 1)
                         {
                             isValidParameters = true;
@@ -78,14 +84,16 @@ namespace Graphical_Programming_Language
 
                         else
                         {
-                            throw new Exception("Please remove parameters for this command.");
+                            throw new Exception($"Please remove parameters for {command[0]} command.");
                         }
                     }
 
                     else if (command[0].Equals("pen") || command[0].Equals("fill"))
                     {
+
                         if (command.Length == 2)
                         {
+
                             if (command[0].Equals("pen") && (command[1].Equals("red") || command[1].Equals("blue") || command[1].Equals("green")))
                             {
                                 isValidParameters = true;
@@ -98,27 +106,30 @@ namespace Graphical_Programming_Language
 
                             else
                             {
-                                throw new Exception("Please enter a valid parameter for the command.");
+                                throw new Exception($"Please enter a valid parameter for {command[0]} command.");
                             }
                         }
 
                         else
                         {
-                            throw new Exception("Please enter a single parameter for this command.");
+                            throw new Exception($"Please enter a single parameter for {command[0]} command.");
                         }
                     }
 
                     else
                     {
+
                         try
                         {
+
                             commandValues.Clear();
                             for (int i = 1; i < command.Length; i++)
                             {
+
                                 int value = int.Parse(command[i]);
                                 if (value < 0)
                                 {
-                                    throw new Exception("Please enter a non negative integer for this command.");
+                                    throw new Exception($"Please enter a non negative integer for {command[0]} command.");
                                 }
 
                                 else
@@ -130,13 +141,15 @@ namespace Graphical_Programming_Language
 
                         catch (Exception)
                         {
-                            MessageBox.Show("Please enter positive integer parameters for this command.", "Error");
+                            MessageBox.Show($"Please enter positive integer parameters for {command[0]} command.");
                         }
 
                         try
                         {
+
                             if (command[0].Equals("circle"))
                             {
+
                                 if (command.Length == 2)
                                 {
                                     isValidParameters = true;
@@ -144,12 +157,13 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception("Please enter a single parameter for this command.");
+                                    throw new Exception($"Please enter a single parameter for {command[0]} command.");
                                 }
                             }
 
                             else if (command[0].Equals("moveto") || command[0].Equals("drawto") || command[0].Equals("rectangle") || command[0].Equals("triangle"))
                             {
+
                                 if (command.Length == 3)
                                 {
                                     isValidParameters = true;
@@ -157,7 +171,7 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception("Please enter two parameters for this command.");
+                                    throw new Exception($"Please enter two parameters for {command[0]} command.");
                                 }
                             }
                         }
@@ -178,8 +192,10 @@ namespace Graphical_Programming_Language
 
         public void RunCommand(Graphics g)
         {
+
             if (isValidCommand && isValidParameters)
             {
+
                 switch (command[0])
                 {
                     case "rectangle":
@@ -236,6 +252,7 @@ namespace Graphical_Programming_Language
                         break;
                 }
             }
+
             isValidCommand = false;
             isValidParameters = false;
         }
