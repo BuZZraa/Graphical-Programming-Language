@@ -55,13 +55,13 @@ namespace Graphical_Programming_Language
 
                 if (!isValidCommand)
                 {
-                    throw new Exception("Please enter a valid command.");
+                    throw new Exception($"Please enter a valid command instead of {command[0]}.");
                 }
             }
 
             catch (Exception err)
             {
-                MessageBox.Show(err.Message, "Error");
+                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -141,7 +141,7 @@ namespace Graphical_Programming_Language
 
                         catch (Exception)
                         {
-                            MessageBox.Show($"Please enter positive integer parameters for {command[0]} command.");
+                            MessageBox.Show($"Please enter positive integer parameters for {command[0]} command.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                         try
@@ -176,9 +176,9 @@ namespace Graphical_Programming_Language
                             }
                         }
 
-                        catch (Exception e)
+                        catch (Exception err2)
                         {
-                            MessageBox.Show(e.Message, "Error");
+                            MessageBox.Show(err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -186,7 +186,7 @@ namespace Graphical_Programming_Language
 
             catch (Exception err3)
             {
-                MessageBox.Show(err3.Message, "Error");
+                MessageBox.Show(err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -248,7 +248,7 @@ namespace Graphical_Programming_Language
                         break;
 
                     default:
-                        MessageBox.Show("Command provided is not valid.");
+                        MessageBox.Show("Command provided is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                 }
             }
