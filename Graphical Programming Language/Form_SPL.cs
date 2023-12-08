@@ -72,33 +72,41 @@ namespace Graphical_Programming_Language
 
         private void Btn_Run_Click(object sender, EventArgs e)
         {
-            if (syntaxChecked == true)
+            try
             {
-                if (command.IsValidCommand && command.IsValidParameters)
+                if (syntaxChecked == true)
                 {
-                    if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)
+                    if (command.IsValidCommand && command.IsValidParameters)
                     {
-                        for (int i = 0; i < multiCommands.Length; i++)
+                        if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)
                         {
-                            command.Command = multiCommands[i].Trim().Split();
-                            command.ValidateCommandName();
-                            command.ValidateParameters();
+                            for (int i = 0; i < multiCommands.Length; i++)
+                            {
+                                command.Command = multiCommands[i].Trim().Split();
+                                command.ValidateCommandName();
+                                command.ValidateParameters();
+                                command.RunCommand(g);
+                            }
+                        }
+
+                        else
+                        {
                             command.RunCommand(g);
                         }
-                    }
 
-                    else
-                    {
-                        command.RunCommand(g);
                     }
-
+                    syntaxChecked = false;
                 }
-                syntaxChecked = false;
+
+                else
+                {
+                    throw new Exception ("Please check syntax before running the file.");
+                }
             }
 
-            else
+            catch(Exception err2)
             {
-                MessageBox.Show("Syntax not checked.");
+                MessageBox.Show(err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -120,9 +128,9 @@ namespace Graphical_Programming_Language
                 MessageBox.Show("Commands saved to commands.txt.", "File Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            catch (Exception err2)
+            catch (Exception err3)
             {
-                MessageBox.Show("An error occured: " + err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occured: " + err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -135,9 +143,9 @@ namespace Graphical_Programming_Language
                 MessageBox.Show("Commands loaded from commands.txt.", "File Loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            catch (Exception err3)
+            catch (Exception err4)
             {
-                MessageBox.Show("An error occured: " + err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occured: " + err4.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
