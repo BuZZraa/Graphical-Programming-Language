@@ -1,3 +1,4 @@
+fill on
 rectangle 50 50
 moveto 50 50
 
