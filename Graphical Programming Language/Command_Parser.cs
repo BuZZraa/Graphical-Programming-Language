@@ -14,10 +14,12 @@ namespace Graphical_Programming_Language
         private string[] command;
         private List<int> commandValues = new List<int>();
         private int xPos = 0, yPos = 0;
-        Boolean isValidCommand = false;
-        Boolean isValidParameters = false;
-        Boolean fill = false;
-        Color color = Color.Black;
+        private string commandName;
+        private string commandStringValue;
+        private Boolean isValidCommand = false;
+        private Boolean isValidParameters = false;
+        private Boolean fill = false;
+        private Color color = Color.Black;
 
         public Command_Parser() { }
 
@@ -39,6 +41,7 @@ namespace Graphical_Programming_Language
 
         public void ValidateCommandName()
         {
+            commandName = command[0];
             isValidCommand = false;
             try
             {
@@ -46,7 +49,7 @@ namespace Graphical_Programming_Language
                 for (int i = 0; i < validCommands.Length; i++)
                 {
 
-                    if (validCommands[i].Equals(command[0]))
+                    if (validCommands[i].Equals(commandName))
                     {
                         isValidCommand = true;
                         break;
@@ -55,13 +58,13 @@ namespace Graphical_Programming_Language
 
                 if (!isValidCommand)
                 {
-                    throw new Exception($"Please enter a valid command instead of {command[0]}.");
+                    throw new Exception($"Please enter a valid command instead of {commandName}.");
                 }
             }
 
-            catch (Exception err)
+            catch (Exception err1)
             {
-                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(err1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -72,9 +75,8 @@ namespace Graphical_Programming_Language
             {
 
                 if (isValidCommand)
-                {
-
-                    if (command[0].Equals("clear") || command[0].Equals("reset"))
+                {             
+                    if (commandName.Equals("clear") || commandName.Equals("reset"))
                     {
 
                         if (command.Length == 1)
@@ -84,35 +86,35 @@ namespace Graphical_Programming_Language
 
                         else
                         {
-                            throw new Exception($"Please remove parameters for {command[0]} command.");
+                            throw new Exception($"Please remove parameters for {commandName} command.");
                         }
                     }
 
-                    else if (command[0].Equals("pen") || command[0].Equals("fill"))
+                    else if (commandName.Equals("pen") || commandName.Equals("fill"))
                     {
 
                         if (command.Length == 2)
                         {
-
-                            if (command[0].Equals("pen") && (command[1].Equals("red") || command[1].Equals("blue") || command[1].Equals("green")))
+                            commandStringValue = command[1];
+                            if (commandName.Equals("pen") && (commandStringValue.Equals("red") || commandStringValue.Equals("blue") || commandStringValue.Equals("green")))
                             {
                                 isValidParameters = true;
                             }
 
-                            else if (command[0].Equals("fill") && (command[1].Equals("on") || command[1].Equals("off")))
+                            else if (commandName.Equals("fill") && (commandStringValue.Equals("on") || commandStringValue.Equals("off")))
                             {
                                 isValidParameters = true;
                             }
 
                             else
                             {
-                                throw new Exception($"Please enter a valid parameter for {command[0]} command.");
+                                throw new Exception($"Please enter a valid parameter for {commandName} command.");
                             }
                         }
 
                         else
                         {
-                            throw new Exception($"Please enter a single parameter for {command[0]} command.");
+                            throw new Exception($"Please enter a single parameter for {commandName} command.");
                         }
                     }
 
@@ -125,11 +127,11 @@ namespace Graphical_Programming_Language
                             commandValues.Clear();
                             for (int i = 1; i < command.Length; i++)
                             {
-
-                                int value = int.Parse(command[i]);
-                                if (value < 0)
+                                
+                                int value = int.Parse(command[i]);                                
+                                if (value < 0 || value == 0)
                                 {
-                                    throw new Exception($"Please enter a non negative integer for {command[0]} command.");
+                                    throw new Exception();
                                 }
 
                                 else
@@ -141,13 +143,13 @@ namespace Graphical_Programming_Language
 
                         catch (Exception)
                         {
-                            MessageBox.Show($"Please enter positive integer parameters for {command[0]} command.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Please enter positive integer parameter for {commandName} command.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                         try
                         {
 
-                            if (command[0].Equals("circle"))
+                            if (commandName.Equals("circle"))
                             {
 
                                 if (command.Length == 2)
@@ -157,11 +159,11 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a single parameter for {command[0]} command.");
+                                    throw new Exception($"Please enter a single parameter for {commandName} command.");
                                 }
                             }
 
-                            else if (command[0].Equals("moveto") || command[0].Equals("drawto") || command[0].Equals("rectangle") || command[0].Equals("triangle"))
+                            else if (commandName.Equals("moveto") || commandName.Equals("drawto") || commandName.Equals("rectangle") || commandName.Equals("triangle"))
                             {
 
                                 if (command.Length == 3)
@@ -171,22 +173,22 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception($"Please enter two parameters for {command[0]} command.");
+                                    throw new Exception($"Please enter two parameters for {commandName} command.");
                                 }
                             }
                         }
 
-                        catch (Exception err2)
+                        catch (Exception err3)
                         {
-                            MessageBox.Show(err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
             }
 
-            catch (Exception err3)
+            catch (Exception err4)
             {
-                MessageBox.Show(err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(err4.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -196,7 +198,7 @@ namespace Graphical_Programming_Language
             if (isValidCommand && isValidParameters)
             {
 
-                switch (command[0])
+                switch (commandName)
                 {
                     case "rectangle":
                         Shape rectangle = new Rectangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
