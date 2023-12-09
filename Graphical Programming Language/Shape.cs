@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
 {
-    abstract class Shape
+    public abstract class Shape
     {
 
         protected Color colour;

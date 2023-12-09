@@ -4,7 +4,7 @@ using System;
 namespace Graphical_Programming_Language_Unit_Test
 {
     [TestClass]
-    public class UnitTest1
+    public class TriangleUnitTest
     {
         [TestMethod]
         public void TestMethod1()

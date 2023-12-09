@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
 {
-    internal class Rectangle : Shape
+    public class Rectangle : Shape
     {
         int width, height;
 
