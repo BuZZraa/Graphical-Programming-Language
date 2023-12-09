@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
 {
-    internal class Circle : Shape
+    public class Circle : Shape
     {
         private int radius;
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Graphical_Programming_Language
 {
-    internal class Triangle : Shape
+    public class Triangle : Shape
     {
         int length, height;
 
