@@ -49,14 +49,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RectangleUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CircleUnitTest.cs" />
-    <Compile Include="TriangleUnitTest.cs" />
     <Compile Include="Command_ParserUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Graphical Programming Language\Graphical Programming Language.csproj">
+      <Project>{095c3040-6e73-4b7b-953f-be5d8ca80533}</Project>
+      <Name>Graphical Programming Language</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

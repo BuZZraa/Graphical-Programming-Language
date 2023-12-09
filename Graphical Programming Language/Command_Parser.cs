@@ -39,26 +39,33 @@ namespace Graphical_Programming_Language
             get { return isValidParameters; }
         }
 
-        public void ValidateCommandName()
+        public Boolean ValidateCommandName()
         {
-            commandName = command[0];
             isValidCommand = false;
             try
             {
-
-                for (int i = 0; i < validCommands.Length; i++)
+                if (!string.IsNullOrEmpty(command[0]))
                 {
-
-                    if (validCommands[i].Equals(commandName))
+                    commandName = command[0];
+                    for (int i = 0; i < validCommands.Length; i++)
                     {
-                        isValidCommand = true;
-                        break;
-                    }
-                }
 
-                if (!isValidCommand)
+                        if (validCommands[i].Equals(commandName))
+                        {
+                            isValidCommand = true;
+                            break;
+                        }
+                    }
+
+                    if (!isValidCommand)
+                    {
+                        throw new Exception($"Please enter a valid command instead of {commandName}.");
+                    }
+                }      
+                
+                else
                 {
-                    throw new Exception($"Please enter a valid command instead of {commandName}.");
+                    throw new Exception("Please enter a command.");
                 }
             }
 
@@ -66,9 +73,10 @@ namespace Graphical_Programming_Language
             {
                 MessageBox.Show(err1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return isValidCommand;
         }
 
-        public void ValidateParameters()
+        public Boolean ValidateParameters()
         {
             isValidParameters = false;
             try
@@ -127,9 +135,9 @@ namespace Graphical_Programming_Language
                             commandValues.Clear();
                             for (int i = 1; i < command.Length; i++)
                             {
-                                
-                                int value = int.Parse(command[i]);                                
-                                if (value < 0 || value == 0)
+
+                                int value = int.Parse(command[i]);
+                                if (value <= 0)
                                 {
                                     throw new Exception();
                                 }
@@ -139,11 +147,12 @@ namespace Graphical_Programming_Language
                                     commandValues.Add(value);
                                 }
                             }
+                        
                         }
 
                         catch (Exception)
                         {
-                            MessageBox.Show($"Please enter positive integer parameter for {commandName} command.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Please enter positive integer parameter for {commandName} command." , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                           
                         }
 
                         try
@@ -152,9 +161,10 @@ namespace Graphical_Programming_Language
                             if (commandName.Equals("circle"))
                             {
 
-                                if (command.Length == 2)
+                                if (commandValues.Count() == 1)
                                 {
                                     isValidParameters = true;
+                                    MessageBox.Show(""+isValidParameters);
                                 }
 
                                 else
@@ -166,7 +176,7 @@ namespace Graphical_Programming_Language
                             else if (commandName.Equals("moveto") || commandName.Equals("drawto") || commandName.Equals("rectangle") || commandName.Equals("triangle"))
                             {
 
-                                if (command.Length == 3)
+                                if (commandValues.Count() == 2)
                                 {
                                     isValidParameters = true;
                                 }
@@ -190,6 +200,7 @@ namespace Graphical_Programming_Language
             {
                 MessageBox.Show(err4.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return isValidParameters;
         }
 
         public void RunCommand(Graphics g)
