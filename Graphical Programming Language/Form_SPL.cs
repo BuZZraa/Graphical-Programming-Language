@@ -15,7 +15,7 @@ namespace Graphical_Programming_Language
     public partial class Form_SPL : Form
     {
         Graphics g;
-        Command_Parser command = new Command_Parser();
+        Command_Parser command = new Command_Parser(new DisplayMessageBox());
         private string[] multiCommands;
         private Boolean syntaxChecked;
 

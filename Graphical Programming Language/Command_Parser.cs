@@ -20,8 +20,12 @@ namespace Graphical_Programming_Language
         private Boolean isValidParameters = false;
         private Boolean fill = false;
         private Color color = Color.Black;
+        private readonly IMessageDisplayer _messageDisplayer;
 
-        public Command_Parser() { }
+        public Command_Parser(IMessageDisplayer messageDisplayer) 
+        { 
+            _messageDisplayer = messageDisplayer;
+        }
 
         public string[] Command
         {
@@ -71,7 +75,7 @@ namespace Graphical_Programming_Language
 
             catch (Exception err1)
             {
-                MessageBox.Show(err1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _messageDisplayer.DisplayMessage(err1.Message);
             }
             return isValidCommand;
         }
@@ -152,7 +156,7 @@ namespace Graphical_Programming_Language
 
                         catch (Exception)
                         {
-                            MessageBox.Show($"Please enter positive integer parameter for {commandName} command." , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                           
+                            _messageDisplayer.DisplayMessage($"Please enter positive integer parameter for {commandName} command.");                           
                         }
 
                         try
@@ -164,12 +168,11 @@ namespace Graphical_Programming_Language
                                 if (commandValues.Count() == 1)
                                 {
                                     isValidParameters = true;
-                                    MessageBox.Show(""+isValidParameters);
                                 }
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a single parameter for {commandName} command.");
+                                    throw new Exception($"Please enter a single valid parameter for {commandName} command.");
                                 }
                             }
 
@@ -183,14 +186,14 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception($"Please enter two parameters for {commandName} command.");
+                                    throw new Exception($"Please enter two valid parameters for {commandName} command.");
                                 }
                             }
                         }
 
                         catch (Exception err3)
                         {
-                            MessageBox.Show(err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            _messageDisplayer.DisplayMessage(err3.Message);
                         }
                     }
                 }
@@ -198,7 +201,7 @@ namespace Graphical_Programming_Language
 
             catch (Exception err4)
             {
-                MessageBox.Show(err4.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _messageDisplayer.DisplayMessage(err4.Message);
             }
             return isValidParameters;
         }
