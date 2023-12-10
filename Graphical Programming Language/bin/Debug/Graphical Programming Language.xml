@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Graphical Programming Language</name>
+    </assembly>
+    <members>
+        <member name="F:Graphical_Programming_Language.Form_SPL.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Graphical_Programming_Language.Shape">
+            <summary>
+            Abstract class that represents shape that can be drawn on a graphics surface.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Shape.colour">
+            <summary>
+            Colour variable to store the shape's color.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Shape.x">
+            <summary>
+            X and Y cooridnates from where the shape will be drawn.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Shape.y">
+            <summary>
+            X and Y cooridnates from where the shape will be drawn.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Shape.fill">
+            <summary>
+            Fill variable which sets if the shape will be drawn filled or without fill.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Shape.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Parameterized constructor for the class which initializes an instance of the class with specified parameters.
+            </summary>
+            <param name="colour">Color of the shape. </param>
+            <param name="fill">For shape to be filled or not. </param>
+            <param name="x">X-coordinate for the shape.</param>
+            <param name="y">Y-coordinate for the shape.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Shape.Draw(System.Drawing.Graphics)">
+            <summary>
+            Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
+            </summary>
+            <param name="g">Instance of graphics class on which the shape will be drawn.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
