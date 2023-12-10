@@ -1,13 +1,3 @@
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.exe.config
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.exe
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.pdb
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.csproj.AssemblyReference.cache
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical_Programming_Language.Properties.Resources.resources
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.csproj.GenerateResource.cache
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.csproj.CoreCompileInputs.cache
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.exe
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.pdb
-D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical_Programming_Language.Form_SPL.resources
 E:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.exe.config
 E:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.exe
 E:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.pdb
@@ -18,3 +8,13 @@ E:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Gr
 E:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.csproj.CoreCompileInputs.cache
 E:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.exe
 E:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.pdb
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.exe.config
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.exe
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.pdb
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.csproj.AssemblyReference.cache
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical_Programming_Language.Form_SPL.resources
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical_Programming_Language.Properties.Resources.resources
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.csproj.GenerateResource.cache
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.csproj.CoreCompileInputs.cache
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.exe
+D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\obj\Debug\Graphical Programming Language.pdb

@@ -1,18 +1,30 @@
 ﻿using Graphical_Programming_Language;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Windows.Forms;
 
 namespace Graphical_Programming_Language_Unit_Test
 {
     [TestClass]
-    public class Command_ParserUnitTest
+    public class Command_ParserUnitTest : IMessageDisplayer
     {
+        public string _displayedMessage;
+        public string DisplayedMessage
+        {
+            get { return _displayedMessage;  }
+        }
+        public void DisplayMessage(string message)
+        {
+            _displayedMessage = message;
+        }
+
         [TestMethod]
         public void IsCommandStoredTest()
         {
             //Arrange 
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommandArray = {"rectangle", "100", "100"};
-            Command_Parser command = new Command_Parser();
 
             //Act
             command.Command = expectedCommandArray;
@@ -25,7 +37,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsValidCommandName()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string [] expectedCommand = { "rectangle", "100", "100"};
 
             //Act
@@ -39,7 +52,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsInvalidCommandName()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { "abcde", "100", "100" };
 
             //Act
@@ -53,7 +67,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsEmptyCommand()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = {};
 
             //Act
@@ -67,7 +82,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsNullCommand()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { null };
 
             //Act
@@ -81,7 +97,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsValidParameters()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { "rectangle", "100", "100" };
 
             // Act
@@ -96,7 +113,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsInvalidParameters()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { "rectangle", "fifty", "fifty" };
 
             // Act
@@ -111,7 +129,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsEmptyParameters()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { "rectangle" };
 
             // Act
@@ -126,7 +145,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsNegativeParameters()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { "rectangle", "-100", "-100"};
 
             // Act
@@ -140,7 +160,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsNullParameters()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { "rectangle", null, null };
 
             // Act
@@ -155,7 +176,8 @@ namespace Graphical_Programming_Language_Unit_Test
         public void IsMissingParameter()
         {
             //Arrange
-            Command_Parser command = new Command_Parser();
+            Command_ParserUnitTest stringErrorMessage = new Command_ParserUnitTest();
+            Command_Parser command = new Command_Parser(stringErrorMessage);
             string[] expectedCommand = { "rectangle", "100"};
 
             // Act
@@ -164,6 +186,6 @@ namespace Graphical_Programming_Language_Unit_Test
 
             // Assert
             Assert.IsFalse(command.ValidateParameters());
-        }
+        }     
     }
 }
