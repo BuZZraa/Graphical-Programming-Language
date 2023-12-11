@@ -20,7 +20,7 @@ namespace Graphical_Programming_Language
 
         /// <summary>
         /// Parameterized constructor Circle which initializes an instance of the class circle with specified parameters. 
-        /// The color, fill, and x, y coodinates are passed to base class Shape constructor.
+        /// The color, fill, x and y parameters are passed to base class Shape constructor.
         /// </summary>
         /// <param name="colour">Colour of the circle.</param>
         /// <param name="fill">For circle to be filled or not.</param>
@@ -35,9 +35,10 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Abstract method draw inherited from base class to be overriden in derived class circle to draw circle on the graphics.
         /// </summary>
-        /// <param name="g">Instance of graphics class on which the circle will be drawn.</param>
+        /// <param name="g">Graphics object on which the circle will be drawn.</param>
         public override void Draw(Graphics g)
         {
+            // If fill is true circle is filled and drawn else it is drawn without fill.
             if (fill)
             {
                 SolidBrush b = new SolidBrush(colour);

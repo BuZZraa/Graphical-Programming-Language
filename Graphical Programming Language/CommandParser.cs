@@ -8,41 +8,116 @@ using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
 {
-    public class Command_Parser
+    /// <summary>
+    /// CommandParser class to parse and execute the commands to draw in graphics.
+    /// </summary>
+    public class CommandParser
     {
+        /// <summary>
+        /// Array of valid command name that can used.
+        /// </summary>
         private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "pen", "fill" };
+
+        /// <summary>
+        /// Array to store the current running command with its values.
+        /// </summary>
         private string[] command;
+
+        /// <summary>
+        /// List to store only values or parameters of the command in integer datatype.
+        /// </summary>
         private List<int> commandValues = new List<int>();
-        private int xPos = 0, yPos = 0;
+
+        /// <summary>
+        /// Variable to store X coordinate from where the drawing will start.
+        /// Initially set to 0.
+        /// </summary>
+        private int xPos = 0;
+
+        /// <summary>
+        /// Variable to store X coordinate from where the drawing will start.
+        /// Initially set to 0.
+        /// </summary>
+        private int yPos = 0;
+
+        /// <summary>
+        /// Variable to only store current running command name.
+        /// </summary>
         private string commandName;
+
+        /// <summary>
+        /// Variable to store current command value in string.
+        /// </summary>
         private string commandStringValue;
+
+        /// <summary>
+        /// Variable to set the flag of current command name being valid.
+        /// Initially set to false.
+        /// </summary>
         private Boolean isValidCommand = false;
+
+        /// <summary>
+        /// Variable to set the flag of current command value or parameters being valid.
+        /// Initially set to false.
+        /// </summary>
         private Boolean isValidParameters = false;
+
+        /// <summary>
+        /// Variable to set the flag of the shape being either filled or not filled.
+        /// Initially set to false.
+        /// </summary>
         private Boolean fill = false;
+
+        /// <summary>
+        /// Variable to store the current color used to draw.
+        /// Initially set to black.
+        /// </summary>
         private Color color = Color.Black;
+
+        /// <summary>
+        /// Instance of IMessageDisplayer interface created used to display error message.
+        /// </summary>
         private readonly IMessageDisplayer _messageDisplayer;
 
-        public Command_Parser(IMessageDisplayer messageDisplayer) 
+        /// <summary>
+        /// Parameterized constructor which initializes a new instance of the Command_Parser class that takes
+        /// instance of IMessageDisplayer interface as parameter to display error messages.
+        /// </summary>
+        /// <param name="messageDisplayer">Instance of IMessageDisplayer interface to display error messages.</param>
+        public CommandParser(IMessageDisplayer messageDisplayer) 
         { 
             _messageDisplayer = messageDisplayer;
         }
 
+        /// <summary>
+        /// Getter and setter methods for the command array to get or set the current command with its values.
+        /// </summary>
         public string[] Command
         {
             set { command = value; }
             get { return command; }
         }
 
+        /// <summary>
+        /// Getter method to get boolean value of a command name being valid or not.
+        /// </summary>
         public Boolean IsValidCommand
         {
             get { return isValidCommand; }
         }
 
+        /// <summary>
+        /// Getter method to get boolean value of a command parameters being valid or not.
+        /// </summary>
         public Boolean IsValidParameters
         {
             get { return isValidParameters; }
         }
 
+        /// <summary>
+        /// Boolean method to verify if a command name is valid or not by passing it and checking if it is in the validCommands array.
+        /// </summary>
+        /// <returns>Returns true if command name is valid if not returns false.</returns>
         public Boolean ValidateCommandName()
         {
             isValidCommand = false;
@@ -80,6 +155,11 @@ namespace Graphical_Programming_Language
             return isValidCommand;
         }
 
+        /// <summary>
+        /// Boolean method to verify if command parameters are valid or not by checking for specific values 
+        /// and length of the command array or commandValues array.
+        /// </summary>
+        /// <returns>Returns true if command parameters are valid if not returns false.</returns>
         public Boolean ValidateParameters()
         {
             isValidParameters = false;
@@ -206,12 +286,16 @@ namespace Graphical_Programming_Language
             return isValidParameters;
         }
 
+        /// <summary>
+        /// Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
+        /// Runs the command based on the command name using switch statement.
+        /// </summary>
+        /// <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
         public void RunCommand(Graphics g)
         {
 
             if (isValidCommand && isValidParameters)
             {
-
                 switch (commandName)
                 {
                     case "rectangle":

@@ -12,13 +12,36 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Graphical_Programming_Language
 {
+    /// <summary>
+    /// Form_SPL class to represent the Graphical Programming Language UI and its features.
+    /// </summary>
     public partial class Form_SPL : Form
     {
+        /// <summary>
+        /// Class variable for a Graphics object on which the drawing is done.
+        /// </summary>
         Graphics g;
-        Command_Parser command = new Command_Parser(new DisplayMessageBox());
+
+        /// <summary>
+        /// Instance of the CommandParser class created to pass the commands provided in textbox of the form.
+        /// Instance of DisplayMessageBox as a argument to CommandParser constructor for creating MessageBox for error messages.
+        /// </summary>
+        CommandParser command = new CommandParser(new DisplayMessageBox());
+
+        /// <summary>
+        /// Array to store multiple commands provided by the user.
+        /// </summary>
         private string[] multiCommands;
+
+        /// <summary>
+        /// Variable to set the flag of syntax button being clicked.
+        /// </summary>
         private Boolean syntaxChecked;
 
+        /// <summary>
+        /// Empty Constructor to initialize on instance of the Form_SPL class.
+        /// Creates graphic object of drawing on the panel and sets the syntaxChecked to false each time the class is initialized.
+        /// </summary>
         public Form_SPL()
         {
             InitializeComponent();
@@ -26,11 +49,18 @@ namespace Graphical_Programming_Language
             syntaxChecked = false;
         }
 
+        /// <summary>
+        /// Syntax button click event handler to check the event of syntax button being clicked.
+        /// When button is clicked it checks which textbox has input and according to it validates the command name and parameters.
+        /// Calls ValidateCommandName() and ValidateParameters() from CommandParser to validate the command name and parameters once the button is clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of syntax button being clicked.</param>
+        /// <param name="e">The arguments of the syntax button click event.</param>
         private void Btn_Syntax_Click(object sender, EventArgs e)
         {
             try
             {
-                if (textBox_SingleCmd.Text.Length >= 0 && textBox_MultiCmd.Text.Length == 0)
+                if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
                 {
                     command.Command = textBox_SingleCmd.Text.ToLower().Trim().Split();
                     command.ValidateCommandName();
@@ -70,6 +100,14 @@ namespace Graphical_Programming_Language
             }
         }
 
+        /// <summary>
+        /// Run button click event handler to run the commands when the run button is clicked. 
+        /// Run button event handler only runs the command if the syntax button is clicked and also
+        /// if the command name and parameters are valid. 
+        /// Run button works if command is written in single or multi-line textbox. 
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of run button being clicked.</param>
+        /// <param name="e">The arguments of the run button click event.</param>
         private void Btn_Run_Click(object sender, EventArgs e)
         {
             try
@@ -110,16 +148,31 @@ namespace Graphical_Programming_Language
             }
         }
 
+        /// <summary>
+        /// Event handler for the event of exit menu option being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of exit menu option being clicked.</param>
+        /// <param name="e">The arguments of the exit menu option click event.</param>
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Event handler for the event of new menu option being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of new menu option being clicked.</param>
+        /// <param name="e">The arguments of the new menu option click event.</param>
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             g.Clear(SystemColors.ActiveBorder);
         }
 
+        /// <summary>
+        /// Event handler for the event of save menu option being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of save menu option being clicked.</param>
+        /// <param name="e">The arguments of the save menu option click event.</param>
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -134,6 +187,11 @@ namespace Graphical_Programming_Language
             }
         }
 
+        /// <summary>
+        /// Event handler for the event of load menu option being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of load menu option being clicked.</param>
+        /// <param name="e">The arguments of the load menu option click event.</param>
         private void LoadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -149,6 +207,11 @@ namespace Graphical_Programming_Language
             }
         }
 
+        /// <summary>
+        /// Event handler for the event of about menu option being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of about menu option being clicked.</param>
+        /// <param name="e">The arguments of the about menu option click event.</param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Created By : Prashant Muni Bajracharya \n " +

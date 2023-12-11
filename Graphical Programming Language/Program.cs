@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
 {
+    /// <summary>
+    /// The main entry point class for the graphical programming language application.
+    /// </summary>
     internal static class Program
     {
         /// <summary>
