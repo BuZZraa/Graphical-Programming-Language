@@ -4,6 +4,33 @@
         <name>Graphical Programming Language</name>
     </assembly>
     <members>
+        <member name="T:Graphical_Programming_Language.Circle">
+            <summary>
+            Derived class Circle which inherits abstract class Shape to represent circle shape being drawn on graphics.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Circle.radius">
+            <summary>
+            Variable to store the radius of the circle.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Circle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Parameterized constructor Circle which initializes an instance of the class circle with specified parameters. 
+            The color, fill, and x, y coodinates are passed to base class Shape constructor.
+            </summary>
+            <param name="colour">Colour of the circle.</param>
+            <param name="fill">For circle to be filled or not.</param>
+            <param name="x">X coordinate from where the circle will be drawn.</param>
+            <param name="y">Y coordinate from where the circle will be drawn.</param>
+            <param name="radius">Radius for the size of the circle.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Circle.Draw(System.Drawing.Graphics)">
+            <summary>
+            Abstract method draw inherited from base class to be overriden in derived class circle to draw circle on the graphics.
+            </summary>
+            <param name="g">Instance of graphics class on which the circle will be drawn.</param>
+        </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.components">
             <summary>
             Required designer variable.
@@ -26,6 +53,39 @@
             The main entry point for the application.
             </summary>
         </member>
+        <member name="T:Graphical_Programming_Language.Rectangle">
+            <summary>
+            Derived class Rectangle which inherits abstract class Shape to represent rectangle shape being drawn on graphics.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Rectangle.width">
+            <summary>
+            Variable to store the length of the rectangle.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Rectangle.height">
+            <summary>
+            Variable to store the breadth of the rectangle.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Rectangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Parameterized constructor Rectangle which initializes an instance of the class circle with specified parameters. 
+            The color, fill, and x, y coodinates are passed to base class Shape constructor.
+            </summary>
+            <param name="colour">Colour of the rectangle.</param>
+            <param name="fill">For rectangle to be filled or not.</param>
+            <param name="x">X coordinate from where the rectangle will be drawn.</param>
+            <param name="y">X coordinate from where the rectangle will be drawn.</param>
+            <param name="width">Width for the length of the rectangle.</param>
+            <param name="height">Height for the breadth of the rectangle.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Rectangle.Draw(System.Drawing.Graphics)">
+            <summary>
+            Abstract method draw inherited from base class to be overriden in derived class rectangle to draw rectangle on the graphics.
+            </summary>
+            <param name="g">Instance of graphics class on which the rectangle will be drawn.</param>
+        </member>
         <member name="T:Graphical_Programming_Language.Shape">
             <summary>
             Abstract class that represents shape that can be drawn on a graphics surface.
@@ -38,12 +98,12 @@
         </member>
         <member name="F:Graphical_Programming_Language.Shape.x">
             <summary>
-            X and Y cooridnates from where the shape will be drawn.
+            X coordinate from where the shape will be drawn.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.Shape.y">
             <summary>
-            X and Y cooridnates from where the shape will be drawn.
+            Y coordinate from where the shape will be drawn.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.Shape.fill">
@@ -65,6 +125,39 @@
             Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
             </summary>
             <param name="g">Instance of graphics class on which the shape will be drawn.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Triangle">
+            <summary>
+            Derived class Triangle which inherits abstract class Shape to represent triangle shape being drawn on graphics.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Triangle.length">
+            <summary>
+            Variable to store length of the triangle.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Triangle.height">
+            <summary>
+            Variable to store the height of the triangle.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Triangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Parameterized constructor Triangle which initializes an instance of the class triangle with specified parameters. 
+            The color, fill, and x, y coodinates are passed to base class Shape constructor.
+            </summary>
+            <param name="colour">Color of the triangle.</param>
+            <param name="fill">For triangle to be filled or not.</param>
+            <param name="x">X coordinate from where the triangle will be drawn.</param>
+            <param name="y">Y coordinate from where the triangle will be drawn.</param>
+            <param name="length">Length for the length of the triangle.</param>
+            <param name="height">Height for the height of the triangle.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Triangle.Draw(System.Drawing.Graphics)">
+            <summary>
+            Abstract method draw inherited from base class to be overriden in derived class triangle to draw triangle on the graphics.
+            </summary>
+            <param name="g">Instance of graphics class on which the triangle will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Properties.Resources">
             <summary>

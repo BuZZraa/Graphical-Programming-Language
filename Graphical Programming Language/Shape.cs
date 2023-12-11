@@ -19,9 +19,14 @@ namespace Graphical_Programming_Language
         protected Color colour;
 
         /// <summary>
-        /// X and Y cooridnates from where the shape will be drawn.
+        /// X coordinate from where the shape will be drawn.
         /// </summary>
-        protected int x, y;
+        protected int x;
+
+        /// <summary>
+        /// Y coordinate from where the shape will be drawn.
+        /// </summary>
+        protected int y;
 
         /// <summary>
         /// Fill variable which sets if the shape will be drawn filled or without fill.
