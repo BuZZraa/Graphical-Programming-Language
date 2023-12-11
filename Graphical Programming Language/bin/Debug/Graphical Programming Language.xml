@@ -178,7 +178,7 @@
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.syntaxChecked">
             <summary>
-            Vraible to set the flag of syntax button being clicked.
+            Variable to set the flag of syntax button being clicked.
             </summary>
         </member>
         <member name="M:Graphical_Programming_Language.Form_SPL.#ctor">
@@ -191,7 +191,7 @@
             <summary>
             Syntax button click event handler to check the event of syntax button being clicked.
             When button is clicked it checks which textbox has input and according to it validates the command name and parameters.
-            Calls ValidateCommandName() and ValidateParameters() to validate the command name and parameters once the button is clicked.
+            Calls ValidateCommandName() and ValidateParameters() from CommandParser to validate the command name and parameters once the button is clicked.
             </summary>
             <param name="sender">The object that triggered the event of syntax button being clicked.</param>
             <param name="e">The arguments of the syntax button click event.</param>
