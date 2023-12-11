@@ -17,7 +17,7 @@
         <member name="M:Graphical_Programming_Language.Circle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32)">
             <summary>
             Parameterized constructor Circle which initializes an instance of the class circle with specified parameters. 
-            The color, fill, and x, y coodinates are passed to base class Shape constructor.
+            The color, fill, x and y parameters are passed to base class Shape constructor.
             </summary>
             <param name="colour">Colour of the circle.</param>
             <param name="fill">For circle to be filled or not.</param>
@@ -29,7 +29,217 @@
             <summary>
             Abstract method draw inherited from base class to be overriden in derived class circle to draw circle on the graphics.
             </summary>
-            <param name="g">Instance of graphics class on which the circle will be drawn.</param>
+            <param name="g">Graphics object on which the circle will be drawn.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.CommandParser">
+            <summary>
+            CommandParser class to parse and execute the commands to draw in graphics.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.validCommands">
+            <summary>
+            Array of valid command name that can used.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.command">
+            <summary>
+            Array to store the current running command with its values.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.commandValues">
+            <summary>
+            List to store only values or parameters of the command in integer datatype.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.xPos">
+            <summary>
+            Variable to store X coordinate from where the drawing will start.
+            Initially set to 0.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.yPos">
+            <summary>
+            Variable to store X coordinate from where the drawing will start.
+            Initially set to 0.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.commandName">
+            <summary>
+            Variable to only store current running command name.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.commandStringValue">
+            <summary>
+            Variable to store current command value in string.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isValidCommand">
+            <summary>
+            Variable to set the flag of current command name being valid.
+            Initially set to false.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isValidParameters">
+            <summary>
+            Variable to set the flag of current command value or parameters being valid.
+            Initially set to false.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.fill">
+            <summary>
+            Variable to set the flag of the shape being either filled or not filled.
+            Initially set to false.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.color">
+            <summary>
+            Variable to store the current color used to draw.
+            Initially set to black.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser._messageDisplayer">
+            <summary>
+            Instance of IMessageDisplayer interface created used to display error message.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.#ctor(Graphical_Programming_Language.IMessageDisplayer)">
+            <summary>
+            Parameterized constructor which initializes a new instance of the Command_Parser class that takes
+            instance of IMessageDisplayer interface as parameter to display error messages.
+            </summary>
+            <param name="messageDisplayer">Instance of IMessageDisplayer interface to display error messages.</param>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.Command">
+            <summary>
+            Getter and setter methods for the command array to get or set the current command with its values.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.IsValidCommand">
+            <summary>
+            Getter method to get boolean value of a command name being valid or not.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.IsValidParameters">
+            <summary>
+            Getter method to get boolean value of a command parameters being valid or not.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.ValidateCommandName">
+            <summary>
+            Boolean method to verify if a command name is valid or not by passing it and checking if it is in the validCommands array.
+            </summary>
+            <returns>Returns true if command name is valid if not returns false.</returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.ValidateParameters">
+            <summary>
+            Boolean method to verify if command parameters are valid or not by checking for specific values 
+            and length of the command array or commandValues array.
+            </summary>
+            <returns>Returns true if command parameters are valid if not returns false.</returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.RunCommand(System.Drawing.Graphics)">
+            <summary>
+            Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
+            Runs the command based on the command name using switch statement.
+            </summary>
+            <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.DisplayMessageBox">
+            <summary>
+            Class that implements IMessageDisplayer to display the error message in MessageBox.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.DisplayMessageBox.DisplayMessage(System.String)">
+            <summary>
+            Implementing method from IMessageDisplayer interface to show the error messages in MessageBox.
+            </summary>
+            <param name="message">The error message to be displayed in the MessageBox.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Form_SPL">
+            <summary>
+            Form_SPL class to represent the Graphical Programming Language UI and its features.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.g">
+            <summary>
+            Class variable for a Graphics object on which the drawing is done.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.command">
+            <summary>
+            Instance of the CommandParser class created to pass the commands provided in textbox of the form.
+            Instance of DisplayMessageBox as a argument to CommandParser constructor for creating MessageBox for error messages.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.multiCommands">
+            <summary>
+            Array to store multiple commands provided by the user.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.syntaxChecked">
+            <summary>
+            Vraible to set the flag of syntax button being clicked.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.#ctor">
+            <summary>
+            Empty Constructor to initialize on instance of the Form_SPL class.
+            Creates graphic object of drawing on the panel and sets the syntaxChecked to false each time the class is initialized.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.Btn_Syntax_Click(System.Object,System.EventArgs)">
+            <summary>
+            Syntax button click event handler to check the event of syntax button being clicked.
+            When button is clicked it checks which textbox has input and according to it validates the command name and parameters.
+            Calls ValidateCommandName() and ValidateParameters() to validate the command name and parameters once the button is clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of syntax button being clicked.</param>
+            <param name="e">The arguments of the syntax button click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.Btn_Run_Click(System.Object,System.EventArgs)">
+            <summary>
+            Run button click event handler to run the commands when the run button is clicked. 
+            Run button event handler only runs the command if the syntax button is clicked and also
+            if the command name and parameters are valid. 
+            Run button works if command is written in single or multi-line textbox. 
+            </summary>
+            <param name="sender">The object that triggered the event of run button being clicked.</param>
+            <param name="e">The arguments of the run button click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.ExitToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of exit menu option being clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of exit menu option being clicked.</param>
+            <param name="e">The arguments of the exit menu option click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.NewToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of new menu option being clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of new menu option being clicked.</param>
+            <param name="e">The arguments of the new menu option click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.SaveToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of save menu option being clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of save menu option being clicked.</param>
+            <param name="e">The arguments of the save menu option click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.LoadToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of load menu option being clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of load menu option being clicked.</param>
+            <param name="e">The arguments of the load menu option click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.AboutToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of about menu option being clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of about menu option being clicked.</param>
+            <param name="e">The arguments of the about menu option click event.</param>
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.components">
             <summary>
@@ -46,6 +256,22 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Graphical_Programming_Language.IMessageDisplayer">
+            <summary>
+            An interface for displaying error message of commands.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.IMessageDisplayer.DisplayMessage(System.String)">
+            <summary>
+            Abstract void method to store the error messages of commands passed by implemented classes.
+            </summary>
+            <param name="message">The error message to be displayed.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Program">
+            <summary>
+            The main entry point class for the graphical programming language application.
             </summary>
         </member>
         <member name="M:Graphical_Programming_Language.Program.Main">
@@ -71,7 +297,7 @@
         <member name="M:Graphical_Programming_Language.Rectangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Parameterized constructor Rectangle which initializes an instance of the class circle with specified parameters. 
-            The color, fill, and x, y coodinates are passed to base class Shape constructor.
+            The color, fill, x and y parameters are passed to base class Shape constructor.
             </summary>
             <param name="colour">Colour of the rectangle.</param>
             <param name="fill">For rectangle to be filled or not.</param>
@@ -84,7 +310,7 @@
             <summary>
             Abstract method draw inherited from base class to be overriden in derived class rectangle to draw rectangle on the graphics.
             </summary>
-            <param name="g">Instance of graphics class on which the rectangle will be drawn.</param>
+            <param name="g">Graphics object on which the circle will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Shape">
             <summary>
@@ -124,7 +350,7 @@
             <summary>
             Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
             </summary>
-            <param name="g">Instance of graphics class on which the shape will be drawn.</param>
+            <param name="g">Graphics object on which the circle will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Triangle">
             <summary>
@@ -144,7 +370,7 @@
         <member name="M:Graphical_Programming_Language.Triangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Parameterized constructor Triangle which initializes an instance of the class triangle with specified parameters. 
-            The color, fill, and x, y coodinates are passed to base class Shape constructor.
+            The color, fill, x and y parameters are passed to base class Shape constructor.
             </summary>
             <param name="colour">Color of the triangle.</param>
             <param name="fill">For triangle to be filled or not.</param>
@@ -157,7 +383,7 @@
             <summary>
             Abstract method draw inherited from base class to be overriden in derived class triangle to draw triangle on the graphics.
             </summary>
-            <param name="g">Instance of graphics class on which the triangle will be drawn.</param>
+            <param name="g">Graphics object on which the circle will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Properties.Resources">
             <summary>

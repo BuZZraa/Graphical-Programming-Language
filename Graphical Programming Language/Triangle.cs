@@ -24,7 +24,7 @@ namespace Graphical_Programming_Language
 
         /// <summary>
         /// Parameterized constructor Triangle which initializes an instance of the class triangle with specified parameters. 
-        /// The color, fill, and x, y coodinates are passed to base class Shape constructor.
+        /// The color, fill, x and y parameters are passed to base class Shape constructor.
         /// </summary>
         /// <param name="colour">Color of the triangle.</param>
         /// <param name="fill">For triangle to be filled or not.</param>
@@ -41,9 +41,10 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Abstract method draw inherited from base class to be overriden in derived class triangle to draw triangle on the graphics.
         /// </summary>
-        /// <param name="g">Instance of graphics class on which the triangle will be drawn.</param>
+        /// <param name="g">Graphics object on which the circle will be drawn.</param>
         public override void Draw(Graphics g)
         {
+            //Assinging and calculating vertices values of triangle and storing in Points.
             Point[] vertices =
             {
                 new Point(x, y),
@@ -51,6 +52,7 @@ namespace Graphical_Programming_Language
                 new Point(x - length, y + height)
             };
 
+            //If fill is true triangle is filled and drawn else it is drawn without fill.
             if (fill)
             {
                 SolidBrush b = new SolidBrush(colour);
