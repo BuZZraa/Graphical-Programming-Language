@@ -1,15 +1,15 @@
 fill on
-rectangle 50 50
-moveto 50 50
+rectangle 50, 50
+moveto 50, 50
 
 pen red
-rectangle 50 50
-moveto 100 100
+rectangle 50, 50
+moveto 100, 100
 
 pen blue
-rectangle 50 50
-moveto 150 150
+rectangle 50, 50
+moveto 150, 150
 
 pen green
-rectangle 50 50
+rectangle 50, 50
 reset

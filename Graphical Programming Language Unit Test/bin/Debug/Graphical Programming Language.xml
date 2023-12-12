@@ -187,6 +187,13 @@
             Creates graphic object of drawing on the panel and sets the syntaxChecked to false each time the class is initialized.
             </summary>
         </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.SplitCommand(System.String)">
+            <summary>
+            Method to split the string command and return it in an array.
+            </summary>
+            <param name="command">The command in string.</param>
+            <returns></returns>
+        </member>
         <member name="M:Graphical_Programming_Language.Form_SPL.Btn_Syntax_Click(System.Object,System.EventArgs)">
             <summary>
             Syntax button click event handler to check the event of syntax button being clicked.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.shfbproj" started="12/11/2023 8:06:42 PM">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Graphical Programming Language.shfbproj" started="12/12/2023 7:27:06 PM">
 <buildStep step="Initializing">
 The Sandcastle tools are located in &#39;D:\Sandcatle Help File Builder&#39;
 Locating components in the following folder(s):
@@ -25,51 +25,51 @@ Copying XML comments files
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0050
+    Last step completed in 00:00:00.0080
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
-[D:\Visual Studio Community IDE\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-4a3ec8c0-dc70-427c-b59f-587823fe3899.proj]
-Build started 12/11/2023 8:06:42 PM.
+[D:\Visual Studio Community IDE\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-59e0f165-692f-4b45-aa40-ab0ae4b7c90e.proj]
+Build started 12/12/2023 7:27:07 PM.
 
-Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\GenerateRefInfo-4a3ec8c0-dc70-427c-b59f-587823fe3899.proj&quot; on node 1 (default targets).
+Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\GenerateRefInfo-59e0f165-692f-4b45-aa40-ab0ae4b7c90e.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
 GenerateRefInfo:
-  Microsoft.Build (v17.7.2+d6990bcfaf520c0d215a194fad0617f7efad68b4)
+  Microsoft.Build (v17.8.3+195e7f5a3a8e51c37d83cd9e54cb99dc3fc69c22)
   c Microsoft Corporation. All rights reserved.
   No source code context base path specified.  Source context information is unavailable.
   Loaded 1 assemblies for reflection and 1 dependency assemblies.
-  Wrote information on 1 namespaces, 9 types, and 68 members
+  Wrote information on 1 namespaces, 9 types, and 69 members
   Merging duplicate type and member information
   Merged 0 duplicate type(s) and 0 duplicate member(s)
-Done Building Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\GenerateRefInfo-4a3ec8c0-dc70-427c-b59f-587823fe3899.proj&quot; (default targets).
-    Last step completed in 00:00:00.9008
+Done Building Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\GenerateRefInfo-59e0f165-692f-4b45-aa40-ab0ae4b7c90e.proj&quot; (default targets).
+    Last step completed in 00:00:00.6926
 </buildStep>
 <buildStep step="ApplyDocumentModel">
 Applying document model to reflection output...
-    Last step completed in 00:00:00.0260
+    Last step completed in 00:00:00.0440
 </buildStep>
 <buildStep step="AddApiTopicFilenames">
 Adding topic filenames to API members...
-    Last step completed in 00:00:00.0583
+    Last step completed in 00:00:00.0490
 </buildStep>
 <buildStep step="GenerateApiTopicManifest">
 Generating API topic manifest...
-    Last step completed in 00:00:00.0520
+    Last step completed in 00:00:00.0510
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0100
+    Last step completed in 00:00:00.0210
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
 No additional content to copy
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0010
 </buildStep>
 <buildStep step="MergeTablesOfContents">
 Merging conceptual and additional tables of contents...
@@ -78,22 +78,22 @@ Merging conceptual and additional tables of contents...
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file for API content...
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.0170
+    Last step completed in 00:00:00.0220
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
-    Last step completed in 00:00:00.1210
+    Last step completed in 00:00:00.1200
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0000
+    Last step completed in 00:00:00.0070
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
 D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\BuildAssembler.config
   Updating reference topic configurations.
   No conceptual content.  Removing conceptual content components.
-    Last step completed in 00:00:00.0110
+    Last step completed in 00:00:00.0120
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
@@ -101,12 +101,12 @@ Building help topics...
 Loading TOC info and adding unique IDs to parent nodes
 </plugIn>Loading configuration...
 Processing topics...
-Processed 97 topic(s)
+Processed 98 topic(s)
 CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 6 of 15.
 CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 4 of 30.
 <plugIn name="Website Table of Contents Generator" behavior="After" priority="1000">
 Generating TOC fragment files
-</plugIn>    Last step completed in 00:00:04.1133
+</plugIn>    Last step completed in 00:00:04.1868
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -142,26 +142,26 @@ D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\SearchH
 D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.inc.php -&gt; D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\Output\Website\SearchHelp.inc.php
 D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.php -&gt; D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\Output\Website\SearchHelp.php
 D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\Web.Config -&gt; D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language\bin\Debug\Help\Working\Output\Website\Web.Config
-    Last step completed in 00:00:00.0520
+    Last step completed in 00:00:00.0330
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
-    Last step completed in 00:00:00.0620
+    Last step completed in 00:00:00.1350
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
-Copied 183 files for the website content
-    Last step completed in 00:00:00.2330
+Copied 184 files for the website content
+    Last step completed in 00:00:00.0870
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
-    Last step completed in 00:00:00.1457
+    Last step completed in 00:00:00.0920
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 12/11/2023 8:06:48 PM.  Total time: 00:00:06.0961
+Build completed successfully at 12/12/2023 7:27:12 PM.  Total time: 00:00:06.0153
 
 </buildStep>
 </shfbBuild>

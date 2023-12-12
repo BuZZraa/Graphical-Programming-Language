@@ -51,6 +51,11 @@
             List to store only values or parameters of the command in integer datatype.
             </summary>
         </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.Shapes">
+            <summary>
+            List to store drawn shapes to persist the drawing in the panel.
+            </summary>
+        </member>
         <member name="F:Graphical_Programming_Language.CommandParser.xPos">
             <summary>
             Variable to store X coordinate from where the drawing will start.
@@ -124,6 +129,12 @@
             Getter method to get boolean value of a command parameters being valid or not.
             </summary>
         </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.GetShapes">
+            <summary>
+            Getter method to return list of stored drawn shapes.
+            </summary>
+            <returns>Return the list of drawn shapes.</returns>
+        </member>
         <member name="M:Graphical_Programming_Language.CommandParser.ValidateCommandName">
             <summary>
             Boolean method to verify if a command name is valid or not by passing it and checking if it is in the validCommands array.
@@ -136,6 +147,12 @@
             and length of the command array or commandValues array.
             </summary>
             <returns>Returns true if command parameters are valid if not returns false.</returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.GetShapeType">
+            <summary>
+            Method to get the type of shapes according to the shape name. 
+            </summary>
+            <returns>Returns instance of inherited class of base class Shape.</returns>
         </member>
         <member name="M:Graphical_Programming_Language.CommandParser.RunCommand(System.Drawing.Graphics)">
             <summary>
@@ -171,6 +188,11 @@
             Instance of DisplayMessageBox as a argument to CommandParser constructor for creating MessageBox for error messages.
             </summary>
         </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.Shapes">
+            <summary>
+            List to store all the drawn shapes and persist it in the panel.
+            </summary>
+        </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.multiCommands">
             <summary>
             Array to store multiple commands provided by the user.
@@ -186,6 +208,20 @@
             Empty Constructor to initialize on instance of the Form_SPL class.
             Creates graphic object of drawing on the panel and sets the syntaxChecked to false each time the class is initialized.
             </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.Pnl_Paint_Paint(System.Object,System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Panel paint event listener to draw and persist the drawing in the panel.
+            </summary>
+            <param name="sender">The object that triggered the event of syntax button being clicked.</param>
+            <param name="e">The arguments of the syntax button click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.SplitCommand(System.String)">
+            <summary>
+            Method to split the string command and return it in an array.
+            </summary>
+            <param name="command">The command in string.</param>
+            <returns>Splits the string and returns it in an array.</returns>
         </member>
         <member name="M:Graphical_Programming_Language.Form_SPL.Btn_Syntax_Click(System.Object,System.EventArgs)">
             <summary>
