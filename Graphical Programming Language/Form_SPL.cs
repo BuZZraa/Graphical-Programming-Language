@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Graphical_Programming_Language
 {
@@ -20,13 +14,18 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Class variable for a Graphics object on which the drawing is done.
         /// </summary>
-        Graphics g;
+        private Graphics g;
 
         /// <summary>
         /// Instance of the CommandParser class created to pass the commands provided in textbox of the form.
         /// Instance of DisplayMessageBox as a argument to CommandParser constructor for creating MessageBox for error messages.
         /// </summary>
-        CommandParser command = new CommandParser(new DisplayMessageBox());
+        private CommandParser command;
+
+        /// <summary>
+        /// List to store all the drawn shapes and persist it in the panel.
+        /// </summary>
+        private List<Shape> Shapes;
 
         /// <summary>
         /// Array to store multiple commands provided by the user.
@@ -47,6 +46,34 @@ namespace Graphical_Programming_Language
             InitializeComponent();
             g = pnl_Paint.CreateGraphics();
             syntaxChecked = false;
+            command = new CommandParser(new DisplayMessageBox());
+        }
+
+
+        /// <summary>
+        /// Panel paint event listener to draw and persist the drawing in the panel.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of syntax button being clicked.</param>
+        /// <param name="e">The arguments of the syntax button click event.</param>
+        private void Pnl_Paint_Paint(object sender, PaintEventArgs e)
+        {
+            g.Clear(SystemColors.ActiveBorder);
+
+            Shapes = command.GetShapes();
+            for (int i=0; i < Shapes.Count; i++)
+            {
+                Shapes[i].Draw(g);
+            }
+        }
+
+        /// <summary>
+        /// Method to split the string command and return it in an array.
+        /// </summary>
+        /// <param name="command">The command in string.</param>
+        /// <returns>Splits the string and returns it in an array.</returns>
+        private string[] SplitCommand(string command)
+        {
+            return command.ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         /// <summary>
@@ -62,7 +89,7 @@ namespace Graphical_Programming_Language
             {
                 if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
                 {
-                    command.Command = textBox_SingleCmd.Text.ToLower().Trim().Split(' ', ',');
+                    command.Command = SplitCommand(textBox_SingleCmd.Text);
                     command.ValidateCommandName();
                     command.ValidateParameters();
                     syntaxChecked = true;
@@ -80,7 +107,7 @@ namespace Graphical_Programming_Language
                         multiCommands = textBox_MultiCmd.Text.ToLower().Trim().Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                         for (int i = 0; i < multiCommands.Length; i++)
                         {
-                            command.Command = multiCommands[i].Trim().Split();
+                            command.Command = SplitCommand(multiCommands[i]);
                             command.ValidateCommandName();
                             command.ValidateParameters();
                             syntaxChecked = true;
@@ -120,7 +147,7 @@ namespace Graphical_Programming_Language
                         {
                             for (int i = 0; i < multiCommands.Length; i++)
                             {
-                                command.Command = multiCommands[i].Trim().Split();
+                                command.Command = multiCommands[i].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 command.ValidateCommandName();
                                 command.ValidateParameters();
                                 command.RunCommand(g);
@@ -166,6 +193,7 @@ namespace Graphical_Programming_Language
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             g.Clear(SystemColors.ActiveBorder);
+            Shapes.Clear();
         }
 
         /// <summary>
@@ -216,6 +244,6 @@ namespace Graphical_Programming_Language
         {
             MessageBox.Show("Created By : Prashant Muni Bajracharya \n " +
                 "© All Rights Reserved.", "About", MessageBoxButtons.OK);
-        }
+        }    
     }
 }

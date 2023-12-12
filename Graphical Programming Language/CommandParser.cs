@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
@@ -27,6 +25,11 @@ namespace Graphical_Programming_Language
         /// List to store only values or parameters of the command in integer datatype.
         /// </summary>
         private List<int> commandValues = new List<int>();
+
+        /// <summary>
+        /// List to store drawn shapes to persist the drawing in the panel.
+        /// </summary>
+        private List<Shape> Shapes = new List<Shape>();
 
         /// <summary>
         /// Variable to store X coordinate from where the drawing will start.
@@ -112,6 +115,15 @@ namespace Graphical_Programming_Language
         public Boolean IsValidParameters
         {
             get { return isValidParameters; }
+        }
+
+        /// <summary>
+        /// Getter method to return list of stored drawn shapes.
+        /// </summary>
+        /// <returns>Return the list of drawn shapes.</returns>
+        public List<Shape> GetShapes()
+        {
+            return Shapes;
         }
 
         /// <summary>
@@ -287,6 +299,28 @@ namespace Graphical_Programming_Language
         }
 
         /// <summary>
+        /// Method to get the type of shapes according to the shape name. 
+        /// </summary>
+        /// <returns>Returns instance of inherited class of base class Shape.</returns>
+        private Shape GetShapeType()
+        {
+            switch (commandName)
+            {
+                case "rectangle":
+                    return new Rectangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+
+                case "circle":
+                    return new Circle(color, fill, xPos, yPos, commandValues[0]);
+
+                case "triangle":
+                    return new Triangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+                
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
         /// Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
         /// Runs the command based on the command name using switch statement.
         /// </summary>
@@ -315,6 +349,7 @@ namespace Graphical_Programming_Language
 
                     case "clear":
                         g.Clear(SystemColors.ActiveBorder);
+                        Shapes.Clear();
                         color = Color.Black;
                         break;
 
@@ -352,6 +387,12 @@ namespace Graphical_Programming_Language
                     default:
                         MessageBox.Show("Command provided is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
+                }
+                Shape getShapeType = GetShapeType();
+
+                if (getShapeType != null)
+                {
+                    Shapes.Add(getShapeType);
                 }
             }
 
