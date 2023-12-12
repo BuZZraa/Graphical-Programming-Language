@@ -125,7 +125,7 @@ namespace Graphical_Programming_Language
             {
                 if (!string.IsNullOrEmpty(command[0]))
                 {
-                    commandName = command[0];
+                    commandName = command[0].ToLower();
                     for (int i = 0; i < validCommands.Length; i++)
                     {
 
@@ -187,7 +187,7 @@ namespace Graphical_Programming_Language
 
                         if (command.Length == 2)
                         {
-                            commandStringValue = command[1];
+                            commandStringValue = command[1].ToLower();
                             if (commandName.Equals("pen") && (commandStringValue.Equals("red") || commandStringValue.Equals("blue") || commandStringValue.Equals("green")))
                             {
                                 isValidParameters = true;

@@ -62,7 +62,7 @@ namespace Graphical_Programming_Language
             {
                 if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
                 {
-                    command.Command = textBox_SingleCmd.Text.ToLower().Trim().Split();
+                    command.Command = textBox_SingleCmd.Text.ToLower().Trim().Split(' ', ',');
                     command.ValidateCommandName();
                     command.ValidateParameters();
                     syntaxChecked = true;
