@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Graphical Programming Language Unit Test</name>
+    </assembly>
+    <members>
+        <member name="T:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest">
+            <summary>
+            Unit Testing class to test commands and its parameters.
+            Implements IMessageDisplayer to show message in string instead of MessageBox during Testing.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest._displayedMessage">
+            <summary>
+            Variable to store current error message as a string instead of MessageBox.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.DisplayedMessage">
+            <summary>
+            Getter method which returns variable that stores error messages as string.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.DisplayMessage(System.String)">
+            <summary>
+            Void method which stores current error message as a string instead of MessageBox.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsCommandStoredTest">
+            <summary>
+            Test method to test if the current command provided is stored in CommandParser class.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsEmptyCommandName">
+            <summary>
+            Test method to test the command provided being empty.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNullCommand">
+            <summary>
+            Test method to test null being passed instead of command.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidCommandName">
+            <summary>
+            Test method to test invalid command being passed.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidRectangleCommandName">
+            <summary>
+            Test method to test the valid rectangle command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveRectangleCommandName">
+            <summary>
+            Test method to test the rectangle command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidRectangleParameters">
+            <summary>
+            Test method to test the rectangle parameters being valid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidStringRectangleParameters">
+            <summary>
+            Test method to test the invalid string rectangle parameters.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsEmptyRectangleParameters">
+            <summary>
+            Test method to test the rectangle parameters being empty.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsRectangleNegativeParameters">
+            <summary>
+            Test method to test the rectangle parameters being negative.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsRectangleNullParameters">
+            <summary>
+            Test method to test the rectangle parameters being null.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsRectangleMissingParameter">
+            <summary>
+            Test method to test the rectangle command missing a parameter.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidTriangleCommandName">
+            <summary>
+            Test method to test the valid triangle command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveTriangleCommandName">
+            <summary>
+            Test method to test the triangle command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidTriangleParameters">
+            <summary>
+            Test method to test the triangle parameters being valid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidStringTriangleParameters">
+            <summary>
+            Test method to test the invalid string triangle parameters.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsEmptyTriangleParameters">
+            <summary>
+            Test method to test the triangle parameters being empty.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsTriangleNegativeParameters">
+            <summary>
+            Test method to test the triangle parameters being negative.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsTriangleNullParameters">
+            <summary>
+            Test method to test the triangle parameters being null.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsTriangleMissingParameter">
+            <summary>
+            Test method to test the triangle command missing a parameter.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidCircleCommandName">
+            <summary>
+            Test method to test the valid circle command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveCircleCommandName">
+            <summary>
+            Test method to test the circle command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidCircleParameters">
+            <summary>
+            Test method to test the circle parameters being valid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidStringCircleParameters">
+            <summary>
+            Test method to test the invalid string circle parameters.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsEmptyOrMissingCircleParameters">
+            <summary>
+            Test method to test the circle parameters being empty or missing parameter.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsCircleNegativeParameters">
+            <summary>
+            Test method to test the circle parameters being negative.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsCircleNullParameters">
+            <summary>
+            Test method to test the circle parameters being null.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidMoveToCommandName">
+            <summary>
+            Test method to test the valid moveto command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveMoveToCommandName">
+            <summary>
+            Test method to test the moveto command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidMoveToParameters">
+            <summary>
+            Test method to test the moveto parameters being valid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidStringMoveToParameters">
+            <summary>
+            Test method to test the invalid string moveto parameters.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsEmptyMoveToParameters">
+            <summary>
+            Test method to test the moveto parameters being empty.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsMoveToNegativeParameters">
+            <summary>
+            Test method to test the moveto parameters being negative.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsMoveToNullParameters">
+            <summary>
+            Test method to test the moveto parameters being null.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsMoveToMissingParameter">
+            <summary>
+            Test method to test the moveto command missing a parameter.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidDrawToCommandName">
+            <summary>
+            Test method to test the valid drawto command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveDrawToCommandName">
+            <summary>
+            Test method to test the drawto command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidDrawToParameters">
+            <summary>
+            Test method to test the drawto parameters being valid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidStringDrawToParameters">
+            <summary>
+            Test method to test the invalid string drawto parameters.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsEmptyDrawToParameters">
+            <summary>
+            Test method to test the drawto parameters being empty.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsDrawToNegativeParameters">
+            <summary>
+            Test method to test the drawto parameters being negative.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsDrawToNullParameters">
+            <summary>
+            Test method to test the drawto parameters being null.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsDrawToMissingParameter">
+            <summary>
+            Test method to test the drawto command missing a parameter.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidClearCommandName">
+            <summary>
+            Test method to test the valid clear command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveClearCommandName">
+            <summary>
+            Test method to test the clear command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.DoesClearHaveParameters">
+            <summary>
+            Test method to test the clear command having a parameter.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidResetCommandName">
+            <summary>
+            Test method to test the valid reset command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveResetCommandName">
+            <summary>
+            Test method to test the reset command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.DoesResetHaveParameters">
+            <summary>
+            Test method to test the reset command having a parameters.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidFillCommandName">
+            <summary>
+            Test method to test the valid fill command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveFillCommand">
+            <summary>
+            Test method to test the fill command name and its parameters being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidFillOnParameter">
+            <summary>
+            Test method to test the fill parameter being set to on.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidFillOffParameter">
+            <summary>
+            Test method to test the fill parameter being set to off.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidFillParameter">
+            <summary>
+            Test method to test the fill parameter being invalid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidPenCommandName">
+            <summary>
+            Test method to test the valid pen command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidPenParameter">
+            <summary>
+            Test method to test the pen parameters being valid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidPenParameter">
+            <summary>
+            Test method to test the pen parameter being invalid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitivePenCommand">
+            <summary>
+            Test method to test the pen command name and its parameters being non-case sensitive.
+            </summary>
+        </member>
+    </members>
+</doc>
