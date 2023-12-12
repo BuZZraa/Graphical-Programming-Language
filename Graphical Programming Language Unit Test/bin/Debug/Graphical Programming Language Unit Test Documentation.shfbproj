@@ -40,7 +40,13 @@
     <SaveComponentCacheCapacity>100</SaveComponentCacheCapacity>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="" isExposed="False" />
+<<<<<<< HEAD
 <Filter entryType="Namespace" fullName="Graphical_Programming_Language" isExposed="False" /></ApiFilter>
+=======
+<Filter entryType="Namespace" fullName="Graphical_Programming_Language" isExposed="False">
+  <Filter entryType="Interface" fullName="Graphical_Programming_Language.IMessageDisplayer" filterName="IMessageDisplayer" isExposed="True" />
+</Filter></ApiFilter>
+>>>>>>> 2dffd1f374328aa0ae99b69e349c935f59aab6ea
     <PlugInConfigurations>
       <PlugInConfig id="Additional Content Only" enabled="False" xmlns="">
         <configuration />
