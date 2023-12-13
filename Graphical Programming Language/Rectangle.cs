@@ -16,21 +16,21 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Variable to store the length of the rectangle.
         /// </summary>
-        int width;
+        private int width;
         
         /// <summary>
         /// Variable to store the breadth of the rectangle.
         /// </summary>
-        int height;
+        private int height;
 
         /// <summary>
-        /// Parameterized constructor Rectangle which initializes an instance of the class circle with specified parameters. 
+        /// Parameterized constructor Rectangle which initializes an instance of the class Rectangle with specified parameters. 
         /// The color, fill, x and y parameters are passed to base class Shape constructor.
         /// </summary>
         /// <param name="colour">Colour of the rectangle.</param>
         /// <param name="fill">For rectangle to be filled or not.</param>
         /// <param name="x">X coordinate from where the rectangle will be drawn.</param>
-        /// <param name="y">X coordinate from where the rectangle will be drawn.</param>
+        /// <param name="y">Y coordinate from where the rectangle will be drawn.</param>
         /// <param name="width">Width for the length of the rectangle.</param>
         /// <param name="height">Height for the breadth of the rectangle.</param>
         public Rectangle(Color colour, bool fill, int x, int y, int width, int height) : base(colour, fill, x, y)
@@ -40,9 +40,9 @@ namespace Graphical_Programming_Language
         }
 
         /// <summary>
-        /// Abstract method draw inherited from base class to be overriden in derived class rectangle to draw rectangle on the graphics.
+        /// Abstract method draw inherited from base class to be overriden in derived class Rectangle to draw rectangle on the graphics.
         /// </summary>
-        /// <param name="g">Graphics object on which the circle will be drawn.</param>
+        /// <param name="g">Graphics object on which the rectangle will be drawn.</param>
         public override void Draw(Graphics g)
         {
             //If fill is true rectangle is filled and drawn else it is drawn without fill.

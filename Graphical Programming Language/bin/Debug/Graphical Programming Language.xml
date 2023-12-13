@@ -16,7 +16,7 @@
         </member>
         <member name="M:Graphical_Programming_Language.Circle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Parameterized constructor Circle which initializes an instance of the class circle with specified parameters. 
+            Parameterized constructor Circle which initializes an instance of the class Circle with specified parameters. 
             The color, fill, x and y parameters are passed to base class Shape constructor.
             </summary>
             <param name="colour">Colour of the circle.</param>
@@ -27,7 +27,7 @@
         </member>
         <member name="M:Graphical_Programming_Language.Circle.Draw(System.Drawing.Graphics)">
             <summary>
-            Abstract method draw inherited from base class to be overriden in derived class circle to draw circle on the graphics.
+            Abstract method draw inherited from base class to be overriden in derived class Circle to draw circle on the graphics.
             </summary>
             <param name="g">Graphics object on which the circle will be drawn.</param>
         </member>
@@ -148,7 +148,7 @@
             </summary>
             <returns>Returns true if command parameters are valid if not returns false.</returns>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.GetShapeType">
+        <member name="M:Graphical_Programming_Language.CommandParser.GetShapeType(System.Drawing.Graphics)">
             <summary>
             Method to get the type of shapes according to the shape name. 
             </summary>
@@ -157,7 +157,6 @@
         <member name="M:Graphical_Programming_Language.CommandParser.RunCommand(System.Drawing.Graphics)">
             <summary>
             Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
-            Runs the command based on the command name using switch statement.
             </summary>
             <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
         </member>
@@ -305,6 +304,39 @@
             </summary>
             <param name="message">The error message to be displayed.</param>
         </member>
+        <member name="T:Graphical_Programming_Language.Line">
+            <summary>
+            Derived class Line which inherits abstract class Shape to represent a straight line being drawn on graphics.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Line.endingPointX">
+            <summary>
+            Variable to store the X-coodinate of ending point of the line.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Line.endingPointY">
+            <summary>
+            Variable to store the Y-coodinate of ending point of the line.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Line.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Parameterized constructor line which initializes an instance of the class Line with specified parameters. 
+            The color, fill, x and y parameters are passed to base class Shape constructor.
+            </summary>
+            <param name="colour">Colour of the line.</param>
+            <param name="fill">Fill not used inherited from abstract class shape.</param>
+            <param name="x">X coordinate from where the line will be drawn.</param>
+            <param name="y">Y coordinate from where the line will be drawn.</param>
+            <param name="endingPointX">X-coodinate of ending point of the line.</param>
+            <param name="endingPointY">Y-coodinate of ending point of the line.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Line.Draw(System.Drawing.Graphics)">
+            <summary>
+            Abstract method draw inherited from base class to be overriden in derived class Line to draw a line on the graphics.
+            </summary>
+            <param name="g">Graphics object on which the line will be drawn.</param>
+        </member>
         <member name="T:Graphical_Programming_Language.Program">
             <summary>
             The main entry point class for the graphical programming language application.
@@ -332,21 +364,21 @@
         </member>
         <member name="M:Graphical_Programming_Language.Rectangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Parameterized constructor Rectangle which initializes an instance of the class circle with specified parameters. 
+            Parameterized constructor Rectangle which initializes an instance of the class Rectangle with specified parameters. 
             The color, fill, x and y parameters are passed to base class Shape constructor.
             </summary>
             <param name="colour">Colour of the rectangle.</param>
             <param name="fill">For rectangle to be filled or not.</param>
             <param name="x">X coordinate from where the rectangle will be drawn.</param>
-            <param name="y">X coordinate from where the rectangle will be drawn.</param>
+            <param name="y">Y coordinate from where the rectangle will be drawn.</param>
             <param name="width">Width for the length of the rectangle.</param>
             <param name="height">Height for the breadth of the rectangle.</param>
         </member>
         <member name="M:Graphical_Programming_Language.Rectangle.Draw(System.Drawing.Graphics)">
             <summary>
-            Abstract method draw inherited from base class to be overriden in derived class rectangle to draw rectangle on the graphics.
+            Abstract method draw inherited from base class to be overriden in derived class Rectangle to draw rectangle on the graphics.
             </summary>
-            <param name="g">Graphics object on which the circle will be drawn.</param>
+            <param name="g">Graphics object on which the rectangle will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Shape">
             <summary>
@@ -386,7 +418,7 @@
             <summary>
             Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
             </summary>
-            <param name="g">Graphics object on which the circle will be drawn.</param>
+            <param name="g">Graphics object on which the shape will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Triangle">
             <summary>
@@ -405,7 +437,7 @@
         </member>
         <member name="M:Graphical_Programming_Language.Triangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Parameterized constructor Triangle which initializes an instance of the class triangle with specified parameters. 
+            Parameterized constructor Triangle which initializes an instance of the class Triangle with specified parameters. 
             The color, fill, x and y parameters are passed to base class Shape constructor.
             </summary>
             <param name="colour">Color of the triangle.</param>
@@ -417,9 +449,9 @@
         </member>
         <member name="M:Graphical_Programming_Language.Triangle.Draw(System.Drawing.Graphics)">
             <summary>
-            Abstract method draw inherited from base class to be overriden in derived class triangle to draw triangle on the graphics.
+            Abstract method draw inherited from base class to be overriden in derived class Triangle to draw triangle on the graphics.
             </summary>
-            <param name="g">Graphics object on which the circle will be drawn.</param>
+            <param name="g">Graphics object on which the triangle will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Properties.Resources">
             <summary>
