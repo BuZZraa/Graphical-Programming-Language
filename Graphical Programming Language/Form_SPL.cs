@@ -60,7 +60,7 @@ namespace Graphical_Programming_Language
             g.Clear(SystemColors.ActiveBorder);
 
             Shapes = command.GetShapes();
-            for (int i=0; i < Shapes.Count; i++)
+            for (int i =0; i < Shapes.Count; i++)
             {
                 Shapes[i].Draw(g);
             }
@@ -98,6 +98,11 @@ namespace Graphical_Programming_Language
                 else if (textBox_SingleCmd.Text.Length == 0 && textBox_MultiCmd.Text.Length != 0)
                 {
                     throw new Exception("Please enter run to run multi-line commands.");
+                }
+
+                else if(textBox_SingleCmd.Text.Length == 0 && textBox_MultiCmd.Text.Length == 0)
+                {
+                    throw new Exception("Please enter a command.");
                 }
 
                 else if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)

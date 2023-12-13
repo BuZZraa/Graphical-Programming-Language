@@ -51,7 +51,7 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
         /// </summary>
-        /// <param name="g">Graphics object on which the circle will be drawn.</param>
+        /// <param name="g">Graphics object on which the shape will be drawn.</param>
         public abstract void Draw(Graphics g);
     }
 }

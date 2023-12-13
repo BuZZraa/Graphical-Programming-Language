@@ -23,7 +23,7 @@ namespace Graphical_Programming_Language
         int height;
 
         /// <summary>
-        /// Parameterized constructor Triangle which initializes an instance of the class triangle with specified parameters. 
+        /// Parameterized constructor Triangle which initializes an instance of the class Triangle with specified parameters. 
         /// The color, fill, x and y parameters are passed to base class Shape constructor.
         /// </summary>
         /// <param name="colour">Color of the triangle.</param>
@@ -39,9 +39,9 @@ namespace Graphical_Programming_Language
         }
 
         /// <summary>
-        /// Abstract method draw inherited from base class to be overriden in derived class triangle to draw triangle on the graphics.
+        /// Abstract method draw inherited from base class to be overriden in derived class Triangle to draw triangle on the graphics.
         /// </summary>
-        /// <param name="g">Graphics object on which the circle will be drawn.</param>
+        /// <param name="g">Graphics object on which the triangle will be drawn.</param>
         public override void Draw(Graphics g)
         {
             //Assinging and calculating vertices values of triangle and storing in Points.

@@ -1,15 +1,39 @@
+clear
+reset
 fill on
-rectangle 50, 50
-moveto 50, 50
-
 pen red
-rectangle 50, 50
-moveto 100, 100
+circle 25
+moveto 0, 50
+pen blue
+circle 25
+moveto 0, 100
+pen green
+circle 25
 
+moveto 100, 0
+drawto 100, 50
+pen blue
+moveto 100, 50
+drawto 100, 100
+pen red
+moveto 100, 100
+drawto 100, 150
+
+moveto 150, 0
+rectangle 50, 50
+moveto 150, 50
 pen blue
 rectangle 50, 50
-moveto 150, 150
-
+moveto 150, 100
 pen green
 rectangle 50, 50
+
+moveto 300, 0
+triangle 50, 50
+moveto 300, 50
+pen blue 
+triangle 50, 50
+moveto 300, 100
+pen red
+triangle 50, 50
 reset

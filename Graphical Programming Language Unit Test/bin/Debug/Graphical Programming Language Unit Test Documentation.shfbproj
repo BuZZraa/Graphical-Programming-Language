@@ -22,14 +22,15 @@
     <HtmlHelpName>Documentation</HtmlHelpName>
     <Language>en-US</Language>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\..\..\Graphical Programming Language Unit Test\bin\Debug\Graphical Programming Language Unit Test.xml" />
-<DocumentationSource sourceFile="..\..\..\Graphical Programming Language Unit Test\bin\Debug\Graphical Programming Language Unit Test.dll" />
-<DocumentationSource sourceFile="..\..\..\Graphical Programming Language Unit Test\bin\Debug\Graphical Programming Language.exe" />
-<DocumentationSource sourceFile="..\..\..\Graphical Programming Language Unit Test\bin\Debug\Graphical Programming Language.xml" /></DocumentationSources>
+      <DocumentationSource sourceFile="Graphical Programming Language Unit Test.xml" />
+<DocumentationSource sourceFile="Graphical Programming Language Unit Test.dll" />
+<DocumentationSource sourceFile="Graphical Programming Language.exe" />
+<DocumentationSource sourceFile="Graphical Programming Language.xml" /></DocumentationSources>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <ApiFilter>
       <Filter entryType="Namespace" fullName="" isExposed="False" xmlns="" />
-<Filter entryType="Namespace" fullName="Graphical_Programming_Language" isExposed="False" xmlns="" /></ApiFilter>
+      <Filter entryType="Namespace" fullName="Graphical_Programming_Language" isExposed="False" xmlns="" />
+    </ApiFilter>
     <MissingTags>AutoDocumentCtors, AutoDocumentDispose</MissingTags>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform

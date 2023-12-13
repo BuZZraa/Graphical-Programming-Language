@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Graphical Programming Language Unit Test Documentation.shfbproj" started="12/12/2023 7:31:13 PM">
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2023.7.8.0" projectFile="D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Graphical Programming Language Unit Test Documentation.shfbproj" started="12/13/2023 11:37:14 AM">
 <buildStep step="Initializing">
 The Sandcastle tools are located in &#39;D:\Sandcatle Help File Builder&#39;
 Locating components in the following folder(s):
@@ -29,18 +29,18 @@ Copying XML comments files
 </buildStep>
 <buildStep step="GenerateSharedContent">
 Generating shared content files (en-US, English (United States))...
-    Last step completed in 00:00:00.0010
+    Last step completed in 00:00:00.0030
 </buildStep>
 <buildStep step="GenerateApiFilter">
 Generating API filter for MRefBuilder...
-    Last step completed in 00:00:00.0110
+    Last step completed in 00:00:00.0120
 </buildStep>
 <buildStep step="GenerateReflectionInfo">
 Generating reflection information...
-[D:\Visual Studio Community IDE\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-f7480178-2783-4643-abd4-e664b7d54a74.proj]
-Build started 12/12/2023 7:31:14 PM.
+[D:\Visual Studio Community IDE\MSBuild\Current\Bin\amd64\MSBuild.exe - GenerateRefInfo-d4d805d4-99ec-497e-a38d-ff7d7208bfb1.proj]
+Build started 12/13/2023 11:37:15 AM.
 
-Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\GenerateRefInfo-f7480178-2783-4643-abd4-e664b7d54a74.proj&quot; on node 1 (default targets).
+Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\GenerateRefInfo-d4d805d4-99ec-497e-a38d-ff7d7208bfb1.proj&quot; on node 1 (default targets).
 PrepareForBuild:
   Creating directory &quot;obj\Debug\&quot;.
 GenerateRefInfo:
@@ -51,12 +51,12 @@ GenerateRefInfo:
   Wrote information on 1 namespaces, 1 types, and 62 members
   Merging duplicate type and member information
   Merged 0 duplicate type(s) and 0 duplicate member(s)
-Done Building Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\GenerateRefInfo-f7480178-2783-4643-abd4-e664b7d54a74.proj&quot; (default targets).
-    Last step completed in 00:00:00.6130
+Done Building Project &quot;D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\GenerateRefInfo-d4d805d4-99ec-497e-a38d-ff7d7208bfb1.proj&quot; (default targets).
+    Last step completed in 00:00:00.5996
 </buildStep>
 <buildStep step="ApplyDocumentModel">
 Applying document model to reflection output...
-    Last step completed in 00:00:00.0240
+    Last step completed in 00:00:00.0250
 </buildStep>
 <buildStep step="AddApiTopicFilenames">
 Adding topic filenames to API members...
@@ -68,7 +68,7 @@ Generating API topic manifest...
 </buildStep>
 <buildStep step="GenerateNamespaceSummaries">
 Generating namespace summary information...
-    Last step completed in 00:00:00.0120
+    Last step completed in 00:00:00.0140
 </buildStep>
 <buildStep step="CopyAdditionalContent">
 Copying additional content files...
@@ -82,22 +82,22 @@ Merging conceptual and additional tables of contents...
 <buildStep step="GenerateIntermediateTableOfContents">
 Generating intermediate table of contents file for API content...
 Generating conceptual content intermediate TOC file...
-    Last step completed in 00:00:00.0180
+    Last step completed in 00:00:00.0170
 </buildStep>
 <buildStep step="CreateBuildAssemblerConfigs">
 Creating Sandcastle configuration files...
-    Last step completed in 00:00:00.0930
+    Last step completed in 00:00:00.0820
 </buildStep>
 <buildStep step="CombiningIntermediateTocFiles">
 Combining conceptual and API intermediate TOC files...
-    Last step completed in 00:00:00.0060
+    Last step completed in 00:00:00.0070
 </buildStep>
 <buildStep step="MergeCustomConfigs">
 Merging custom build component configurations
 D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\BuildAssembler.config
   Updating reference topic configurations.
   No conceptual content.  Removing conceptual content components.
-    Last step completed in 00:00:00.0120
+    Last step completed in 00:00:00.0130
 </buildStep>
 <buildStep step="BuildTopics">
 Building help topics...
@@ -110,7 +110,7 @@ CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 2 o
 CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 2 of 30.
 <plugIn name="Website Table of Contents Generator" behavior="After" priority="1000">
 Generating TOC fragment files
-</plugIn>    Last step completed in 00:00:03.1990
+</plugIn>    Last step completed in 00:00:02.9407
 </buildStep>
 <buildStep step="CopyStandardHelpContent">
 Copying standard help content...
@@ -146,18 +146,18 @@ D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\SearchH
 D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.inc.php -&gt; D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\Output\Website\SearchHelp.inc.php
 D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.php -&gt; D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\Output\Website\SearchHelp.php
 D:\Sandcatle Help File Builder\Components\Default2022\RootWebsiteContent\Web.Config -&gt; D:\Assignments\Level 6\Semester 1\ASE\C# Files\Graphical Programming Language\Graphical Programming Language Unit Test\bin\Debug\Help\Working\Output\Website\Web.Config
-    Last step completed in 00:00:00.0240
+    Last step completed in 00:00:00.0250
 </buildStep>
 <buildStep step="GenerateFullTextIndex">
 Generating full-text index for the website...
 
-    Last step completed in 00:00:00.1000
+    Last step completed in 00:00:00.0910
 </buildStep>
 <buildStep step="CopyingWebsiteFiles">
 Copying website files to output folder...
 
 Copied 125 files for the website content
-    Last step completed in 00:00:00.0610
+    Last step completed in 00:00:00.0640
 </buildStep>
 <buildStep step="CleanIntermediates">
 Removing intermediate files...
@@ -165,7 +165,7 @@ Removing intermediate files...
 </buildStep>
 <buildStep step="Completed">
 
-Build completed successfully at 12/12/2023 7:31:18 PM.  Total time: 00:00:04.5020
+Build completed successfully at 12/13/2023 11:37:19 AM.  Total time: 00:00:04.5615
 
 </buildStep>
 </shfbBuild>

@@ -152,12 +152,7 @@ namespace Graphical_Programming_Language
                     {
                         throw new Exception($"Please enter a valid command instead of {commandName}.");
                     }
-                }      
-                
-                else
-                {
-                    throw new Exception("Please enter a command.");
-                }
+                }                     
             }
 
             catch (Exception err1)
@@ -233,7 +228,7 @@ namespace Graphical_Programming_Language
                             {
 
                                 int value = int.Parse(command[i]);
-                                if (value <= 0)
+                                if (value < 0)
                                 {
                                     throw new Exception();
                                 }
@@ -302,10 +297,34 @@ namespace Graphical_Programming_Language
         /// Method to get the type of shapes according to the shape name. 
         /// </summary>
         /// <returns>Returns instance of inherited class of base class Shape.</returns>
-        private Shape GetShapeType()
+        private Shape GetShapeType(Graphics g)
         {
             switch (commandName)
             {
+                case "clear":
+                    g.Clear(SystemColors.ActiveBorder);
+                    Shapes.Clear();
+                    color = Color.Black;
+                    return null;
+
+                case "reset":
+                    xPos = 0; yPos = 0;
+                    color = Color.Black;
+                    return null;
+
+                case "pen":
+                    color = Color.FromName(command[1]);
+                    return null;
+
+                case "moveto":
+                    xPos = commandValues[0];
+                    yPos = commandValues[1];
+                    return null;
+
+                case "fill":
+                    fill = command[1].Equals("on");
+                    return null;
+
                 case "rectangle":
                     return new Rectangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
 
@@ -314,85 +333,30 @@ namespace Graphical_Programming_Language
 
                 case "triangle":
                     return new Triangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
-                
+
+                case "drawto":
+                    return new Line(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+
                 default:
+                    MessageBox.Show("Command provided is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
             }
         }
 
         /// <summary>
         /// Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
-        /// Runs the command based on the command name using switch statement.
         /// </summary>
         /// <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
         public void RunCommand(Graphics g)
         {
-
             if (isValidCommand && isValidParameters)
             {
-                switch (commandName)
+                Shape shape = GetShapeType(g);
+
+                if (shape != null)
                 {
-                    case "rectangle":
-                        Shape rectangle = new Rectangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
-                        rectangle.Draw(g);
-                        break;
-
-                    case "circle":
-                        Shape circle = new Circle(color, fill, xPos, yPos, commandValues[0]);
-                        circle.Draw(g);
-                        break;
-
-                    case "triangle":
-                        Shape triangle = new Triangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
-                        triangle.Draw(g);
-                        break;
-
-                    case "clear":
-                        g.Clear(SystemColors.ActiveBorder);
-                        Shapes.Clear();
-                        color = Color.Black;
-                        break;
-
-                    case "reset":
-                        xPos = 0; yPos = 0;
-                        color = Color.Black;
-                        break;
-
-                    case "pen":
-                        color = Color.FromName(command[1]);
-                        break;
-
-                    case "moveto":
-                        xPos = commandValues[0];
-                        yPos = commandValues[1];
-                        break;
-
-                    case "drawto":
-                        Pen p = new Pen(color, 1);
-                        g.DrawLine(p, xPos, yPos, commandValues[0], commandValues[1]);
-                        break;
-
-                    case "fill":
-                        if (command[1].Equals("on"))
-                        {
-                            fill = true;
-                        }
-
-                        else
-                        {
-                            fill = false;
-                        }
-                        break;
-
-                    default:
-                        MessageBox.Show("Command provided is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        break;
-                }
-                Shape getShapeType = GetShapeType();
-
-                if (getShapeType != null)
-                {
-                    Shapes.Add(getShapeType);
+                    shape.Draw(g);
+                    Shapes.Add(shape);
                 }
             }
 
