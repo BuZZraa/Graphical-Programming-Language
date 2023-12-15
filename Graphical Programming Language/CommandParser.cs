@@ -294,13 +294,20 @@ namespace Graphical_Programming_Language
         }
 
         /// <summary>
-        /// Method to get the type of shapes according to the shape name. 
+        /// Method to get the type of shapes and set its propeprties according to the command name. 
         /// </summary>
         /// <returns>Returns instance of inherited class of base class Shape.</returns>
-        private Shape GetShapeType(Graphics g)
+        private Shape ShapeCommands(Graphics g)
         {
             switch (commandName)
             {
+                case "rectangle":
+                case "circle":
+                case "triangle":
+                case "drawto":
+                    ShapeFactory shapeFactory = new ShapeFactory(); 
+                    return shapeFactory.ShapeType(commandName, color, fill, xPos, yPos, commandValues);
+
                 case "clear":
                     g.Clear(SystemColors.ActiveBorder);
                     Shapes.Clear();
@@ -325,18 +332,6 @@ namespace Graphical_Programming_Language
                     fill = command[1].Equals("on");
                     return null;
 
-                case "rectangle":
-                    return new Rectangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
-
-                case "circle":
-                    return new Circle(color, fill, xPos, yPos, commandValues[0]);
-
-                case "triangle":
-                    return new Triangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
-
-                case "drawto":
-                    return new Line(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
-
                 default:
                     return null;
             }
@@ -344,23 +339,24 @@ namespace Graphical_Programming_Language
 
         /// <summary>
         /// Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
+        /// Adds to Shapes list after drawing to persist the drawing.
         /// </summary>
         /// <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
         public void RunCommand(Graphics g)
         {
             if (isValidCommand && isValidParameters)
             {
-                Shape shape = GetShapeType(g);
+                Shape runCommand = ShapeCommands(g);
 
-                if (shape != null)
+                if (runCommand != null)
                 {
-                    shape.Draw(g);
-                    Shapes.Add(shape);
+                    runCommand.Draw(g);
+                    Shapes.Add(runCommand);
                 }
             }
 
             isValidCommand = false;
-            isValidParameters = false;
+            isValidParameters = false;      
         }
     }
 }

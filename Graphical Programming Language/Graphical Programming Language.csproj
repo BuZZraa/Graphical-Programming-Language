@@ -82,6 +82,7 @@
     <Compile Include="Rectangle.cs" />
     <Compile Include="RemoveParametersException.cs" />
     <Compile Include="Shape.cs" />
+    <Compile Include="ShapeFactory.cs" />
     <Compile Include="SingleParameterException.cs" />
     <Compile Include="Triangle.cs" />
     <EmbeddedResource Include="Form_SPL.resx">
