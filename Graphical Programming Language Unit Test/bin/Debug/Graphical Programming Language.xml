@@ -148,15 +148,16 @@
             </summary>
             <returns>Returns true if command parameters are valid if not returns false.</returns>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.GetShapeType(System.Drawing.Graphics)">
+        <member name="M:Graphical_Programming_Language.CommandParser.ShapeCommands(System.Drawing.Graphics)">
             <summary>
-            Method to get the type of shapes according to the shape name. 
+            Method to get the type of shapes and set its propeprties according to the command name. 
             </summary>
             <returns>Returns instance of inherited class of base class Shape.</returns>
         </member>
         <member name="M:Graphical_Programming_Language.CommandParser.RunCommand(System.Drawing.Graphics)">
             <summary>
             Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
+            Adds to Shapes list after drawing to persist the drawing.
             </summary>
             <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
         </member>
@@ -463,6 +464,23 @@
             Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
             </summary>
             <param name="g">Graphics object on which the shape will be drawn.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.ShapeFactory">
+            <summary>
+            Shape factory class for creating instances of Shape class according to the shape name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.ShapeFactory.ShapeType(System.String,System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Shape method which creates instance of a Shape according to the shape name.
+            </summary>
+            <param name="shape">Type of shape to be created.</param>
+            <param name="color">Color of shape.</param>
+            <param name="fill">For shape to be filled or not.</param>
+            <param name="xPos">X coordinate from where the shape will be drawn.</param>
+            <param name="yPos">Y coordinate from where the shape will be drawn.</param>
+            <param name="commandValues">List of integer values of the shape.</param>
+            <returns>Returns the instance of shape.</returns>
         </member>
         <member name="T:Graphical_Programming_Language.SingleParameterException">
             <summary>

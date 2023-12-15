@@ -22,8 +22,8 @@
     <HtmlHelpName>Documentation</HtmlHelpName>
     <Language>en-US</Language>
     <DocumentationSources>
-      <DocumentationSource sourceFile="Graphical Programming Language Unit Test.dll" />
-<DocumentationSource sourceFile="Graphical Programming Language Unit Test.xml" />
+      <DocumentationSource sourceFile="Graphical Programming Language Unit Test.xml" />
+<DocumentationSource sourceFile="Graphical Programming Language Unit Test.dll" />
 <DocumentationSource sourceFile="Graphical Programming Language.exe" />
 <DocumentationSource sourceFile="Graphical Programming Language.xml" /></DocumentationSources>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
