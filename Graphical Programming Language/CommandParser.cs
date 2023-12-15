@@ -150,12 +150,12 @@ namespace Graphical_Programming_Language
 
                     if (!isValidCommand)
                     {
-                        throw new Exception($"Please enter a valid command instead of {commandName}.");
+                        throw new IndexOutOfRangeException($"Please enter a valid command instead of {commandName}.");
                     }
                 }                     
             }
 
-            catch (Exception err1)
+            catch (IndexOutOfRangeException err1)
             {
                 _messageDisplayer.DisplayMessage(err1.Message);
             }
@@ -185,7 +185,7 @@ namespace Graphical_Programming_Language
 
                         else
                         {
-                            throw new Exception($"Please remove parameters for {commandName} command.");
+                            throw new RemoveParametersException($"Please remove parameters for {commandName} command.");
                         }
                     }
 
@@ -207,13 +207,13 @@ namespace Graphical_Programming_Language
 
                             else
                             {
-                                throw new Exception($"Please enter a valid parameter for {commandName} command.");
+                                throw new InvalidParameterException($"Please enter a valid parameter for {commandName} command.");
                             }
                         }
 
                         else
                         {
-                            throw new Exception($"Please enter a single parameter for {commandName} command.");
+                            throw new SingleParameterException($"Please enter a single parameter for {commandName} command.");
                         }
                     }
 
@@ -230,7 +230,7 @@ namespace Graphical_Programming_Language
                                 int value = int.Parse(command[i]);
                                 if (value < 0)
                                 {
-                                    throw new Exception();
+                                    throw new NegativeParametersException($"Please enter positive integer parameter for {commandName} command.");
                                 }
 
                                 else
@@ -241,9 +241,9 @@ namespace Graphical_Programming_Language
                         
                         }
 
-                        catch (Exception)
+                        catch (Exception err1)
                         {
-                            _messageDisplayer.DisplayMessage($"Please enter positive integer parameter for {commandName} command.");                           
+                            _messageDisplayer.DisplayMessage(err1.Message);                           
                         }
 
                         try
@@ -259,7 +259,7 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a single valid parameter for {commandName} command.");
+                                    throw new SingleParameterException($"Please enter a single valid parameter for {commandName} command.");
                                 }
                             }
 
@@ -273,22 +273,22 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception($"Please enter two valid parameters for {commandName} command.");
+                                    throw new MultipleParametersException($"Please enter two valid parameters for {commandName} command.");
                                 }
                             }
                         }
 
-                        catch (Exception err3)
+                        catch (Exception err2)
                         {
-                            _messageDisplayer.DisplayMessage(err3.Message);
+                            _messageDisplayer.DisplayMessage(err2.Message);
                         }
                     }
                 }
             }
 
-            catch (Exception err4)
+            catch (Exception err3)
             {
-                _messageDisplayer.DisplayMessage(err4.Message);
+                _messageDisplayer.DisplayMessage(err3.Message);
             }
             return isValidParameters;
         }
@@ -338,7 +338,6 @@ namespace Graphical_Programming_Language
                     return new Line(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
 
                 default:
-                    MessageBox.Show("Command provided is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
             }
         }

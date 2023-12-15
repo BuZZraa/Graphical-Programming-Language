@@ -304,6 +304,17 @@
             </summary>
             <param name="message">The error message to be displayed.</param>
         </member>
+        <member name="T:Graphical_Programming_Language.InvalidParameterException">
+            <summary>
+            Invalid Parameter Exception class to catch invalid parameter being provided to the command.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.InvalidParameterException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Invalid Parameter Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
         <member name="T:Graphical_Programming_Language.Line">
             <summary>
             Derived class Line which inherits abstract class Shape to represent a straight line being drawn on graphics.
@@ -336,6 +347,28 @@
             Abstract method draw inherited from base class to be overriden in derived class Line to draw a line on the graphics.
             </summary>
             <param name="g">Graphics object on which the line will be drawn.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.MultipleParametersException">
+            <summary>
+            Multiple Parameters Exception class to catch the exception of not enough parameter being provided to the command.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.MultipleParametersException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Multiple Parameters Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.NegativeParametersException">
+            <summary>
+            Negative Parameters Exception class to catch negative parameters being provided to the command.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.NegativeParametersException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Negative Parameters Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Program">
             <summary>
@@ -380,6 +413,17 @@
             </summary>
             <param name="g">Graphics object on which the rectangle will be drawn.</param>
         </member>
+        <member name="T:Graphical_Programming_Language.RemoveParametersException">
+            <summary>
+            Remove Parameters Exception class to catch parameters being provided to the command where parameters is not required.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.RemoveParametersException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Remove Parameters Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
         <member name="T:Graphical_Programming_Language.Shape">
             <summary>
             Abstract class that represents shape that can be drawn on a graphics surface.
@@ -419,6 +463,17 @@
             Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
             </summary>
             <param name="g">Graphics object on which the shape will be drawn.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.SingleParameterException">
+            <summary>
+            Single Parameters Exception class to catch the error of command where a single parameter is required.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.SingleParameterException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Single Parameter Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Triangle">
             <summary>
