@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static Graphical_Programming_Language.Form_SPL;
 
 namespace Graphical_Programming_Language
 {
@@ -87,10 +88,15 @@ namespace Graphical_Programming_Language
         /// instance of IMessageDisplayer interface as parameter to display error messages.
         /// </summary>
         /// <param name="messageDisplayer">Instance of IMessageDisplayer interface to display error messages.</param>
-        public CommandParser(IMessageDisplayer messageDisplayer) 
-        { 
+        public CommandParser(IMessageDisplayer messageDisplayer, Form_SPL form)
+        {
             _messageDisplayer = messageDisplayer;
+            Form = form;
         }
+
+        private Form_SPL Form { get; set; }
+
+
 
         /// <summary>
         /// Getter and setter methods for the command array to get or set the current command with its values.
@@ -350,13 +356,14 @@ namespace Graphical_Programming_Language
 
                 if (runCommand != null)
                 {
-                    runCommand.Draw(g);
-                    Shapes.Add(runCommand);
+                    Form.UpdateDrawing(runCommand);
                 }
             }
 
             isValidCommand = false;
-            isValidParameters = false;      
+            isValidParameters = false;
         }
+
+
     }
 }

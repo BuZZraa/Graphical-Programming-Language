@@ -107,7 +107,7 @@
             Instance of IMessageDisplayer interface created used to display error message.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.#ctor(Graphical_Programming_Language.IMessageDisplayer)">
+        <member name="M:Graphical_Programming_Language.CommandParser.#ctor(Graphical_Programming_Language.IMessageDisplayer,Graphical_Programming_Language.Form_SPL)">
             <summary>
             Parameterized constructor which initializes a new instance of the Command_Parser class that takes
             instance of IMessageDisplayer interface as parameter to display error messages.

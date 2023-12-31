@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
 {
+
+
     /// <summary>
     /// Form_SPL class to represent the Graphical Programming Language UI and its features.
     /// </summary>
     public partial class Form_SPL : Form
     {
+        public delegate void UpdateDrawingDelegate(Shape shape);
+
         /// <summary>
         /// Class variable for a Graphics object on which the drawing is done.
         /// </summary>
@@ -37,6 +43,11 @@ namespace Graphical_Programming_Language
         /// </summary>
         private Boolean syntaxChecked;
 
+        private Form_SPL Form_SPL_Form2;
+
+        private static int formCount = 1;  // Static variable to track form count
+        private static readonly object formMonitor = new object(); // object for thread safety
+
         /// <summary>
         /// Empty Constructor to initialize on instance of the Form_SPL class.
         /// Creates graphic object of drawing on the panel and sets the syntaxChecked to false each time the class is initialized.
@@ -46,7 +57,8 @@ namespace Graphical_Programming_Language
             InitializeComponent();
             g = pnl_Paint.CreateGraphics();
             syntaxChecked = false;
-            command = new CommandParser(new DisplayMessageBox());
+            command = new CommandParser(new DisplayMessageBox(),this);
+            
         }
 
 
@@ -249,6 +261,66 @@ namespace Graphical_Programming_Language
         {
             MessageBox.Show("Created By : Prashant Muni Bajracharya \n " +
                 "© All Rights Reserved.", "About", MessageBoxButtons.OK);
-        }    
+        }
+
+        private void DuplicateProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Monitor.Enter(formMonitor); // Enter the monitor
+            try
+            {
+                if (formCount < 2)
+                {
+                    formCount++;
+                    Thread newThread = new Thread(InitializeSecondWindow);
+                    newThread.Start();
+                }
+                else
+                {
+                    MessageBox.Show("Maximum forms already created.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            finally
+            {
+                Monitor.Exit(formMonitor); // Ensure monitor exit
+            }
+        }
+
+
+        private void InitializeSecondWindow()
+        {
+            Form_SPL_Form2 = new Form_SPL();
+            UpdateDrawingDelegate updateDrawingDelegate = new UpdateDrawingDelegate(Form_SPL_Form2.UpdateDrawing);
+            Form_SPL_Form2.command = new CommandParser(new DisplayMessageBox(), this);
+            Application.Run(Form_SPL_Form2);
+        }
+
+        public void UpdateDrawing(Shape shape)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action<Shape>(UpdateDrawing), shape);
+            }
+            else
+            {
+                shape.Draw(g);
+                Shapes.Add(shape);
+                pnl_Paint.Invalidate(); // Force repaint
+            }
+        }
+
+        private void Form_SPL_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Monitor.Enter(formMonitor); // Enter the monitor
+            try
+            {
+                formCount--;
+                duplicateProgramToolStripMenuItem.Enabled = true;
+            }
+            finally
+            {
+                Monitor.Exit(formMonitor); // Ensure monitor exit
+                
+            }
+        }
     }
 }
