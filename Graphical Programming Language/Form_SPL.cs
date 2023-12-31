@@ -27,7 +27,6 @@ namespace Graphical_Programming_Language
         /// Instance of DisplayMessageBox as a argument to CommandParser constructor for creating MessageBox for error messages.
         /// </summary>
         private CommandParser command;
-
         /// <summary>
         /// List to store all the drawn shapes and persist it in the panel.
         /// </summary>
@@ -102,6 +101,7 @@ namespace Graphical_Programming_Language
                 if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
                 {
                     command.Command = SplitCommand(textBox_SingleCmd.Text);
+                    command.is_A_Variable();
                     command.ValidateCommandName();
                     command.ValidateParameters();
                     syntaxChecked = true;
@@ -125,6 +125,7 @@ namespace Graphical_Programming_Language
                         for (int i = 0; i < multiCommands.Length; i++)
                         {
                             command.Command = SplitCommand(multiCommands[i]);
+                            command.is_A_Variable();
                             command.ValidateCommandName();
                             command.ValidateParameters();
                             syntaxChecked = true;
@@ -165,6 +166,7 @@ namespace Graphical_Programming_Language
                             for (int i = 0; i < multiCommands.Length; i++)
                             {
                                 command.Command = multiCommands[i].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                command.is_A_Variable();
                                 command.ValidateCommandName();
                                 command.ValidateParameters();
                                 command.RunCommand(g);
@@ -211,6 +213,8 @@ namespace Graphical_Programming_Language
         {
             g.Clear(SystemColors.ActiveBorder);
             Shapes.Clear();
+            textBox_MultiCmd.Text = "";
+            textBox_SingleCmd.Text = "";
         }
 
         /// <summary>
@@ -265,7 +269,7 @@ namespace Graphical_Programming_Language
 
         private void DuplicateProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Monitor.Enter(formMonitor); // Enter the monitor
+            Monitor.Enter(formMonitor); 
             try
             {
                 if (formCount < 2)
@@ -281,7 +285,7 @@ namespace Graphical_Programming_Language
             }
             finally
             {
-                Monitor.Exit(formMonitor); // Ensure monitor exit
+                Monitor.Exit(formMonitor); 
             }
         }
 
@@ -304,13 +308,13 @@ namespace Graphical_Programming_Language
             {
                 shape.Draw(g);
                 Shapes.Add(shape);
-                pnl_Paint.Invalidate(); // Force repaint
+                pnl_Paint.Invalidate(); 
             }
         }
 
         private void Form_SPL_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Monitor.Enter(formMonitor); // Enter the monitor
+            Monitor.Enter(formMonitor); 
             try
             {
                 formCount--;
@@ -318,7 +322,7 @@ namespace Graphical_Programming_Language
             }
             finally
             {
-                Monitor.Exit(formMonitor); // Ensure monitor exit
+                Monitor.Exit(formMonitor); 
                 
             }
         }

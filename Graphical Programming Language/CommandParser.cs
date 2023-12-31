@@ -32,6 +32,8 @@ namespace Graphical_Programming_Language
         /// </summary>
         private List<Shape> Shapes = new List<Shape>();
 
+        private Dictionary<string, int> variablesAndValues = new Dictionary<string, int>();
+
         /// <summary>
         /// Variable to store X coordinate from where the drawing will start.
         /// Initially set to 0.
@@ -53,6 +55,8 @@ namespace Graphical_Programming_Language
         /// Variable to store current command value in string.
         /// </summary>
         private string commandStringValue;
+
+        private Boolean isVariable = false;
 
         /// <summary>
         /// Variable to set the flag of current command name being valid.
@@ -132,6 +136,49 @@ namespace Graphical_Programming_Language
             return Shapes;
         }
 
+        public Boolean is_A_Variable()
+        {
+            isVariable = false;
+            try
+            {
+                if (command.Length == 3)
+                {
+                    if (!int.TryParse(command[0], out int result))
+                    {
+                        if (command[1] == "=")
+                        {
+                            if (!string.IsNullOrEmpty(command[2]))
+                            {
+                                if(int.TryParse(command[2], out int result2))
+                                {
+                                    variablesAndValues[command[0]] = Convert.ToInt32(command[2]);
+                                    isVariable = true;
+                                }
+
+                                else
+                                {
+                                    throw new Exception($"Please enter a integer value to be assigned for the {commandName} variable.");
+                                }
+                            }
+
+                            else
+                            {
+                                throw new Exception($"Please enter a value to be assigned for the {commandName} variable.");
+                            }
+                        }
+
+                    }           
+                }
+            }
+
+            catch (Exception err)
+            {
+                _messageDisplayer.DisplayMessage(err.Message);
+            }
+
+            return isVariable;
+        }
+
         /// <summary>
         /// Boolean method to verify if a command name is valid or not by passing it and checking if it is in the validCommands array.
         /// </summary>
@@ -148,6 +195,12 @@ namespace Graphical_Programming_Language
                     {
 
                         if (validCommands[i].Equals(commandName))
+                        {
+                            isValidCommand = true;
+                            break;
+                        }
+
+                        else if(isVariable)
                         {
                             isValidCommand = true;
                             break;
@@ -223,6 +276,11 @@ namespace Graphical_Programming_Language
                         }
                     }
 
+                    else if(isVariable)
+                    {
+                        isValidParameters = true;
+                    }
+
                     else
                     {
 
@@ -232,17 +290,31 @@ namespace Graphical_Programming_Language
                             commandValues.Clear();
                             for (int i = 1; i < command.Length; i++)
                             {
-
-                                int value = int.Parse(command[i]);
-                                if (value < 0)
+                                if(int.TryParse(command[i], out int result))
                                 {
-                                    throw new NegativeParametersException($"Please enter positive integer parameter for {commandName} command.");
+                                    int value = int.Parse(command[i]);
+                                    if(value >= 0)
+                                    {
+                                        commandValues.Add(value);
+                                    }
+
+                                    else
+                                    {
+                                        throw new NegativeParametersException($"Please enter positive integer parameter for {commandName} command.");
+                                    }
+                                }
+                                
+                               
+                                else if (variablesAndValues.ContainsKey(command[i]))
+                                {
+                                    commandValues.Add(variablesAndValues[command[i]]);
+                                }                            
+
+                                else 
+                                {
+                                    throw new InvalidParameterException($"Please enter positive integer parameter for {commandName} command.");
                                 }
 
-                                else
-                                {
-                                    commandValues.Add(value);
-                                }
                             }
                         
                         }
@@ -254,7 +326,8 @@ namespace Graphical_Programming_Language
 
                         try
                         {
-
+                           
+                           
                             if (commandName.Equals("circle"))
                             {
 
@@ -281,15 +354,15 @@ namespace Graphical_Programming_Language
                                 {
                                     throw new MultipleParametersException($"Please enter two valid parameters for {commandName} command.");
                                 }
-                            }
+                            }                       
                         }
-
+                           
                         catch (Exception err2)
                         {
                             _messageDisplayer.DisplayMessage(err2.Message);
                         }
                     }
-                }
+                }        
             }
 
             catch (Exception err3)
@@ -310,9 +383,9 @@ namespace Graphical_Programming_Language
                 case "rectangle":
                 case "circle":
                 case "triangle":
-                case "drawto":
-                    ShapeFactory shapeFactory = new ShapeFactory(); 
-                    return shapeFactory.ShapeType(commandName, color, fill, xPos, yPos, commandValues);
+                case "drawto":                
+                    ShapeFactory shapeFactory = new ShapeFactory();
+                    return shapeFactory.ShapeType(commandName, color, fill, xPos, yPos, commandValues);           
 
                 case "clear":
                     g.Clear(SystemColors.ActiveBorder);
