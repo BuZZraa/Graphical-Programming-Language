@@ -41,6 +41,21 @@
             Array of valid command name that can used.
             </summary>
         </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.validRelationalOperators">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.validArithmeticOperators">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isMultiLine">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Graphical_Programming_Language.CommandParser.command">
             <summary>
             Array to store the current running command with its values.
@@ -71,6 +86,31 @@
         <member name="F:Graphical_Programming_Language.CommandParser.commandName">
             <summary>
             Variable to only store current running command name.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.oprand1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.oprand2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.operators">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.equalTo">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.commandStringValue">
@@ -107,12 +147,23 @@
             Instance of IMessageDisplayer interface created used to display error message.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.#ctor(Graphical_Programming_Language.IMessageDisplayer)">
+        <member name="M:Graphical_Programming_Language.CommandParser.#ctor(Graphical_Programming_Language.IMessageDisplayer,Graphical_Programming_Language.Form_SPL)">
             <summary>
             Parameterized constructor which initializes a new instance of the Command_Parser class that takes
             instance of IMessageDisplayer interface as parameter to display error messages.
             </summary>
             <param name="messageDisplayer">Instance of IMessageDisplayer interface to display error messages.</param>
+            <param name="form">Instance of Form_SPL class for the use of delegate. </param>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.Form">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.IsMultiLine">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:Graphical_Programming_Language.CommandParser.Command">
             <summary>
@@ -134,6 +185,18 @@
             Getter method to return list of stored drawn shapes.
             </summary>
             <returns>Return the list of drawn shapes.</returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.is_A_Variable">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.is_A_If_Statement">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Graphical_Programming_Language.CommandParser.ValidateCommandName">
             <summary>

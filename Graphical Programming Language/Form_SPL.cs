@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -46,6 +47,7 @@ namespace Graphical_Programming_Language
 
         private static int formCount = 1;  // Static variable to track form count
         private static readonly object formMonitor = new object(); // object for thread safety
+
 
         /// <summary>
         /// Empty Constructor to initialize on instance of the Form_SPL class.
@@ -101,7 +103,7 @@ namespace Graphical_Programming_Language
                 if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
                 {
                     command.Command = SplitCommand(textBox_SingleCmd.Text);
-                    command.is_A_Variable();
+                    command.IsMultiLine = false;
                     command.ValidateCommandName();
                     command.ValidateParameters();
                     syntaxChecked = true;
@@ -125,7 +127,10 @@ namespace Graphical_Programming_Language
                         for (int i = 0; i < multiCommands.Length; i++)
                         {
                             command.Command = SplitCommand(multiCommands[i]);
+                            command.IsMultiLine = true;
                             command.is_A_Variable();
+                            command.is_A_If_Statement();
+                            command.is_A_EndIf_Statement();
                             command.ValidateCommandName();
                             command.ValidateParameters();
                             syntaxChecked = true;
@@ -157,29 +162,52 @@ namespace Graphical_Programming_Language
         {
             try
             {
+                Boolean run = true;
                 if (syntaxChecked == true)
                 {
                     if (command.IsValidCommand && command.IsValidParameters)
                     {
                         if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)
                         {
+                            command.IsMultiLine = true;
                             for (int i = 0; i < multiCommands.Length; i++)
                             {
                                 command.Command = multiCommands[i].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
                                 command.is_A_Variable();
+                                command.is_A_If_Statement();
+                                command.is_A_EndIf_Statement();
                                 command.ValidateCommandName();
                                 command.ValidateParameters();
-                                command.RunCommand(g);
+                            
+                                if (command.is_A_If_Statement())
+                                {
+                                    run = false;                                                                   
+                                }
+
+                                else if (command.is_A_EndIf_Statement())
+                                {
+                                    run = true;                              
+                                }
+
+                                if(run)
+                                {
+
+                                    command.RunCommand(g);
+                                } 
+
                             }
+
                         }
 
                         else
                         {
+                            command.IsMultiLine = false;
                             command.RunCommand(g);
                         }
 
                     }
                     syntaxChecked = false;
+                    command.IsMultiLine = false; 
                 }
 
                 else
@@ -304,6 +332,7 @@ namespace Graphical_Programming_Language
             {
                 this.Invoke(new Action<Shape>(UpdateDrawing), shape);
             }
+
             else
             {
                 shape.Draw(g);

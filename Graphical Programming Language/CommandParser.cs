@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
-using static Graphical_Programming_Language.Form_SPL;
 
 namespace Graphical_Programming_Language
 {
@@ -16,6 +14,21 @@ namespace Graphical_Programming_Language
         /// Array of valid command name that can used.
         /// </summary>
         private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "pen", "fill" };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string[] validRelationalOperators = { "<", ">", "==", "<=", ">=", "!=" };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string[] validArithmeticOperators = { "+", "-", "/", "*", "%"};
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private Boolean isMultiLine;
 
         /// <summary>
         /// Array to store the current running command with its values.
@@ -52,11 +65,42 @@ namespace Graphical_Programming_Language
         private string commandName;
 
         /// <summary>
+        /// 
+        /// </summary>
+        private string value;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string oprand1;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string oprand2;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string operators;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private string equalTo;
+
+        private Boolean isIfTriggered = false;
+
+        /// <summary>
         /// Variable to store current command value in string.
         /// </summary>
         private string commandStringValue;
 
         private Boolean isVariable = false;
+        private Boolean isIfStatement = false;
+        private Boolean isEndIfStatement = false;
+        private Boolean isConditionTrue = false;
+        private int result;
 
         /// <summary>
         /// Variable to set the flag of current command name being valid.
@@ -92,14 +136,25 @@ namespace Graphical_Programming_Language
         /// instance of IMessageDisplayer interface as parameter to display error messages.
         /// </summary>
         /// <param name="messageDisplayer">Instance of IMessageDisplayer interface to display error messages.</param>
+        /// <param name="form">Instance of Form_SPL class for the use of delegate. </param>
         public CommandParser(IMessageDisplayer messageDisplayer, Form_SPL form)
         {
             _messageDisplayer = messageDisplayer;
             Form = form;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private Form_SPL Form { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Boolean IsMultiLine
+        {
+            set { isMultiLine = value; }
+        }
 
 
         /// <summary>
@@ -109,6 +164,12 @@ namespace Graphical_Programming_Language
         {
             set { command = value; }
             get { return command; }
+        }
+
+        public Boolean IsConditionTrue
+        {
+            set { isConditionTrue = value; }
+            get { return isConditionTrue; }
         }
 
         /// <summary>
@@ -136,41 +197,122 @@ namespace Graphical_Programming_Language
             return Shapes;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Boolean is_A_Variable()
         {
             isVariable = false;
+           
             try
             {
-                if (command.Length == 3)
+                if (isMultiLine)
                 {
-                    if (!int.TryParse(command[0], out int result))
+                    if (command.Length == 3)
                     {
-                        if (command[1] == "=")
+                        commandName = command[0];
+                        equalTo = command[1];
+                        value = command[2];
+                        if (!int.TryParse(commandName, out result))
                         {
-                            if (!string.IsNullOrEmpty(command[2]))
+                            if (equalTo == "=")
                             {
-                                if(int.TryParse(command[2], out int result2))
+                                if (int.TryParse(value, out result))
                                 {
-                                    variablesAndValues[command[0]] = Convert.ToInt32(command[2]);
+                                    variablesAndValues[commandName] = Convert.ToInt32(value);
                                     isVariable = true;
                                 }
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a integer value to be assigned for the {commandName} variable.");
+                                    throw new Exception($"Please enter a integer value to be assigned instead of {value} in {string.Join(" ", command)}.");
+                                }
+
+                            }
+
+                        }
+                    }
+
+                    else if (command.Length == 5)
+                    {
+                        oprand1 = command[2];
+                        operators = command[3];
+                        oprand2 = command[4];
+                        if (variablesAndValues.ContainsKey(commandName))
+                        {
+                            if (equalTo == "=")
+                            {
+                                if (int.TryParse(oprand1, out result) || variablesAndValues.ContainsKey(oprand1))
+                                {
+                                    if (validArithmeticOperators.Contains(operators))
+                                    {
+                                        if (int.TryParse(oprand2, out result) || variablesAndValues.ContainsKey(oprand2))
+                                        {
+                                            int value1 = 0, value2 = 0;
+                                            if (int.TryParse(oprand1, out result))
+                                            {
+                                                value1 = Convert.ToInt32(command[2]);
+                                            }
+
+                                            if (!int.TryParse(oprand1, out result))
+                                            {
+                                                value1 = variablesAndValues[command[2]];
+                                            }
+
+                                            if (int.TryParse(oprand2, out result))
+                                            {
+                                                value2 = Convert.ToInt32(command[4]);
+                                            }
+
+                                            if (!int.TryParse(oprand2, out result))
+                                            {
+                                                value2 = variablesAndValues[command[4]];
+                                            }
+
+                                            switch (operators)
+                                            {
+                                                case "+":
+                                                    variablesAndValues[commandName] = value1 + value2;
+                                                    break;
+                                                case "-":
+                                                    variablesAndValues[commandName] = value1 - value2;
+                                                    break;
+                                                case "*":
+                                                    variablesAndValues[commandName] = value1 * value2;
+                                                    break;
+                                                case "/":
+                                                    variablesAndValues[commandName] = value1 / value2;
+                                                    break;
+                                                case "%":
+                                                    variablesAndValues[commandName] = value1 % value2;
+                                                    break;
+                                            }
+
+                                            isVariable = true;
+                                        }
+
+                                        else
+                                        {
+                                            throw new Exception($"Please enter a valid variable or value for operation instead of {command[4]} in {string.Join(" ", command)}.");
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        throw new Exception($"Please enter a valid arithmetic operator instead of {command[3]} in {string.Join(" ", command)}.");
+                                    }
+                                }
+
+                                else
+                                {
+                                    throw new Exception($"Please enter a valid variable or value for operation instead of {command[2]} in {string.Join(" ", command)}.");
                                 }
                             }
-
-                            else
-                            {
-                                throw new Exception($"Please enter a value to be assigned for the {commandName} variable.");
-                            }
                         }
-
-                    }           
+                    }
                 }
             }
-
             catch (Exception err)
             {
                 _messageDisplayer.DisplayMessage(err.Message);
@@ -178,6 +320,136 @@ namespace Graphical_Programming_Language
 
             return isVariable;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Boolean is_A_If_Statement()
+        {
+            isIfStatement = false;
+            try
+            {
+                if(isMultiLine)
+                {
+                    if (command.Length == 4)
+                    {
+                        commandName = command[0];
+                        oprand1 = command[1];
+                        operators = command[2];
+                        oprand2 = command[3];
+                        if (commandName == "if")
+                        {
+                            if (variablesAndValues.ContainsKey(oprand1) || int.TryParse(oprand1, out result))
+                            {
+                                if (validRelationalOperators.Contains(operators))
+                                {
+                                    if (variablesAndValues.ContainsKey(oprand2) || int.TryParse(oprand2, out result))
+                                    {
+                                        isIfStatement = true;  
+                                        isIfTriggered = true;
+                                    }
+                                }
+
+                                else
+                                {
+                                    throw new Exception($"Please enter a valid operator instead of {command[2]} in {string.Join(" ", command)}.");
+                                }
+                            }
+
+                            else
+                            {
+                                throw new Exception($"Please enter a valid variable or number instead of {command[1]} in {string.Join(" ", command)}.");
+                            }
+                        }
+                    }
+                }                                         
+            }
+
+            catch(Exception err)
+            {
+                _messageDisplayer.DisplayMessage(err.Message);
+            }
+           
+            return isIfStatement;
+        }
+
+        public Boolean is_A_EndIf_Statement()
+        {
+            isEndIfStatement = false;
+            if(command.Length == 1)
+            {
+                commandName = command[0];
+                if(commandName == "endif")
+                {
+                    if(isIfTriggered)
+                    {
+                        isEndIfStatement = true;
+                        int value1 = 0, value2 = 0;
+                        if (int.TryParse(oprand1, out result))
+                        {
+                            value1 = Convert.ToInt32(oprand1);
+                        }
+
+                        if (!int.TryParse(oprand1, out result))
+                        {
+                            value1 = variablesAndValues[oprand1];
+                        }
+
+                        if (int.TryParse(oprand2, out result))
+                        {
+                            value2 = Convert.ToInt32(oprand2);
+                        }
+
+                        if (!int.TryParse(oprand2, out result))
+                        {
+                            value2 = variablesAndValues[oprand2];
+                        }
+
+                        switch (operators)
+                        {
+                            case "<":
+                                if (value1 < value2)
+                                {
+                                    isConditionTrue = true;
+                                }
+                                break;
+                            case ">":
+                                if (value1 > value2)
+                                {
+                                    isConditionTrue = true;
+                                }
+                                break;
+                            case "<=":
+                                if (value1 <= value2)
+                                {
+                                    isConditionTrue = true;
+                                }
+                                break;
+                            case ">=":
+                                if (value1 >= value2)
+                                {
+                                    isConditionTrue = true;
+                                }
+                                break;
+                            case "==":
+                                if (value1 == value2)
+                                {
+                                    isConditionTrue = true;
+                                }
+                                break;
+                            case "!=":
+                                if (value1 != value2)
+                                {
+                                    isConditionTrue = true;
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+            return isEndIfStatement;
+        } 
 
         /// <summary>
         /// Boolean method to verify if a command name is valid or not by passing it and checking if it is in the validCommands array.
@@ -188,33 +460,38 @@ namespace Graphical_Programming_Language
             isValidCommand = false;
             try
             {
-                if (!string.IsNullOrEmpty(command[0]))
+                if (command.Length > 0)
                 {
                     commandName = command[0].ToLower();
-                    for (int i = 0; i < validCommands.Length; i++)
+                    if (validCommands.Contains(commandName))
                     {
-
-                        if (validCommands[i].Equals(commandName))
-                        {
-                            isValidCommand = true;
-                            break;
-                        }
-
-                        else if(isVariable)
-                        {
-                            isValidCommand = true;
-                            break;
-                        }
+                        isValidCommand = true;
                     }
 
-                    if (!isValidCommand)
+                    else if(isVariable)
                     {
-                        throw new IndexOutOfRangeException($"Please enter a valid command instead of {commandName}.");
+                        isValidCommand = true;
+                    }
+
+                    else if(isIfStatement)
+                    {
+                        isValidCommand = true;
+                    }
+
+                    else if (isEndIfStatement)
+                    {
+                        isValidCommand = true;
+                    }
+
+
+                    else
+                    {
+                        throw new Exception($"Please enter a valid command instead of {commandName} in {string.Join(" ", command)}.");
                     }
                 }                     
             }
 
-            catch (IndexOutOfRangeException err1)
+            catch (Exception err1)
             {
                 _messageDisplayer.DisplayMessage(err1.Message);
             }
@@ -244,7 +521,7 @@ namespace Graphical_Programming_Language
 
                         else
                         {
-                            throw new RemoveParametersException($"Please remove parameters for {commandName} command.");
+                            throw new RemoveParametersException($"Please remove parameters for {commandName} command in {string.Join(" ", command)}.");
                         }
                     }
 
@@ -266,17 +543,27 @@ namespace Graphical_Programming_Language
 
                             else
                             {
-                                throw new InvalidParameterException($"Please enter a valid parameter for {commandName} command.");
+                                throw new InvalidParameterException($"Please enter a valid parameter for {commandName} command in {string.Join(" ", command)}.");
                             }
                         }
 
                         else
                         {
-                            throw new SingleParameterException($"Please enter a single parameter for {commandName} command.");
+                            throw new SingleParameterException($"Please enter a single parameter for {commandName} command in {string.Join(" ", command)}.");
                         }
                     }
 
                     else if(isVariable)
+                    {
+                        isValidParameters = true;
+                    }
+
+                    else if(isIfStatement)
+                    {
+                        isValidParameters = true;
+                    }
+
+                    else if (isEndIfStatement)
                     {
                         isValidParameters = true;
                     }
@@ -300,7 +587,7 @@ namespace Graphical_Programming_Language
 
                                     else
                                     {
-                                        throw new NegativeParametersException($"Please enter positive integer parameter for {commandName} command.");
+                                        throw new NegativeParametersException($"Please enter positive integer parameter for {commandName} commannd in {string.Join(" ", command)}.");
                                     }
                                 }
                                 
@@ -312,7 +599,7 @@ namespace Graphical_Programming_Language
 
                                 else 
                                 {
-                                    throw new InvalidParameterException($"Please enter positive integer parameter for {commandName} command.");
+                                    throw new InvalidParameterException($"Please enter positive integer parameter for {commandName} command in {string.Join(" ", command)}.");
                                 }
 
                             }
@@ -338,7 +625,7 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new SingleParameterException($"Please enter a single valid parameter for {commandName} command.");
+                                    throw new SingleParameterException($"Please enter a single valid parameter for {commandName} command in {string.Join(" ", command)}.");
                                 }
                             }
 
@@ -352,7 +639,7 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new MultipleParametersException($"Please enter two valid parameters for {commandName} command.");
+                                    throw new MultipleParametersException($"Please enter two valid parameters for {commandName} command in {string.Join(" ", command)}.");
                                 }
                             }                       
                         }
@@ -435,8 +722,7 @@ namespace Graphical_Programming_Language
 
             isValidCommand = false;
             isValidParameters = false;
+            isIfTriggered = false;
         }
-
-
     }
 }

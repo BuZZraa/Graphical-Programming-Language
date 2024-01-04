@@ -42,7 +42,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange 
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommandArray = {"rectangle", "100", "100"};
 
             //Act
@@ -60,7 +61,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { };
 
             //Act
@@ -79,7 +81,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { null };
 
             //Act
@@ -97,7 +100,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "abcde", "100", "100" };
 
             //Act
@@ -115,7 +119,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string [] expectedCommand = { "rectangle", "100", "100"};
 
             //Act
@@ -133,7 +138,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "RECTANGLE", "100", "100" };
 
             //Act
@@ -151,7 +157,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "rectangle", "100", "100" };
 
             // Act
@@ -170,7 +177,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "rectangle", "seventy", "seventy" };
 
             // Act
@@ -189,7 +197,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "rectangle" };
 
             // Act
@@ -209,7 +218,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "rectangle", "-100", "-100"};
 
             // Act
@@ -228,7 +238,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "rectangle", null, null };
 
             // Act
@@ -247,7 +258,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "rectangle", "100"};
 
             // Act
@@ -266,7 +278,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "triangle", "50", "50" };
 
             //Act
@@ -284,7 +297,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "TRIANGLE", "50", "50" };
 
             //Act
@@ -302,7 +316,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "triangle", "50", "50" };
 
             // Act
@@ -321,7 +336,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "triangle", "fifty", "fifty" };
 
             // Act
@@ -340,7 +356,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "triangle" };
 
             // Act
@@ -360,7 +377,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "triangle", "-50", "-50" };
 
             // Act
@@ -379,7 +397,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "triangle", null, null };
 
             // Act
@@ -398,7 +417,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "triangle", "50" };
 
             // Act
@@ -417,7 +437,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "circle", "75" };
 
             //Act
@@ -435,7 +456,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "CIRCLE", "75" };
 
             //Act
@@ -453,7 +475,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "circle", "75" };
 
             // Act
@@ -472,7 +495,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "circle", "thirty" };
 
             // Act
@@ -491,7 +515,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "circle" };
 
             // Act
@@ -511,7 +536,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "circle", "-75" };
 
             // Act
@@ -530,7 +556,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "circle", null };
 
             // Act
@@ -549,7 +576,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "moveto", "100", "100" };
 
             //Act
@@ -567,7 +595,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "MOVETO", "100", "100" };
 
             //Act
@@ -585,7 +614,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "moveto", "100", "100" };
 
             // Act
@@ -604,7 +634,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "moveto", "fourty", "fourty" };
 
             // Act
@@ -623,7 +654,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "moveto" };
 
             // Act
@@ -643,7 +675,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "moveto", "-100", "-100" };
 
             // Act
@@ -662,7 +695,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "moveto", null, null };
 
             // Act
@@ -681,7 +715,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "moveto", "100" };
 
             // Act
@@ -700,7 +735,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "drawto", "200", "200" };
 
             //Act
@@ -718,7 +754,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "DRAWTO", "200", "200" };
 
             //Act
@@ -736,7 +773,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "drawto", "200", "200" };
 
             // Act
@@ -755,7 +793,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "drawto", "seventy", "seventy" };
 
             // Act
@@ -774,7 +813,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "drawto" };
 
             // Act
@@ -794,7 +834,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "drawto", "-200", "-200" };
 
             // Act
@@ -813,7 +854,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "drawto", null, null };
 
             // Act
@@ -832,7 +874,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "drawto", "200" };
 
             // Act
@@ -851,7 +894,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "clear" };
 
             //Act
@@ -869,7 +913,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "CLEAR"};
 
             //Act
@@ -887,7 +932,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "clear", "75" };
 
             // Act
@@ -906,7 +952,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "reset" };
 
             //Act
@@ -924,7 +971,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "RESET" };
 
             //Act
@@ -942,7 +990,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "reset", "75" };
 
             // Act
@@ -962,7 +1011,8 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "fill", "on" };
 
             //Act
@@ -980,7 +1030,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "FILL", "ON" };
 
             //Act
@@ -1000,7 +1051,8 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "fill", "on" };
 
             //Act
@@ -1020,7 +1072,8 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "fill", "off" };
 
             //Act
@@ -1040,7 +1093,8 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "fill", "red" };
 
             //Act
@@ -1060,7 +1114,8 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "pen", "red" };
 
             //Act
@@ -1079,7 +1134,8 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "pen", "red" };
 
             //Act
@@ -1100,7 +1156,8 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "pen", "#FF00FF" };
 
             //Act
@@ -1119,7 +1176,8 @@ namespace Graphical_Programming_Language_Unit_Test
         {
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
-            CommandParser command = new CommandParser(stringErrorMessage);
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
             string[] expectedCommand = { "PEN", "RED" };
 
             //Act
