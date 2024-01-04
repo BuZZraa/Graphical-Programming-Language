@@ -316,5 +316,35 @@
             Test method to test the pen command name and its parameters being non-case sensitive.
             </summary>
         </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsVariableStored">
+            <summary>
+            Test method to test if the variable is created and its value is stored.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.CheckVariableIncrementOperation">
+            <summary>
+            Test method to test the variable increment operation.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.CheckVariableDecrementOperation">
+            <summary>
+            Test method to test the variable decrement operation.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.CheckVariableMultiplicationOperation">
+            <summary>
+            Test method to test the variable multiplication operation.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.CheckVariableDivisionOperation">
+            <summary>
+            est method to test the variable division operation.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.CheckVariableModuloOperation">
+            <summary>
+            Test method to test the variable modulo operation.
+            </summary>
+        </member>
     </members>
 </doc>

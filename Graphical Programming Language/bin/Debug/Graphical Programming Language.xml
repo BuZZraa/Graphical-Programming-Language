@@ -234,6 +234,7 @@
             Adds to Shapes list after drawing to persist the drawing.
             </summary>
             <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
+            <param name="penSize">Pen size to be set for drawing.</param>
         </member>
         <member name="T:Graphical_Programming_Language.DisplayMessageBox">
             <summary>
