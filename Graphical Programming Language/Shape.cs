@@ -34,18 +34,30 @@ namespace Graphical_Programming_Language
         protected Boolean fill;
 
         /// <summary>
+        /// 
+        /// </summary>
+        protected float rotationAngle;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected int penSize;
+
+        /// <summary>
         /// Parameterized constructor for the class which initializes an instance of the class with specified parameters.
         /// </summary>
         /// <param name="colour">Color of the shape. </param>
         /// <param name="fill">For shape to be filled or not. </param>
         /// <param name="x">X-coordinate for the shape.</param>
         /// <param name="y">Y-coordinate for the shape.</param>
-        public Shape(Color colour, bool fill, int x, int y)
+        /// <param name="rotationAngle">Angle for shape to be rotated.</param>
+        public Shape(Color colour, bool fill, int x, int y, float rotationAngle)
         {
             this.colour = colour;
             this.fill = fill;
             this.x = x;
             this.y = y;
+            this.rotationAngle = rotationAngle;
         }
 
         /// <summary>
@@ -53,5 +65,11 @@ namespace Graphical_Programming_Language
         /// </summary>
         /// <param name="g">Graphics object on which the shape will be drawn.</param>
         public abstract void Draw(Graphics g);
+
+        public int PenSize
+        {
+            set { penSize = value; }
+            get { return penSize; }
+        } 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,9 +32,10 @@ namespace Graphical_Programming_Language
         /// <param name="fill">For rectangle to be filled or not.</param>
         /// <param name="x">X coordinate from where the rectangle will be drawn.</param>
         /// <param name="y">Y coordinate from where the rectangle will be drawn.</param>
+        /// <param name="rotationAngle">Angle for rectangle to be rotated.</param>
         /// <param name="width">Width for the length of the rectangle.</param>
         /// <param name="height">Height for the breadth of the rectangle.</param>
-        public Rectangle(Color colour, bool fill, int x, int y, int width, int height) : base(colour, fill, x, y)
+        public Rectangle(Color colour, bool fill, int x, int y, float rotationAngle, int width, int height) : base(colour, fill, x, y, rotationAngle)
         {
             this.width = width;
             this.height = height;
@@ -45,7 +47,11 @@ namespace Graphical_Programming_Language
         /// <param name="g">Graphics object on which the rectangle will be drawn.</param>
         public override void Draw(Graphics g)
         {
-            //If fill is true rectangle is filled and drawn else it is drawn without fill.
+            Point center = new Point(x + width / 2, y + height / 2);
+            g.TranslateTransform(center.X, center.Y);
+            g.RotateTransform(rotationAngle);
+            g.TranslateTransform(-center.X, -center.Y);
+
             if (fill)
             {
                 SolidBrush b = new SolidBrush(colour);
@@ -54,9 +60,10 @@ namespace Graphical_Programming_Language
 
             else
             {
-                Pen p = new Pen(colour, 1);
+                Pen p = new Pen(colour, penSize);
                 g.DrawRectangle(p, x, y, width, height);
             }
+            g.ResetTransform();
         }
     }
 }

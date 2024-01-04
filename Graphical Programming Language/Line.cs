@@ -30,9 +30,10 @@ namespace Graphical_Programming_Language
         /// <param name="fill">Fill not used inherited from abstract class shape.</param>
         /// <param name="x">X coordinate from where the line will be drawn.</param>
         /// <param name="y">Y coordinate from where the line will be drawn.</param>
+        /// <param name="rotationAngle">Angle for line to be rotated.</param>
         /// <param name="endingPointX">X-coodinate of ending point of the line.</param>
         /// <param name="endingPointY">Y-coodinate of ending point of the line.</param>
-        public Line(Color colour, bool fill, int x, int y, int endingPointX, int endingPointY) : base(colour, fill, x, y)
+        public Line(Color colour, bool fill, int x, int y, float rotationAngle, int endingPointX, int endingPointY) : base(colour, fill, x, y, rotationAngle)
         {
             this.endingPointX = endingPointX;
             this.endingPointY = endingPointY;
@@ -44,7 +45,7 @@ namespace Graphical_Programming_Language
         /// <param name="g">Graphics object on which the line will be drawn.</param>
         public override void Draw(Graphics g)
         {
-            Pen p = new Pen(colour, 1);
+            Pen p = new Pen(colour, penSize);
             g.DrawLine(p, x, y, endingPointX, endingPointY);
         }
     }

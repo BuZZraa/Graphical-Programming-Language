@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Windows.Shapes;
 
 namespace Graphical_Programming_Language
 {
@@ -13,7 +15,7 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Array of valid command name that can used.
         /// </summary>
-        private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "pen", "fill" };
+        private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "pen", "fill", "rotate" };
 
         /// <summary>
         /// 
@@ -45,6 +47,14 @@ namespace Graphical_Programming_Language
         /// </summary>
         private List<Shape> Shapes = new List<Shape>();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private float rotationAngle = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
         private Dictionary<string, int> variablesAndValues = new Dictionary<string, int>();
 
         /// <summary>
@@ -170,6 +180,12 @@ namespace Graphical_Programming_Language
         {
             set { isConditionTrue = value; }
             get { return isConditionTrue; }
+        }
+
+        public Color Color
+        {
+            set { color = value; }
+            get { return color; }
         }
 
         /// <summary>
@@ -615,12 +631,28 @@ namespace Graphical_Programming_Language
                         {
                            
                            
-                            if (commandName.Equals("circle"))
+                            if (commandName.Equals("circle") || commandName.Equals("rotate"))
                             {
 
                                 if (commandValues.Count() == 1)
                                 {
-                                    isValidParameters = true;
+                                    if (commandName.Equals("rotate"))
+                                    {
+                                        if (commandValues[0] <= 360)
+                                        {
+                                            isValidParameters = true;
+                                        }
+
+                                        else
+                                        {
+                                            throw new Exception($"Please enter a valid value within 360 for {commandName} command in {string.Join(" ", command)}.");
+                                        }
+                                    }
+                                    
+                                    else if (commandName.Equals("circle"))
+                                    {
+                                        isValidParameters = true;
+                                    }
                                 }
 
                                 else
@@ -670,10 +702,11 @@ namespace Graphical_Programming_Language
                 case "rectangle":
                 case "circle":
                 case "triangle":
-                case "drawto":                
+                case "drawto":
                     ShapeFactory shapeFactory = new ShapeFactory();
-                    return shapeFactory.ShapeType(commandName, color, fill, xPos, yPos, commandValues);           
-
+                    Shape shape = shapeFactory.ShapeType(commandName, color, fill, xPos, yPos, rotationAngle, commandValues);
+                    Shapes.Add(shape);
+                    return shape;
                 case "clear":
                     g.Clear(SystemColors.ActiveBorder);
                     Shapes.Clear();
@@ -698,6 +731,9 @@ namespace Graphical_Programming_Language
                     fill = command[1].Equals("on");
                     return null;
 
+                case "rotate":
+                    rotationAngle = commandValues[0];
+                    return null;
                 default:
                     return null;
             }
@@ -708,7 +744,7 @@ namespace Graphical_Programming_Language
         /// Adds to Shapes list after drawing to persist the drawing.
         /// </summary>
         /// <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
-        public void RunCommand(Graphics g)
+        public void RunCommand(Graphics g, int penSize)
         {
             if (isValidCommand && isValidParameters)
             {
@@ -716,6 +752,7 @@ namespace Graphical_Programming_Language
 
                 if (runCommand != null)
                 {
+                    runCommand.PenSize = penSize;
                     Form.UpdateDrawing(runCommand);
                 }
             }

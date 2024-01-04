@@ -21,24 +21,25 @@ namespace Graphical_Programming_Language
         /// <param name="fill">For shape to be filled or not.</param>
         /// <param name="xPos">X coordinate from where the shape will be drawn.</param>
         /// <param name="yPos">Y coordinate from where the shape will be drawn.</param>
+        /// <param name="rotationAngle">Angle for shape to be rotated.</param>
         /// <param name="commandValues">List of integer values of the shape.</param>
         /// <returns>Returns the instance of shape.</returns>
-        public Shape ShapeType(string shape, Color color, bool fill, int xPos, int yPos, List<int> commandValues)
+        public Shape ShapeType(string shape, Color color, bool fill, int xPos, int yPos, float rotationAngle, List<int> commandValues)
         {
             switch (shape.ToLower())
             {
 
                 case "rectangle":
-                    return new Rectangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+                    return new Rectangle(color, fill, xPos, yPos, rotationAngle, commandValues[0], commandValues[1]);
 
                 case "circle":
-                    return new Circle(color, fill, xPos, yPos, commandValues[0]);
+                    return new Circle(color, fill, xPos, yPos, rotationAngle, commandValues[0]);
 
                 case "triangle":
-                    return new Triangle(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+                    return new Triangle(color, fill, xPos, yPos, rotationAngle, commandValues[0], commandValues[1]);
 
                 case "drawto":
-                    return new Line(color, fill, xPos, yPos, commandValues[0], commandValues[1]);
+                    return new Line(color, fill, xPos, yPos, rotationAngle, commandValues[0], commandValues[1]);
 
                 default:
                     throw new ArgumentException($"Please enter a valid command instead of {shape}");

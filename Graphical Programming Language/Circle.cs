@@ -26,8 +26,9 @@ namespace Graphical_Programming_Language
         /// <param name="fill">For circle to be filled or not.</param>
         /// <param name="x">X coordinate from where the circle will be drawn.</param>
         /// <param name="y">Y coordinate from where the circle will be drawn.</param>
+        /// <param name="rotationAngle">Angle for circle to be rotated.</param>
         /// <param name="radius">Radius for the size of the circle.</param>
-        public Circle(Color colour, bool fill, int x, int y, int radius) : base(colour, fill, x, y)
+        public Circle(Color colour, bool fill, int x, int y, float rotationAngle, int radius) : base(colour, fill, x, y, rotationAngle)
         {
             this.radius = radius;
         }
@@ -38,7 +39,7 @@ namespace Graphical_Programming_Language
         /// <param name="g">Graphics object on which the circle will be drawn.</param>
         public override void Draw(Graphics g)
         {
-            // If fill is true circle is filled and drawn else it is drawn without fill.
+
             if (fill)
             {
                 SolidBrush b = new SolidBrush(colour);
@@ -47,7 +48,7 @@ namespace Graphical_Programming_Language
 
             else
             {
-                Pen p = new Pen(colour, 1);
+                Pen p = new Pen(colour, penSize);
                 g.DrawEllipse(p, x, y, radius * 2, radius * 2);
             }
         }

@@ -28,6 +28,9 @@ namespace Graphical_Programming_Language
         /// Instance of DisplayMessageBox as a argument to CommandParser constructor for creating MessageBox for error messages.
         /// </summary>
         private CommandParser command;
+
+        private ColorDialog canvasColour;
+
         /// <summary>
         /// List to store all the drawn shapes and persist it in the panel.
         /// </summary>
@@ -59,7 +62,9 @@ namespace Graphical_Programming_Language
             g = pnl_Paint.CreateGraphics();
             syntaxChecked = false;
             command = new CommandParser(new DisplayMessageBox(),this);
-            
+            canvasColour = new ColorDialog();
+            canvasColour.Color = SystemColors.ActiveBorder;
+            penSizes.SelectedItem = "1";
         }
 
 
@@ -70,7 +75,7 @@ namespace Graphical_Programming_Language
         /// <param name="e">The arguments of the syntax button click event.</param>
         private void Pnl_Paint_Paint(object sender, PaintEventArgs e)
         {
-            g.Clear(SystemColors.ActiveBorder);
+            g.Clear(canvasColour.Color);
 
             Shapes = command.GetShapes();
             for (int i =0; i < Shapes.Count; i++)
@@ -97,7 +102,7 @@ namespace Graphical_Programming_Language
         /// <param name="sender">The object that triggered the event of syntax button being clicked.</param>
         /// <param name="e">The arguments of the syntax button click event.</param>
         private void Btn_Syntax_Click(object sender, EventArgs e)
-        {
+        {          
             try
             {
                 if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
@@ -191,8 +196,7 @@ namespace Graphical_Programming_Language
 
                                 if(run)
                                 {
-
-                                    command.RunCommand(g);
+                                    command.RunCommand(g, Convert.ToInt32(penSizes.Text));
                                 } 
 
                             }
@@ -202,7 +206,7 @@ namespace Graphical_Programming_Language
                         else
                         {
                             command.IsMultiLine = false;
-                            command.RunCommand(g);
+                            command.RunCommand(g, Convert.ToInt32(penSizes.Text));
                         }
 
                     }
@@ -353,6 +357,26 @@ namespace Graphical_Programming_Language
             {
                 Monitor.Exit(formMonitor); 
                 
+            }
+        }
+
+        private void Btn_PenColour_Click(object sender, EventArgs e)
+        {
+            ColorDialog penColour = new ColorDialog();
+            if (penColour.ShowDialog() == DialogResult.OK)
+            {
+                command.Color = penColour.Color;
+                btn_PenColour.BackColor = penColour.Color;
+            }
+        }
+
+        private void Btn_CanvasColour_Click(object sender, EventArgs e)
+        {
+            canvasColour = new ColorDialog();
+            if (canvasColour.ShowDialog() == DialogResult.OK)
+            {
+                pnl_Paint.BackColor = canvasColour.Color;
+                btn_CanvasColour.BackColor = canvasColour.Color;
             }
         }
     }
