@@ -1186,6 +1186,201 @@ namespace Graphical_Programming_Language_Unit_Test
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
             Assert.IsTrue(command.ValidateParameters());
+        }      
+
+        /// <summary>
+        /// Test method to test if the variable is created and its value is stored.
+        /// </summary>
+        [TestMethod]
+        public void IsVariableStored()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string[] expectedCommand = { "radius", "=", "50" };
+
+            //Act
+            command.Command = expectedCommand;
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand[0]));
+        }
+
+        /// <summary>
+        /// Test method to test the variable increment operation.
+        /// </summary>
+        [TestMethod]
+        public void CheckVariableIncrementOperation()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string[] expectedCommand1 = { "radius", "=", "50" };
+            command.Command = expectedCommand1;
+            command.is_A_Variable();
+            command.ValidateCommandName();
+            command.ValidateParameters();         
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+
+            //Arrange
+            string[] expectedCommand2 = { "radius", "=", "radius", "+", "50" };          
+            int expectedValue = 100;
+
+            //Act - Variable Increment Operation
+            command.Command = expectedCommand2;
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);        
+        }
+
+        /// <summary>
+        /// Test method to test the variable decrement operation.
+        /// </summary>
+        [TestMethod]
+        public void CheckVariableDecrementOperation()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string[] expectedCommand1 = { "radius", "=", "100" };
+            command.Command = expectedCommand1;
+            command.is_A_Variable();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+
+            //Arrange
+            string[] expectedCommand2 = { "radius", "=", "radius", "-", "50" };
+            int expectedValue = 50;
+
+            //Act - Variable Decrement Operation
+            command.Command = expectedCommand2;
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
+        }
+
+        /// <summary>
+        /// Test method to test the variable multiplication operation.
+        /// </summary>
+        [TestMethod]
+        public void CheckVariableMultiplicationOperation()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string[] expectedCommand1 = { "radius", "=", "20" };
+            command.Command = expectedCommand1;
+            command.is_A_Variable();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+
+            //Arrange
+            string[] expectedCommand2 = { "radius", "=", "radius", "*", "5" };
+            int expectedValue = 100;
+
+            //Act - Variable Multiplication Operation
+            command.Command = expectedCommand2;
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
+        }
+
+        /// <summary>
+        /// est method to test the variable division operation.
+        /// </summary>
+        [TestMethod]
+        public void CheckVariableDivisionOperation()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string[] expectedCommand1 = { "radius", "=", "200" };
+            command.Command = expectedCommand1;
+            command.is_A_Variable();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+
+            //Arrange
+            string[] expectedCommand2 = { "radius", "=", "radius", "/", "4" };
+            int expectedValue = 50;
+
+            //Act - Variable Division Operation
+            command.Command = expectedCommand2;
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
+        }
+
+        /// <summary>
+        /// Test method to test the variable modulo operation.
+        /// </summary>
+        [TestMethod]
+        public void CheckVariableModuloOperation()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string[] expectedCommand1 = { "radius", "=", "110" };
+            command.Command = expectedCommand1;
+            command.is_A_Variable();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+
+            //Arrange
+            string[] expectedCommand2 = { "radius", "=", "radius", "%", "60" };
+            int expectedValue = 50;
+
+            //Act - Variable Modulo Operation
+            command.Command = expectedCommand2;
+
+            //Assert
+            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
         }
     }
 }

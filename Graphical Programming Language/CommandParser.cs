@@ -188,6 +188,12 @@ namespace Graphical_Programming_Language
             get { return color; }
         }
 
+        public Dictionary<string, int> VariablesAndValues
+        {
+            set { variablesAndValues = value; }
+            get { return variablesAndValues; }
+        }
+
         /// <summary>
         /// Getter method to get boolean value of a command name being valid or not.
         /// </summary>
@@ -223,111 +229,108 @@ namespace Graphical_Programming_Language
            
             try
             {
-                if (isMultiLine)
+                if (command.Length == 3)
                 {
-                    if (command.Length == 3)
+                    commandName = command[0];
+                    equalTo = command[1];
+                    value = command[2];
+                    if (!int.TryParse(commandName, out result))
                     {
-                        commandName = command[0];
-                        equalTo = command[1];
-                        value = command[2];
-                        if (!int.TryParse(commandName, out result))
+                        if (equalTo == "=")
                         {
-                            if (equalTo == "=")
+                            if (int.TryParse(value, out result))
                             {
-                                if (int.TryParse(value, out result))
-                                {
-                                    variablesAndValues[commandName] = Convert.ToInt32(value);
-                                    isVariable = true;
-                                }
+                                variablesAndValues[commandName] = Convert.ToInt32(value);
+                                isVariable = true;
+                            }
 
-                                else
-                                {
-                                    throw new Exception($"Please enter a integer value to be assigned instead of {value} in {string.Join(" ", command)}.");
-                                }
-
+                            else
+                            {
+                                throw new Exception($"Please enter a integer value to be assigned instead of {value} in {string.Join(" ", command)}.");
                             }
 
                         }
+
                     }
+                }
 
-                    else if (command.Length == 5)
+                else if (command.Length == 5)
+                {
+                    oprand1 = command[2];
+                    operators = command[3];
+                    oprand2 = command[4];
+                    if (variablesAndValues.ContainsKey(commandName))
                     {
-                        oprand1 = command[2];
-                        operators = command[3];
-                        oprand2 = command[4];
-                        if (variablesAndValues.ContainsKey(commandName))
+                        if (equalTo == "=")
                         {
-                            if (equalTo == "=")
+                            if (int.TryParse(oprand1, out result) || variablesAndValues.ContainsKey(oprand1))
                             {
-                                if (int.TryParse(oprand1, out result) || variablesAndValues.ContainsKey(oprand1))
+                                if (validArithmeticOperators.Contains(operators))
                                 {
-                                    if (validArithmeticOperators.Contains(operators))
+                                    if (int.TryParse(oprand2, out result) || variablesAndValues.ContainsKey(oprand2))
                                     {
-                                        if (int.TryParse(oprand2, out result) || variablesAndValues.ContainsKey(oprand2))
+                                        int value1 = 0, value2 = 0;
+                                        if (int.TryParse(oprand1, out result))
                                         {
-                                            int value1 = 0, value2 = 0;
-                                            if (int.TryParse(oprand1, out result))
-                                            {
-                                                value1 = Convert.ToInt32(command[2]);
-                                            }
-
-                                            if (!int.TryParse(oprand1, out result))
-                                            {
-                                                value1 = variablesAndValues[command[2]];
-                                            }
-
-                                            if (int.TryParse(oprand2, out result))
-                                            {
-                                                value2 = Convert.ToInt32(command[4]);
-                                            }
-
-                                            if (!int.TryParse(oprand2, out result))
-                                            {
-                                                value2 = variablesAndValues[command[4]];
-                                            }
-
-                                            switch (operators)
-                                            {
-                                                case "+":
-                                                    variablesAndValues[commandName] = value1 + value2;
-                                                    break;
-                                                case "-":
-                                                    variablesAndValues[commandName] = value1 - value2;
-                                                    break;
-                                                case "*":
-                                                    variablesAndValues[commandName] = value1 * value2;
-                                                    break;
-                                                case "/":
-                                                    variablesAndValues[commandName] = value1 / value2;
-                                                    break;
-                                                case "%":
-                                                    variablesAndValues[commandName] = value1 % value2;
-                                                    break;
-                                            }
-
-                                            isVariable = true;
+                                            value1 = Convert.ToInt32(command[2]);
                                         }
 
-                                        else
+                                        if (!int.TryParse(oprand1, out result))
                                         {
-                                            throw new Exception($"Please enter a valid variable or value for operation instead of {command[4]} in {string.Join(" ", command)}.");
+                                            value1 = variablesAndValues[command[2]];
                                         }
+
+                                        if (int.TryParse(oprand2, out result))
+                                        {
+                                            value2 = Convert.ToInt32(command[4]);
+                                        }
+
+                                        if (!int.TryParse(oprand2, out result))
+                                        {
+                                            value2 = variablesAndValues[command[4]];
+                                        }
+
+                                        switch (operators)
+                                        {
+                                            case "+":
+                                                variablesAndValues[commandName] = value1 + value2;
+                                                break;
+                                            case "-":
+                                                variablesAndValues[commandName] = value1 - value2;
+                                                break;
+                                            case "*":
+                                                variablesAndValues[commandName] = value1 * value2;
+                                                break;
+                                            case "/":
+                                                variablesAndValues[commandName] = value1 / value2;
+                                                break;
+                                            case "%":
+                                                variablesAndValues[commandName] = value1 % value2;
+                                                break;
+                                        }
+
+                                        isVariable = true;
                                     }
 
                                     else
                                     {
-                                        throw new Exception($"Please enter a valid arithmetic operator instead of {command[3]} in {string.Join(" ", command)}.");
+                                        throw new Exception($"Please enter a valid variable or value for operation instead of {command[4]} in {string.Join(" ", command)}.");
                                     }
                                 }
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a valid variable or value for operation instead of {command[2]} in {string.Join(" ", command)}.");
+                                    throw new Exception($"Please enter a valid arithmetic operator instead of {command[3]} in {string.Join(" ", command)}.");
                                 }
+                            }
+
+                            else
+                            {
+                                throw new Exception($"Please enter a valid variable or value for operation instead of {command[2]} in {string.Join(" ", command)}.");
                             }
                         }
                     }
-                }
+                }           
             }
             catch (Exception err)
             {
@@ -744,6 +747,7 @@ namespace Graphical_Programming_Language
         /// Adds to Shapes list after drawing to persist the drawing.
         /// </summary>
         /// <param name="g">Graphics object taken as parameter to draw the shapes on.</param>
+        /// <param name="penSize">Pen size to be set for drawing.</param>
         public void RunCommand(Graphics g, int penSize)
         {
             if (isValidCommand && isValidParameters)
