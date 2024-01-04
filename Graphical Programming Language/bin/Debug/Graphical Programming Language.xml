@@ -242,19 +242,19 @@
             </summary>
             <returns>Return the list of drawn shapes.</returns>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.is_A_Variable">
+        <member name="M:Graphical_Programming_Language.CommandParser.Is_A_Variable">
             <summary>
             Boolean method to verify if a command variable is valid and if valid to set its value.
             </summary>
             <returns>Returns true if variable or variable assignment is valid else it returns false.</returns>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.is_A_If_Statement">
+        <member name="M:Graphical_Programming_Language.CommandParser.Is_A_If_Statement">
             <summary>
             Boolean method to verify a valid command if statement.
             </summary>
             <returns>Returns true if the command if statement is valid else returns false.</returns>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.is_A_EndIf_Statement">
+        <member name="M:Graphical_Programming_Language.CommandParser.Is_A_EndIf_Statement">
             <summary>
             Boolean method to verify command endif statement or the end of if statement. 
             </summary>

@@ -149,9 +149,9 @@ namespace Graphical_Programming_Language
                         {
                             command.Command = SplitCommand(multiCommands[i]);
                             command.IsMultiLine = true;
-                            command.is_A_Variable();
-                            command.is_A_If_Statement();
-                            command.is_A_EndIf_Statement();
+                            command.Is_A_Variable();
+                            command.Is_A_If_Statement();
+                            command.Is_A_EndIf_Statement();
                             command.ValidateCommandName();
                             command.ValidateParameters();
                             syntaxChecked = true;
@@ -194,18 +194,18 @@ namespace Graphical_Programming_Language
                             for (int i = 0; i < multiCommands.Length; i++)
                             {
                                 command.Command = multiCommands[i].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-                                command.is_A_Variable();
-                                command.is_A_If_Statement();
-                                command.is_A_EndIf_Statement();
+                                command.Is_A_Variable();
+                                command.Is_A_If_Statement();
+                                command.Is_A_EndIf_Statement();
                                 command.ValidateCommandName();
                                 command.ValidateParameters();
                             
-                                if (command.is_A_If_Statement())
+                                if (command.Is_A_If_Statement())
                                 {
                                     run = false;                                                                   
                                 }
 
-                                else if (command.is_A_EndIf_Statement())
+                                else if (command.Is_A_EndIf_Statement())
                                 {
                                     run = true;                              
                                 }
