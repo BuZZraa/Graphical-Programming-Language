@@ -14,7 +14,7 @@
             Variable to store the radius of the circle.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.Circle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Graphical_Programming_Language.Circle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single,System.Int32)">
             <summary>
             Parameterized constructor Circle which initializes an instance of the class Circle with specified parameters. 
             The color, fill, x and y parameters are passed to base class Shape constructor.
@@ -23,6 +23,7 @@
             <param name="fill">For circle to be filled or not.</param>
             <param name="x">X coordinate from where the circle will be drawn.</param>
             <param name="y">Y coordinate from where the circle will be drawn.</param>
+            <param name="rotationAngle">Angle for circle to be rotated.</param>
             <param name="radius">Radius for the size of the circle.</param>
         </member>
         <member name="M:Graphical_Programming_Language.Circle.Draw(System.Drawing.Graphics)">
@@ -69,6 +70,16 @@
         <member name="F:Graphical_Programming_Language.CommandParser.Shapes">
             <summary>
             List to store drawn shapes to persist the drawing in the panel.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.rotationAngle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.variablesAndValues">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.xPos">
@@ -217,7 +228,7 @@
             </summary>
             <returns>Returns instance of inherited class of base class Shape.</returns>
         </member>
-        <member name="M:Graphical_Programming_Language.CommandParser.RunCommand(System.Drawing.Graphics)">
+        <member name="M:Graphical_Programming_Language.CommandParser.RunCommand(System.Drawing.Graphics,System.Int32)">
             <summary>
             Void method to run the commands after being verified by ValidateCommandName and ValidateParameters.
             Adds to Shapes list after drawing to persist the drawing.
@@ -394,7 +405,7 @@
             Variable to store the Y-coodinate of ending point of the line.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.Line.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Graphical_Programming_Language.Line.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single,System.Int32,System.Int32)">
             <summary>
             Parameterized constructor line which initializes an instance of the class Line with specified parameters. 
             The color, fill, x and y parameters are passed to base class Shape constructor.
@@ -403,6 +414,7 @@
             <param name="fill">Fill not used inherited from abstract class shape.</param>
             <param name="x">X coordinate from where the line will be drawn.</param>
             <param name="y">Y coordinate from where the line will be drawn.</param>
+            <param name="rotationAngle">Angle for line to be rotated.</param>
             <param name="endingPointX">X-coodinate of ending point of the line.</param>
             <param name="endingPointY">Y-coodinate of ending point of the line.</param>
         </member>
@@ -459,7 +471,7 @@
             Variable to store the breadth of the rectangle.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.Rectangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Graphical_Programming_Language.Rectangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single,System.Int32,System.Int32)">
             <summary>
             Parameterized constructor Rectangle which initializes an instance of the class Rectangle with specified parameters. 
             The color, fill, x and y parameters are passed to base class Shape constructor.
@@ -468,6 +480,7 @@
             <param name="fill">For rectangle to be filled or not.</param>
             <param name="x">X coordinate from where the rectangle will be drawn.</param>
             <param name="y">Y coordinate from where the rectangle will be drawn.</param>
+            <param name="rotationAngle">Angle for rectangle to be rotated.</param>
             <param name="width">Width for the length of the rectangle.</param>
             <param name="height">Height for the breadth of the rectangle.</param>
         </member>
@@ -513,7 +526,17 @@
             Fill variable which sets if the shape will be drawn filled or without fill.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.Shape.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32)">
+        <member name="F:Graphical_Programming_Language.Shape.rotationAngle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Shape.penSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Shape.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single)">
             <summary>
             Parameterized constructor for the class which initializes an instance of the class with specified parameters.
             </summary>
@@ -521,6 +544,7 @@
             <param name="fill">For shape to be filled or not. </param>
             <param name="x">X-coordinate for the shape.</param>
             <param name="y">Y-coordinate for the shape.</param>
+            <param name="rotationAngle">Angle for shape to be rotated.</param>
         </member>
         <member name="M:Graphical_Programming_Language.Shape.Draw(System.Drawing.Graphics)">
             <summary>
@@ -533,7 +557,7 @@
             Shape factory class for creating instances of Shape class according to the shape name.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.ShapeFactory.ShapeType(System.String,System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Collections.Generic.List{System.Int32})">
+        <member name="M:Graphical_Programming_Language.ShapeFactory.ShapeType(System.String,System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single,System.Collections.Generic.List{System.Int32})">
             <summary>
             Shape method which creates instance of a Shape according to the shape name.
             </summary>
@@ -542,6 +566,7 @@
             <param name="fill">For shape to be filled or not.</param>
             <param name="xPos">X coordinate from where the shape will be drawn.</param>
             <param name="yPos">Y coordinate from where the shape will be drawn.</param>
+            <param name="rotationAngle">Angle for shape to be rotated.</param>
             <param name="commandValues">List of integer values of the shape.</param>
             <returns>Returns the instance of shape.</returns>
         </member>
@@ -571,7 +596,7 @@
             Variable to store the height of the triangle.
             </summary>
         </member>
-        <member name="M:Graphical_Programming_Language.Triangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Graphical_Programming_Language.Triangle.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single,System.Int32,System.Int32)">
             <summary>
             Parameterized constructor Triangle which initializes an instance of the class Triangle with specified parameters. 
             The color, fill, x and y parameters are passed to base class Shape constructor.
@@ -580,6 +605,7 @@
             <param name="fill">For triangle to be filled or not.</param>
             <param name="x">X coordinate from where the triangle will be drawn.</param>
             <param name="y">Y coordinate from where the triangle will be drawn.</param>
+            <param name="rotationAngle">Angle for triangle to be rotated.</param>
             <param name="length">Length for the length of the triangle.</param>
             <param name="height">Height for the height of the triangle.</param>
         </member>

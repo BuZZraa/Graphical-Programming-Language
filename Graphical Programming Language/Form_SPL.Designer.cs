@@ -42,6 +42,9 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_PenColour = new System.Windows.Forms.Button();
+            this.btn_CanvasColour = new System.Windows.Forms.Button();
+            this.penSizes = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,35 +118,35 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // duplicateProgramToolStripMenuItem
             // 
             this.duplicateProgramToolStripMenuItem.Name = "duplicateProgramToolStripMenuItem";
-            this.duplicateProgramToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.duplicateProgramToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.duplicateProgramToolStripMenuItem.Text = "Duplicate Program";
             this.duplicateProgramToolStripMenuItem.Click += new System.EventHandler(this.DuplicateProgramToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -162,11 +165,54 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
+            // btn_PenColour
+            // 
+            this.btn_PenColour.Location = new System.Drawing.Point(503, 402);
+            this.btn_PenColour.Name = "btn_PenColour";
+            this.btn_PenColour.Size = new System.Drawing.Size(75, 23);
+            this.btn_PenColour.TabIndex = 7;
+            this.btn_PenColour.Text = "Pen Colour";
+            this.btn_PenColour.UseVisualStyleBackColor = true;
+            this.btn_PenColour.Click += new System.EventHandler(this.Btn_PenColour_Click);
+            // 
+            // btn_CanvasColour
+            // 
+            this.btn_CanvasColour.Location = new System.Drawing.Point(601, 402);
+            this.btn_CanvasColour.Name = "btn_CanvasColour";
+            this.btn_CanvasColour.Size = new System.Drawing.Size(88, 23);
+            this.btn_CanvasColour.TabIndex = 8;
+            this.btn_CanvasColour.Text = "Canvas Colour";
+            this.btn_CanvasColour.UseVisualStyleBackColor = true;
+            this.btn_CanvasColour.Click += new System.EventHandler(this.Btn_CanvasColour_Click);
+            // 
+            // penSizes
+            // 
+            this.penSizes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.penSizes.FormattingEnabled = true;
+            this.penSizes.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.penSizes.Location = new System.Drawing.Point(714, 402);
+            this.penSizes.Name = "penSizes";
+            this.penSizes.Size = new System.Drawing.Size(69, 21);
+            this.penSizes.TabIndex = 9;
+            // 
             // Form_SPL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 468);
+            this.Controls.Add(this.penSizes);
+            this.Controls.Add(this.btn_CanvasColour);
+            this.Controls.Add(this.btn_PenColour);
             this.Controls.Add(this.btn_Syntax);
             this.Controls.Add(this.btn_Run);
             this.Controls.Add(this.textBox_SingleCmd);
@@ -200,6 +246,9 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem duplicateProgramToolStripMenuItem;
+        private System.Windows.Forms.Button btn_PenColour;
+        private System.Windows.Forms.Button btn_CanvasColour;
+        private System.Windows.Forms.ComboBox penSizes;
     }
 }
 
