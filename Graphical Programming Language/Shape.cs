@@ -34,12 +34,12 @@ namespace Graphical_Programming_Language
         protected Boolean fill;
 
         /// <summary>
-        /// 
+        /// RotationAngle variable to store the angle of shape being rotated.
         /// </summary>
         protected float rotationAngle;
 
         /// <summary>
-        /// 
+        /// PenSize variable to store the current pen size of the shape.
         /// </summary>
         protected int penSize;
 
@@ -66,6 +66,9 @@ namespace Graphical_Programming_Language
         /// <param name="g">Graphics object on which the shape will be drawn.</param>
         public abstract void Draw(Graphics g);
 
+        /// <summary>
+        /// Getter and setter method to set or get the pen size value.
+        /// </summary>
         public int PenSize
         {
             set { penSize = value; }

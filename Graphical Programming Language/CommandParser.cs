@@ -18,17 +18,17 @@ namespace Graphical_Programming_Language
         private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "pen", "fill", "rotate" };
 
         /// <summary>
-        /// 
+        /// Array of valid relational operators for if statement and while loop.
         /// </summary>
         private string[] validRelationalOperators = { "<", ">", "==", "<=", ">=", "!=" };
 
         /// <summary>
-        /// 
+        /// Array if valid arithmetic operators for assignment of variable.
         /// </summary>
         private string[] validArithmeticOperators = { "+", "-", "/", "*", "%"};
 
         /// <summary>
-        /// 
+        /// Variable to set the flag if multiline textbox is not empty. 
         /// </summary>
         private Boolean isMultiLine;
 
@@ -48,12 +48,12 @@ namespace Graphical_Programming_Language
         private List<Shape> Shapes = new List<Shape>();
 
         /// <summary>
-        /// 
+        /// Variable to set the rotating angle value to rotate the shape.
         /// </summary>
         private float rotationAngle = 0;
 
         /// <summary>
-        /// 
+        /// Dictionary to store command variable and its value as key-value pair.
         /// </summary>
         private Dictionary<string, int> variablesAndValues = new Dictionary<string, int>();
 
@@ -75,30 +75,33 @@ namespace Graphical_Programming_Language
         private string commandName;
 
         /// <summary>
-        /// 
+        /// Variable to store the current command value of the command variable.
         /// </summary>
         private string value;
 
         /// <summary>
-        /// 
+        /// Variable to store the current value of oprand1 in operation.
         /// </summary>
         private string oprand1;
 
         /// <summary>
-        /// 
+        /// Variable to store the current value of oprand2 in operation.
         /// </summary>
         private string oprand2;
 
         /// <summary>
-        /// 
+        /// Variable to store the current operator in operation.
         /// </summary>
         private string operators;
 
         /// <summary>
-        /// 
+        /// Variable to store the assignment operator "=".
         /// </summary>
         private string equalTo;
 
+        /// <summary>
+        /// Variable to set the flag if the command if statement is triggered.
+        /// </summary>
         private Boolean isIfTriggered = false;
 
         /// <summary>
@@ -106,10 +109,29 @@ namespace Graphical_Programming_Language
         /// </summary>
         private string commandStringValue;
 
+        /// <summary>
+        /// Variable to set the flag of the command variable being valid.
+        /// </summary>
         private Boolean isVariable = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command if statement being valid.
+        /// </summary>
         private Boolean isIfStatement = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command endif statement being valid.
+        /// </summary>
         private Boolean isEndIfStatement = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command if statement condition being true.
+        /// </summary>
         private Boolean isConditionTrue = false;
+
+        /// <summary>
+        /// Variable to store the current int conversion value. 
+        /// </summary>
         private int result;
 
         /// <summary>
@@ -131,7 +153,7 @@ namespace Graphical_Programming_Language
         private Boolean fill = false;
 
         /// <summary>
-        /// Variable to store the current color used to draw.
+        /// Variable to store the current pen color used to draw.
         /// Initially set to black.
         /// </summary>
         private Color color = Color.Black;
@@ -146,7 +168,7 @@ namespace Graphical_Programming_Language
         /// instance of IMessageDisplayer interface as parameter to display error messages.
         /// </summary>
         /// <param name="messageDisplayer">Instance of IMessageDisplayer interface to display error messages.</param>
-        /// <param name="form">Instance of Form_SPL class for the use of delegate. </param>
+        /// <param name="form">Instance of Form_SPL class for the use of delegate to make the commands run in main form. </param>
         public CommandParser(IMessageDisplayer messageDisplayer, Form_SPL form)
         {
             _messageDisplayer = messageDisplayer;
@@ -154,12 +176,12 @@ namespace Graphical_Programming_Language
         }
 
         /// <summary>
-        /// 
+        /// Getter method to return instancce of the Form_SPL class.
         /// </summary>
         private Form_SPL Form { get; set; }
 
         /// <summary>
-        /// 
+        /// Setter method to set the flag of multiline textbox being triggered.
         /// </summary>
         public Boolean IsMultiLine
         {
@@ -176,18 +198,29 @@ namespace Graphical_Programming_Language
             get { return command; }
         }
 
+        /// <summary>
+        /// Getter and setter methods to get or set the command if statement condition being true.
+        /// </summary>
         public Boolean IsConditionTrue
         {
             set { isConditionTrue = value; }
             get { return isConditionTrue; }
         }
 
+
+        /// <summary>
+        /// Getter and setter methods to get or set the current pen colour.
+        /// </summary>
         public Color Color
         {
             set { color = value; }
             get { return color; }
         }
 
+
+        /// <summary>
+        /// Getter and setter methods to get or set the dicitionary that stores command variables in key value pair.
+        /// </summary>
         public Dictionary<string, int> VariablesAndValues
         {
             set { variablesAndValues = value; }
@@ -220,9 +253,9 @@ namespace Graphical_Programming_Language
         }
 
         /// <summary>
-        /// 
+        /// Boolean method to verify if a command variable is valid and if valid to set its value.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns true if variable or variable assignment is valid else it returns false.</returns>
         public Boolean is_A_Variable()
         {
             isVariable = false;
@@ -332,18 +365,18 @@ namespace Graphical_Programming_Language
                     }
                 }           
             }
-            catch (Exception err)
+            catch (Exception error1)
             {
-                _messageDisplayer.DisplayMessage(err.Message);
+                _messageDisplayer.DisplayMessage(error1.Message);
             }
 
             return isVariable;
         }
 
         /// <summary>
-        /// 
+        /// Boolean method to verify a valid command if statement.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns true if the command if statement is valid else returns false.</returns>
         public Boolean is_A_If_Statement()
         {
             isIfStatement = false;
@@ -385,14 +418,18 @@ namespace Graphical_Programming_Language
                 }                                         
             }
 
-            catch(Exception err)
+            catch(Exception error2)
             {
-                _messageDisplayer.DisplayMessage(err.Message);
+                _messageDisplayer.DisplayMessage(error2.Message);
             }
            
             return isIfStatement;
         }
 
+        /// <summary>
+        /// Boolean method to verify command endif statement or the end of if statement. 
+        /// </summary>
+        /// <returns>Returns true if the if statement is ended properly else returns false.</returns>
         public Boolean is_A_EndIf_Statement()
         {
             isEndIfStatement = false;
@@ -510,9 +547,9 @@ namespace Graphical_Programming_Language
                 }                     
             }
 
-            catch (Exception err1)
+            catch (Exception error3)
             {
-                _messageDisplayer.DisplayMessage(err1.Message);
+                _messageDisplayer.DisplayMessage(error3.Message);
             }
             return isValidCommand;
         }
@@ -596,7 +633,7 @@ namespace Graphical_Programming_Language
                             commandValues.Clear();
                             for (int i = 1; i < command.Length; i++)
                             {
-                                if(int.TryParse(command[i], out int result))
+                                if(int.TryParse(command[i], out result))
                                 {
                                     int value = int.Parse(command[i]);
                                     if(value >= 0)
@@ -679,17 +716,17 @@ namespace Graphical_Programming_Language
                             }                       
                         }
                            
-                        catch (Exception err2)
+                        catch (Exception error4)
                         {
-                            _messageDisplayer.DisplayMessage(err2.Message);
+                            _messageDisplayer.DisplayMessage(error4.Message);
                         }
                     }
                 }        
             }
 
-            catch (Exception err3)
+            catch (Exception error5)
             {
-                _messageDisplayer.DisplayMessage(err3.Message);
+                _messageDisplayer.DisplayMessage(error5.Message);
             }
             return isValidParameters;
         }

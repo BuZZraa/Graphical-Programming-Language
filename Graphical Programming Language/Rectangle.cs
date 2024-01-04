@@ -47,11 +47,13 @@ namespace Graphical_Programming_Language
         /// <param name="g">Graphics object on which the rectangle will be drawn.</param>
         public override void Draw(Graphics g)
         {
+            //To rotate the rectangle shape before being drawn.
             Point center = new Point(x + width / 2, y + height / 2);
             g.TranslateTransform(center.X, center.Y);
             g.RotateTransform(rotationAngle);
             g.TranslateTransform(-center.X, -center.Y);
 
+            //If fill is true rectangle is filled and drawn and if false drawn without fill.
             if (fill)
             {
                 SolidBrush b = new SolidBrush(colour);

@@ -45,8 +45,8 @@ namespace Graphical_Programming_Language
         /// <param name="g">Graphics object on which the triangle will be drawn.</param>
         public override void Draw(Graphics g)
         {
+            // To rotate the triangle before being drawn.
             Point center = new Point(x, y + height / 2); 
-
             g.TranslateTransform(center.X, center.Y);
             g.RotateTransform(rotationAngle);
             g.TranslateTransform(-center.X, -center.Y);
