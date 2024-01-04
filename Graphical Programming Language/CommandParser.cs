@@ -256,7 +256,7 @@ namespace Graphical_Programming_Language
         /// Boolean method to verify if a command variable is valid and if valid to set its value.
         /// </summary>
         /// <returns>Returns true if variable or variable assignment is valid else it returns false.</returns>
-        public Boolean is_A_Variable()
+        public Boolean Is_A_Variable()
         {
             isVariable = false;
            
@@ -377,7 +377,7 @@ namespace Graphical_Programming_Language
         /// Boolean method to verify a valid command if statement.
         /// </summary>
         /// <returns>Returns true if the command if statement is valid else returns false.</returns>
-        public Boolean is_A_If_Statement()
+        public Boolean Is_A_If_Statement()
         {
             isIfStatement = false;
             try
@@ -430,7 +430,7 @@ namespace Graphical_Programming_Language
         /// Boolean method to verify command endif statement or the end of if statement. 
         /// </summary>
         /// <returns>Returns true if the if statement is ended properly else returns false.</returns>
-        public Boolean is_A_EndIf_Statement()
+        public Boolean Is_A_EndIf_Statement()
         {
             isEndIfStatement = false;
             if(command.Length == 1)

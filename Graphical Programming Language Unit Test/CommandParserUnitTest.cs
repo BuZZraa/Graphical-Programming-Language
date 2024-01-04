@@ -1204,7 +1204,7 @@ namespace Graphical_Programming_Language_Unit_Test
             command.Command = expectedCommand;
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand[0]));
         }
 
@@ -1222,12 +1222,12 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act - Variable Assignment
             string[] expectedCommand1 = { "radius", "=", "50" };
             command.Command = expectedCommand1;
-            command.is_A_Variable();
+            command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();         
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
 
             //Arrange
@@ -1238,7 +1238,7 @@ namespace Graphical_Programming_Language_Unit_Test
             command.Command = expectedCommand2;
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
             Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);        
         }
@@ -1257,12 +1257,12 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act - Variable Assignment
             string[] expectedCommand1 = { "radius", "=", "100" };
             command.Command = expectedCommand1;
-            command.is_A_Variable();
+            command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
 
             //Arrange
@@ -1273,7 +1273,7 @@ namespace Graphical_Programming_Language_Unit_Test
             command.Command = expectedCommand2;
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
             Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
         }
@@ -1292,12 +1292,12 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act - Variable Assignment
             string[] expectedCommand1 = { "radius", "=", "20" };
             command.Command = expectedCommand1;
-            command.is_A_Variable();
+            command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
 
             //Arrange
@@ -1308,7 +1308,7 @@ namespace Graphical_Programming_Language_Unit_Test
             command.Command = expectedCommand2;
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
             Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
         }
@@ -1327,12 +1327,12 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act - Variable Assignment
             string[] expectedCommand1 = { "radius", "=", "200" };
             command.Command = expectedCommand1;
-            command.is_A_Variable();
+            command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
 
             //Arrange
@@ -1343,7 +1343,7 @@ namespace Graphical_Programming_Language_Unit_Test
             command.Command = expectedCommand2;
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
             Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
         }
@@ -1362,12 +1362,12 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act - Variable Assignment
             string[] expectedCommand1 = { "radius", "=", "110" };
             command.Command = expectedCommand1;
-            command.is_A_Variable();
+            command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
 
             //Arrange
@@ -1378,7 +1378,7 @@ namespace Graphical_Programming_Language_Unit_Test
             command.Command = expectedCommand2;
 
             //Assert
-            Assert.IsTrue(command.is_A_Variable());
+            Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
             Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
         }
