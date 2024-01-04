@@ -44,17 +44,17 @@
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.validRelationalOperators">
             <summary>
-            
+            Array of valid relational operators for if statement and while loop.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.validArithmeticOperators">
             <summary>
-            
+            Array if valid arithmetic operators for assignment of variable.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.isMultiLine">
             <summary>
-            
+            Variable to set the flag if multiline textbox is not empty. 
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.command">
@@ -74,12 +74,12 @@
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.rotationAngle">
             <summary>
-            
+            Variable to set the rotating angle value to rotate the shape.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.variablesAndValues">
             <summary>
-            
+            Dictionary to store command variable and its value as key-value pair.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.xPos">
@@ -101,32 +101,62 @@
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.value">
             <summary>
-            
+            Variable to store the current command value of the command variable.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.oprand1">
             <summary>
-            
+            Variable to store the current value of oprand1 in operation.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.oprand2">
             <summary>
-            
+            Variable to store the current value of oprand2 in operation.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.operators">
             <summary>
-            
+            Variable to store the current operator in operation.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.equalTo">
             <summary>
-            
+            Variable to store the assignment operator "=".
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isIfTriggered">
+            <summary>
+            Variable to set the flag if the command if statement is triggered.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.commandStringValue">
             <summary>
             Variable to store current command value in string.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isVariable">
+            <summary>
+            Variable to set the flag of the command variable being valid.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isIfStatement">
+            <summary>
+            Variable to set the flag of the command if statement being valid.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isEndIfStatement">
+            <summary>
+            Variable to set the flag of the command endif statement being valid.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isConditionTrue">
+            <summary>
+            Variable to set the flag of the command if statement condition being true.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.result">
+            <summary>
+            Variable to store the current int conversion value. 
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.isValidCommand">
@@ -149,7 +179,7 @@
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.color">
             <summary>
-            Variable to store the current color used to draw.
+            Variable to store the current pen color used to draw.
             Initially set to black.
             </summary>
         </member>
@@ -164,21 +194,36 @@
             instance of IMessageDisplayer interface as parameter to display error messages.
             </summary>
             <param name="messageDisplayer">Instance of IMessageDisplayer interface to display error messages.</param>
-            <param name="form">Instance of Form_SPL class for the use of delegate. </param>
+            <param name="form">Instance of Form_SPL class for the use of delegate to make the commands run in main form. </param>
         </member>
         <member name="P:Graphical_Programming_Language.CommandParser.Form">
             <summary>
-            
+            Getter method to return instancce of the Form_SPL class.
             </summary>
         </member>
         <member name="P:Graphical_Programming_Language.CommandParser.IsMultiLine">
             <summary>
-            
+            Setter method to set the flag of multiline textbox being triggered.
             </summary>
         </member>
         <member name="P:Graphical_Programming_Language.CommandParser.Command">
             <summary>
             Getter and setter methods for the command array to get or set the current command with its values.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.IsConditionTrue">
+            <summary>
+            Getter and setter methods to get or set the command if statement condition being true.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.Color">
+            <summary>
+            Getter and setter methods to get or set the current pen colour.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.VariablesAndValues">
+            <summary>
+            Getter and setter methods to get or set the dicitionary that stores command variables in key value pair.
             </summary>
         </member>
         <member name="P:Graphical_Programming_Language.CommandParser.IsValidCommand">
@@ -199,15 +244,21 @@
         </member>
         <member name="M:Graphical_Programming_Language.CommandParser.is_A_Variable">
             <summary>
-            
+            Boolean method to verify if a command variable is valid and if valid to set its value.
             </summary>
-            <returns></returns>
+            <returns>Returns true if variable or variable assignment is valid else it returns false.</returns>
         </member>
         <member name="M:Graphical_Programming_Language.CommandParser.is_A_If_Statement">
             <summary>
-            
+            Boolean method to verify a valid command if statement.
             </summary>
-            <returns></returns>
+            <returns>Returns true if the command if statement is valid else returns false.</returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.is_A_EndIf_Statement">
+            <summary>
+            Boolean method to verify command endif statement or the end of if statement. 
+            </summary>
+            <returns>Returns true if the if statement is ended properly else returns false.</returns>
         </member>
         <member name="M:Graphical_Programming_Language.CommandParser.ValidateCommandName">
             <summary>
@@ -252,6 +303,12 @@
             Form_SPL class to represent the Graphical Programming Language UI and its features.
             </summary>
         </member>
+        <member name="T:Graphical_Programming_Language.Form_SPL.UpdateDrawingDelegate">
+            <summary>
+            Delegate to define a method to update the drawing from child thread to main thread. 
+            </summary>
+            <param name="shape"></param>
+        </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.g">
             <summary>
             Class variable for a Graphics object on which the drawing is done.
@@ -261,6 +318,11 @@
             <summary>
             Instance of the CommandParser class created to pass the commands provided in textbox of the form.
             Instance of DisplayMessageBox as a argument to CommandParser constructor for creating MessageBox for error messages.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.canvasColour">
+            <summary>
+            Instance of ColorDialog class to create a color dialogue box and store the color value.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.Shapes">
@@ -276,6 +338,21 @@
         <member name="F:Graphical_Programming_Language.Form_SPL.syntaxChecked">
             <summary>
             Variable to set the flag of syntax button being clicked.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.Form_SPL_Form2">
+            <summary>
+            Instance of Form_SPL or main form class for child thread.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.formCount">
+            <summary>
+            Static variable to store the number of forms created by child thread.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.formMonitor">
+            <summary>
+            Static variable which stores an object used for thread safe access to a single form.
             </summary>
         </member>
         <member name="M:Graphical_Programming_Language.Form_SPL.#ctor">
@@ -351,6 +428,38 @@
             </summary>
             <param name="sender">The object that triggered the event of about menu option being clicked.</param>
             <param name="e">The arguments of the about menu option click event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.InitializeSecondWindow">
+            <summary>
+            Void method to create a new Form_SPL or main form.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.UpdateDrawing(Graphical_Programming_Language.Shape)">
+            <summary>
+            Void method to update the drawing on the form according to the thread.
+            </summary>
+            <param name="shape">Instance of shape class which is used to draw on the form.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.Form_SPL_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Event handler for the event of form being closed.
+            </summary>
+            <param name="sender">The object that triggered the event of form being closed.</param>
+            <param name="e">The arguments of the form closed event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.Btn_PenColour_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of pen colour button being clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of pen colour button being clicked.</param>
+            <param name="e">The arguments of the pen colour button being clicked.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.Btn_CanvasColour_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of the canvas colour button being clicked.
+            </summary>
+            <param name="sender">The object that triggered the event of canvas colour button being clicked.</param>
+            <param name="e">The arguments of the form closed event.</param>
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.components">
             <summary>
@@ -529,12 +638,12 @@
         </member>
         <member name="F:Graphical_Programming_Language.Shape.rotationAngle">
             <summary>
-            
+            RotationAngle variable to store the angle of shape being rotated.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.Shape.penSize">
             <summary>
-            
+            PenSize variable to store the current pen size of the shape.
             </summary>
         </member>
         <member name="M:Graphical_Programming_Language.Shape.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single)">
@@ -552,6 +661,11 @@
             Abstract method draw to be overriden by derived classes to be drawn on graphics according to the shape of the derived class.
             </summary>
             <param name="g">Graphics object on which the shape will be drawn.</param>
+        </member>
+        <member name="P:Graphical_Programming_Language.Shape.PenSize">
+            <summary>
+            Getter and setter method to set or get the pen size value.
+            </summary>
         </member>
         <member name="T:Graphical_Programming_Language.ShapeFactory">
             <summary>

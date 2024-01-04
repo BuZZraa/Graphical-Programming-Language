@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Graphical_Programming_Language
@@ -16,6 +14,10 @@ namespace Graphical_Programming_Language
     /// </summary>
     public partial class Form_SPL : Form
     {
+        /// <summary>
+        /// Delegate to define a method to update the drawing from child thread to main thread. 
+        /// </summary>
+        /// <param name="shape"></param>
         public delegate void UpdateDrawingDelegate(Shape shape);
 
         /// <summary>
@@ -29,6 +31,10 @@ namespace Graphical_Programming_Language
         /// </summary>
         private CommandParser command;
 
+
+        /// <summary>
+        /// Instance of ColorDialog class to create a color dialogue box and store the color value.
+        /// </summary>
         private ColorDialog canvasColour;
 
         /// <summary>
@@ -46,10 +52,20 @@ namespace Graphical_Programming_Language
         /// </summary>
         private Boolean syntaxChecked;
 
+        /// <summary>
+        /// Instance of Form_SPL or main form class for child thread.
+        /// </summary>
         private Form_SPL Form_SPL_Form2;
 
-        private static int formCount = 1;  // Static variable to track form count
-        private static readonly object formMonitor = new object(); // object for thread safety
+        /// <summary>
+        /// Static variable to store the number of forms created by child thread.
+        /// </summary>
+        private static int formCount = 1;  
+
+        /// <summary>
+        /// Static variable which stores an object used for thread safe access to a single form.
+        /// </summary>
+        private static readonly object formMonitor = new object(); 
 
 
         /// <summary>
@@ -279,7 +295,6 @@ namespace Graphical_Programming_Language
             {
                 string commandsFile = File.ReadAllText("commands.txt");
                 textBox_MultiCmd.Text = commandsFile;
-                MessageBox.Show("Commands loaded from commands.txt.", "File Loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             catch (Exception err4)
@@ -321,7 +336,9 @@ namespace Graphical_Programming_Language
             }
         }
 
-
+        /// <summary>
+        /// Void method to create a new Form_SPL or main form.
+        /// </summary>
         private void InitializeSecondWindow()
         {
             Form_SPL_Form2 = new Form_SPL();
@@ -330,6 +347,10 @@ namespace Graphical_Programming_Language
             Application.Run(Form_SPL_Form2);
         }
 
+        /// <summary>
+        /// Void method to update the drawing on the form according to the thread.
+        /// </summary>
+        /// <param name="shape">Instance of shape class which is used to draw on the form.</param>
         public void UpdateDrawing(Shape shape)
         {
             if (this.InvokeRequired)
@@ -345,6 +366,11 @@ namespace Graphical_Programming_Language
             }
         }
 
+        /// <summary>
+        /// Event handler for the event of form being closed.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of form being closed.</param>
+        /// <param name="e">The arguments of the form closed event.</param>
         private void Form_SPL_FormClosed(object sender, FormClosedEventArgs e)
         {
             Monitor.Enter(formMonitor); 
@@ -353,13 +379,18 @@ namespace Graphical_Programming_Language
                 formCount--;
                 duplicateProgramToolStripMenuItem.Enabled = true;
             }
+
             finally
             {
-                Monitor.Exit(formMonitor); 
-                
+                Monitor.Exit(formMonitor);               
             }
         }
 
+        /// <summary>
+        /// Event handler for the event of pen colour button being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of pen colour button being clicked.</param>
+        /// <param name="e">The arguments of the pen colour button being clicked.</param>
         private void Btn_PenColour_Click(object sender, EventArgs e)
         {
             ColorDialog penColour = new ColorDialog();
@@ -370,6 +401,11 @@ namespace Graphical_Programming_Language
             }
         }
 
+        /// <summary>
+        /// Event handler for the event of the canvas colour button being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of canvas colour button being clicked.</param>
+        /// <param name="e">The arguments of the form closed event.</param>
         private void Btn_CanvasColour_Click(object sender, EventArgs e)
         {
             canvasColour = new ColorDialog();

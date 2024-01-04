@@ -39,7 +39,7 @@ namespace Graphical_Programming_Language
         /// <param name="g">Graphics object on which the circle will be drawn.</param>
         public override void Draw(Graphics g)
         {
-
+            //If fill is true circle is filled and drawn and if false drawn without fill.
             if (fill)
             {
                 SolidBrush b = new SolidBrush(colour);
