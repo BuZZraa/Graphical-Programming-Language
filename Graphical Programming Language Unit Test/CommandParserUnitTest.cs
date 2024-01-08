@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Graphical_Programming_Language_Unit_Test
 {
@@ -44,13 +45,14 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "rectangle 100 100";
             string[] expectedCommandArray = {"rectangle", "100", "100"};
 
             //Act
-            command.Command = expectedCommandArray;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
-            Assert.AreEqual(expectedCommandArray, command.Command);
+            CollectionAssert.AreEqual(expectedCommandArray, command.Command);
         }
 
         /// <summary>
@@ -102,10 +104,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "abcde", "100", "100" };
+            string expectedCommand = "abcde 100,100";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsFalse(command.ValidateCommandName());
@@ -121,10 +123,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string [] expectedCommand = { "rectangle", "100", "100"};
+            string expectedCommand = "rectangle 100,100";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -140,10 +142,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "RECTANGLE", "100", "100" };
+            string expectedCommand = "RECTANGLE 100,100";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -159,10 +161,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "rectangle", "100", "100" };
+            string expectedCommand = "rectangle 100,100" ;
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -179,10 +181,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "rectangle", "seventy", "seventy" };
+            string expectedCommand = "rectangle seventy,seventy";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -199,10 +201,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "rectangle" };
+            string expectedCommand = "rectangle";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -220,10 +222,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "rectangle", "-100", "-100"};
+            string expectedCommand = "rectangle -100,-100";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -240,10 +242,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "rectangle", null, null };
+            string expectedCommand = "rectangle null,null";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -260,10 +262,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "rectangle", "100"};
+            string expectedCommand = "rectangle 100";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -280,10 +282,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "triangle", "50", "50" };
+            string expectedCommand = "triangle 50,50";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -299,10 +301,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "TRIANGLE", "50", "50" };
+            string expectedCommand = "TRIANGLE 50,50";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -318,10 +320,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "triangle", "50", "50" };
+            string expectedCommand = "triangle 50,50";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -338,10 +340,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "triangle", "fifty", "fifty" };
+            string expectedCommand = "triangle fifty,fifty";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -358,10 +360,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "triangle" };
+            string expectedCommand = "triangle";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -379,10 +381,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "triangle", "-50", "-50" };
+            string expectedCommand = "triangle -50,-50";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -399,10 +401,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "triangle", null, null };
+            string expectedCommand = "triangle null,null";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -419,10 +421,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "triangle", "50" };
+            string expectedCommand = "triangle 50" ;
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -439,10 +441,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "circle", "75" };
+            string expectedCommand = "circle 75" ;
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -458,10 +460,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "CIRCLE", "75" };
+            string expectedCommand = "CIRCLE 75";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -477,10 +479,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "circle", "75" };
+            string expectedCommand = "circle 75";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -497,10 +499,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "circle", "thirty" };
+            string expectedCommand = "circle thirty";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -517,10 +519,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "circle" };
+            string expectedCommand = "circle";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -538,10 +540,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "circle", "-75" };
+            string expectedCommand = "circle -75";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -558,10 +560,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "circle", null };
+            string expectedCommand = "circle null";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -578,10 +580,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "moveto", "100", "100" };
+            string expectedCommand = "moveto 100,100";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -597,10 +599,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "MOVETO", "100", "100" };
+            string expectedCommand = "MOVETO 100,100";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -616,10 +618,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "moveto", "100", "100" };
+            string expectedCommand = "moveto 100,100";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -636,10 +638,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "moveto", "fourty", "fourty" };
+            string expectedCommand = "moveto fourty,fourty";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -656,10 +658,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "moveto" };
+            string expectedCommand = "moveto";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -677,10 +679,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "moveto", "-100", "-100" };
+            string expectedCommand = "moveto -100,-100";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -697,10 +699,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "moveto", null, null };
+            string expectedCommand = "moveto null,null";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -717,10 +719,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "moveto", "100" };
+            string expectedCommand = "moveto 100";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -737,10 +739,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "drawto", "200", "200" };
+            string expectedCommand = "drawto 200,200";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -756,10 +758,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "DRAWTO", "200", "200" };
+            string expectedCommand = "DRAWTO 200,200";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -775,10 +777,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "drawto", "200", "200" };
+            string expectedCommand = "drawto 200,200";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -795,10 +797,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "drawto", "seventy", "seventy" };
+            string expectedCommand = "drawto seventy,seventy";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -815,10 +817,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "drawto" };
+            string expectedCommand = "drawto";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -836,10 +838,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "drawto", "-200", "-200" };
+            string expectedCommand = "drawto -200,-200";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -856,10 +858,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "drawto", null, null };
+            string expectedCommand = "drawto null,null";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -876,10 +878,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "drawto", "200" };
+            string expectedCommand = "drawto 200";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -896,10 +898,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "clear" };
+            string expectedCommand = "clear";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -915,10 +917,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "CLEAR"};
+            string expectedCommand = "CLEAR";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -934,10 +936,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "clear", "75" };
+            string expectedCommand = "clear 75" ;
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -954,10 +956,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "reset" };
+            string expectedCommand = "reset";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -973,10 +975,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "RESET" };
+            string expectedCommand = "RESET";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -992,10 +994,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "reset", "75" };
+            string expectedCommand = "reset 75";
 
             // Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             // Assert
@@ -1013,10 +1015,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "fill", "on" };
+            string expectedCommand = "fill on";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -1032,10 +1034,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "FILL", "ON" };
+            string expectedCommand = "FILL ON";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -1053,10 +1055,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "fill", "on" };
+            string expectedCommand = "fill on";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             //Assert
@@ -1074,10 +1076,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "fill", "off" };
+            string expectedCommand = "fill off";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             //Assert
@@ -1095,10 +1097,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "fill", "red" };
+            string expectedCommand = "fill red";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             //Assert
@@ -1116,10 +1118,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "pen", "red" };
+            string expectedCommand = "pen red";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -1136,10 +1138,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "pen", "red" };
+            string expectedCommand = "pen red";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             //Assert
@@ -1158,10 +1160,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "pen", "#FF00FF" };
+            string expectedCommand = "pen #FF00FF";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
             command.ValidateCommandName();
 
             //Assert
@@ -1178,10 +1180,10 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "PEN", "RED" };
+            string expectedCommand = "PEN RED";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.ValidateCommandName());
@@ -1198,14 +1200,14 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
-            string[] expectedCommand = { "radius", "=", "50" };
+            string expectedCommand = "radius = 50";
 
             //Act
-            command.Command = expectedCommand;
+            command.Command = form.SplitCommand(expectedCommand);
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand[0]));
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
         }
 
         /// <summary>
@@ -1220,27 +1222,27 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParser command = new CommandParser(stringErrorMessage, form);
 
             //Act - Variable Assignment
-            string[] expectedCommand1 = { "radius", "=", "50" };
-            command.Command = expectedCommand1;
+            string expectedCommand1 = "radius = 50";
+            command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();         
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
             //Arrange
-            string[] expectedCommand2 = { "radius", "=", "radius", "+", "50" };          
+            string expectedCommand2 = "radius = radius + 50";          
             int expectedValue = 100;
 
             //Act - Variable Increment Operation
-            command.Command = expectedCommand2;
+            command.Command = form.SplitCommand(expectedCommand2);
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
-            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);        
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[command.Command[0]]);        
         }
 
         /// <summary>
@@ -1255,27 +1257,27 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParser command = new CommandParser(stringErrorMessage, form);
 
             //Act - Variable Assignment
-            string[] expectedCommand1 = { "radius", "=", "100" };
-            command.Command = expectedCommand1;
+            string expectedCommand1 = "radius = 100";
+            command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
             //Arrange
-            string[] expectedCommand2 = { "radius", "=", "radius", "-", "50" };
+            string expectedCommand2 = "radius = radius - 50";
             int expectedValue = 50;
 
             //Act - Variable Decrement Operation
-            command.Command = expectedCommand2;
+            command.Command = form.SplitCommand(expectedCommand2);
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
-            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[command.Command[0]]);
         }
 
         /// <summary>
@@ -1290,27 +1292,27 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParser command = new CommandParser(stringErrorMessage, form);
 
             //Act - Variable Assignment
-            string[] expectedCommand1 = { "radius", "=", "20" };
-            command.Command = expectedCommand1;
+            string expectedCommand1 = "radius = 20";
+            command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
             //Arrange
-            string[] expectedCommand2 = { "radius", "=", "radius", "*", "5" };
+            string expectedCommand2 = "radius = radius * 5";
             int expectedValue = 100;
 
             //Act - Variable Multiplication Operation
-            command.Command = expectedCommand2;
+            command.Command = form.SplitCommand(expectedCommand2);
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
-            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[command.Command[0]]);
         }
 
         /// <summary>
@@ -1325,27 +1327,27 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParser command = new CommandParser(stringErrorMessage, form);
 
             //Act - Variable Assignment
-            string[] expectedCommand1 = { "radius", "=", "200" };
-            command.Command = expectedCommand1;
+            string expectedCommand1 = "radius = 200";
+            command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
             //Arrange
-            string[] expectedCommand2 = { "radius", "=", "radius", "/", "4" };
+            string expectedCommand2 = "radius = radius / 4";
             int expectedValue = 50;
 
             //Act - Variable Division Operation
-            command.Command = expectedCommand2;
+            command.Command = form.SplitCommand(expectedCommand2);
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
-            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[command.Command[0]]);
         }
 
         /// <summary>
@@ -1360,27 +1362,76 @@ namespace Graphical_Programming_Language_Unit_Test
             CommandParser command = new CommandParser(stringErrorMessage, form);
 
             //Act - Variable Assignment
-            string[] expectedCommand1 = { "radius", "=", "110" };
-            command.Command = expectedCommand1;
+            string expectedCommand1 = "radius = 110";
+            command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
             command.ValidateCommandName();
             command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand1[0]));
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
             //Arrange
-            string[] expectedCommand2 = { "radius", "=", "radius", "%", "60" };
+            string expectedCommand2 = "radius = radius % 60";
             int expectedValue = 50;
 
             //Act - Variable Modulo Operation
-            command.Command = expectedCommand2;
+            command.Command = form.SplitCommand(expectedCommand2);
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
-            Assert.IsTrue(command.VariablesAndValues.ContainsKey(expectedCommand2[0]));
-            Assert.AreEqual(expectedValue, command.VariablesAndValues[expectedCommand2[0]]);
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+            Assert.AreEqual(expectedValue, command.VariablesAndValues[command.Command[0]]);
+        }
+
+        /// <summary>
+        /// Test method to check a valid command if statement.
+        /// </summary>
+        [TestMethod]
+        public void ValidIfStatement()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string expectedCommand1 = "radius = 100" ;
+            command.Command = form.SplitCommand(expectedCommand1);
+            command.Is_A_Variable();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
+            //Arrange 
+            string expectedCommands2 = "if radius > 50";
+            command.IsMultiLine = true;
+            command.Command = form.SplitCommand(expectedCommands2);
+            command.Is_A_If_Statement();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+            Assert.IsTrue(command.Is_A_If_Statement());       
+        }
+
+        /// <summary>
+        /// Test method to check a valid command endif statement.
+        /// </summary>
+        [TestMethod]
+        public void ValidEndIfStatement()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act
+            string expectedCommand1 = "endif";
+            command.Command = form.SplitCommand(expectedCommand1);
+
+            //Assert
+            Assert.IsTrue(command.Is_A_EndIf_Statement());
         }
     }
 }

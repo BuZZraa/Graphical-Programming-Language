@@ -124,11 +124,6 @@
             Variable to store the assignment operator "=".
             </summary>
         </member>
-        <member name="F:Graphical_Programming_Language.CommandParser.isIfTriggered">
-            <summary>
-            Variable to set the flag if the command if statement is triggered.
-            </summary>
-        </member>
         <member name="F:Graphical_Programming_Language.CommandParser.commandStringValue">
             <summary>
             Variable to store current command value in string.
