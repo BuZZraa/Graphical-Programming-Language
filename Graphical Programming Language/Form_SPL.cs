@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Graphical_Programming_Language
 {
@@ -65,8 +66,10 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Static variable which stores an object used for thread safe access to a single form.
         /// </summary>
-        private static readonly object formMonitor = new object(); 
+        private static readonly object formMonitor = new object();
 
+        private List<string> conditionTrueCommands = new List<string>();
+        string[] runConditionTrueCommand;
 
         /// <summary>
         /// Empty Constructor to initialize on instance of the Form_SPL class.
@@ -105,7 +108,7 @@ namespace Graphical_Programming_Language
         /// </summary>
         /// <param name="command">The command in string.</param>
         /// <returns>Splits the string and returns it in an array.</returns>
-        private string[] SplitCommand(string command)
+        public string[] SplitCommand(string command)
         {
             return command.ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
         }
@@ -125,6 +128,7 @@ namespace Graphical_Programming_Language
                 {
                     command.Command = SplitCommand(textBox_SingleCmd.Text);
                     command.IsMultiLine = false;
+                    command.Is_A_Variable();
                     command.ValidateCommandName();
                     command.ValidateParameters();
                     syntaxChecked = true;
@@ -207,13 +211,40 @@ namespace Graphical_Programming_Language
 
                                 else if (command.Is_A_EndIf_Statement())
                                 {
-                                    run = true;                              
+                                    run = true; 
+                                    runConditionTrueCommand = conditionTrueCommands.ToArray();
+                                    if(runConditionTrueCommand.Length > 0)
+                                    {
+                                        for (int j = 0; j < runConditionTrueCommand.Length; j++)
+                                        {
+                                            command.Command = runConditionTrueCommand[j].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                            command.Is_A_Variable();
+                                            command.Is_A_If_Statement();
+                                            command.Is_A_EndIf_Statement();
+                                            command.ValidateCommandName();
+                                            command.ValidateParameters();
+                                            command.RunCommand(g, Convert.ToInt32(penSizes.Text));                                       
+                                        }
+                                    }
+                                    conditionTrueCommands.Clear();
                                 }
 
                                 if(run)
                                 {
+                                
+                                    command.Command = multiCommands[i].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                    command.Is_A_Variable();
+                                    command.Is_A_If_Statement();
+                                    command.Is_A_EndIf_Statement();
+                                    command.ValidateCommandName();
+                                    command.ValidateParameters();
                                     command.RunCommand(g, Convert.ToInt32(penSizes.Text));
                                 } 
+
+                                else if (!run)
+                                {
+                                    conditionTrueCommands.Add(multiCommands[i]);
+                                }
 
                             }
 

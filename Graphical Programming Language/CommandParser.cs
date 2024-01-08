@@ -100,11 +100,6 @@ namespace Graphical_Programming_Language
         private string equalTo;
 
         /// <summary>
-        /// Variable to set the flag if the command if statement is triggered.
-        /// </summary>
-        private Boolean isIfTriggered = false;
-
-        /// <summary>
         /// Variable to store current command value in string.
         /// </summary>
         private string commandStringValue;
@@ -289,6 +284,8 @@ namespace Graphical_Programming_Language
 
                 else if (command.Length == 5)
                 {
+                    commandName = command[0];
+                    equalTo = command[1];
                     oprand1 = command[2];
                     operators = command[3];
                     oprand2 = command[4];
@@ -305,22 +302,22 @@ namespace Graphical_Programming_Language
                                         int value1 = 0, value2 = 0;
                                         if (int.TryParse(oprand1, out result))
                                         {
-                                            value1 = Convert.ToInt32(command[2]);
+                                            value1 = Convert.ToInt32(oprand1);
                                         }
 
                                         if (!int.TryParse(oprand1, out result))
                                         {
-                                            value1 = variablesAndValues[command[2]];
+                                            value1 = variablesAndValues[oprand1];
                                         }
 
                                         if (int.TryParse(oprand2, out result))
                                         {
-                                            value2 = Convert.ToInt32(command[4]);
+                                            value2 = Convert.ToInt32(oprand2);
                                         }
 
                                         if (!int.TryParse(oprand2, out result))
                                         {
-                                            value2 = variablesAndValues[command[4]];
+                                            value2 = variablesAndValues[oprand2];
                                         }
 
                                         switch (operators)
@@ -347,19 +344,19 @@ namespace Graphical_Programming_Language
 
                                     else
                                     {
-                                        throw new Exception($"Please enter a valid variable or value for operation instead of {command[4]} in {string.Join(" ", command)}.");
+                                        throw new Exception($"Please enter a valid variable or value for operation instead of {oprand2} in {string.Join(" ", command)}.");
                                     }
                                 }
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a valid arithmetic operator instead of {command[3]} in {string.Join(" ", command)}.");
+                                    throw new Exception($"Please enter a valid arithmetic operator instead of {operators} in {string.Join(" ", command)}.");
                                 }
                             }
 
                             else
                             {
-                                throw new Exception($"Please enter a valid variable or value for operation instead of {command[2]} in {string.Join(" ", command)}.");
+                                throw new Exception($"Please enter a valid variable or value for operation instead of {oprand1} in {string.Join(" ", command)}.");
                             }
                         }
                     }
@@ -399,7 +396,6 @@ namespace Graphical_Programming_Language
                                     if (variablesAndValues.ContainsKey(oprand2) || int.TryParse(oprand2, out result))
                                     {
                                         isIfStatement = true;  
-                                        isIfTriggered = true;
                                     }
                                 }
 
@@ -438,9 +434,9 @@ namespace Graphical_Programming_Language
                 commandName = command[0];
                 if(commandName == "endif")
                 {
-                    if(isIfTriggered)
+                    isEndIfStatement = true;
+                    if(isIfStatement)
                     {
-                        isEndIfStatement = true;
                         int value1 = 0, value2 = 0;
                         if (int.TryParse(oprand1, out result))
                         {
@@ -774,6 +770,7 @@ namespace Graphical_Programming_Language
                 case "rotate":
                     rotationAngle = commandValues[0];
                     return null;
+
                 default:
                     return null;
             }
@@ -800,7 +797,6 @@ namespace Graphical_Programming_Language
 
             isValidCommand = false;
             isValidParameters = false;
-            isIfTriggered = false;
         }
     }
 }

@@ -346,5 +346,15 @@
             Test method to test the variable modulo operation.
             </summary>
         </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.ValidIfStatement">
+            <summary>
+            Test method to check a valid command if statement.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.ValidEndIfStatement">
+            <summary>
+            Test method to check a valid command endif statement.
+            </summary>
+        </member>
     </members>
 </doc>
