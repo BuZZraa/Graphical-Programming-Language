@@ -1416,6 +1416,36 @@ namespace Graphical_Programming_Language_Unit_Test
         }
 
         /// <summary>
+        ///  Test method to check a invalid command if statement.
+        /// </summary>
+        [TestMethod]
+        public void InvalidIfStatement()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string expectedCommand1 = "radius = 100";
+            command.Command = form.SplitCommand(expectedCommand1);
+            command.Is_A_Variable();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
+            //Arrange 
+            string expectedCommands2 = "if radius = 50";
+            command.IsMultiLine = true;
+            command.Command = form.SplitCommand(expectedCommands2);
+            command.Is_A_If_Statement();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+            Assert.IsFalse(command.Is_A_If_Statement());
+        }
+
+        /// <summary>
         /// Test method to check a valid command endif statement.
         /// </summary>
         [TestMethod]

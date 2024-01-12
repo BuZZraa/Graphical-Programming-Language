@@ -351,6 +351,11 @@
             Test method to check a valid command if statement.
             </summary>
         </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.InvalidIfStatement">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.ValidEndIfStatement">
             <summary>
             Test method to check a valid command endif statement.
