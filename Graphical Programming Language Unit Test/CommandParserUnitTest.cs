@@ -1,6 +1,7 @@
 ﻿using Graphical_Programming_Language;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Input;
 
@@ -1232,6 +1233,7 @@ namespace Graphical_Programming_Language_Unit_Test
             Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
+
             //Arrange
             string expectedCommand2 = "radius = radius + 50";          
             int expectedValue = 100;
@@ -1266,6 +1268,7 @@ namespace Graphical_Programming_Language_Unit_Test
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
 
             //Arrange
             string expectedCommand2 = "radius = radius - 50";
@@ -1302,6 +1305,7 @@ namespace Graphical_Programming_Language_Unit_Test
             Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
+
             //Arrange
             string expectedCommand2 = "radius = radius * 5";
             int expectedValue = 100;
@@ -1336,6 +1340,7 @@ namespace Graphical_Programming_Language_Unit_Test
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
 
             //Arrange
             string expectedCommand2 = "radius = radius / 4";
@@ -1372,6 +1377,7 @@ namespace Graphical_Programming_Language_Unit_Test
             Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
+
             //Arrange
             string expectedCommand2 = "radius = radius % 60";
             int expectedValue = 50;
@@ -1405,13 +1411,16 @@ namespace Graphical_Programming_Language_Unit_Test
             Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
+
             //Arrange 
             string expectedCommands2 = "if radius > 50";
             command.IsMultiLine = true;
+
+            //Act
             command.Command = form.SplitCommand(expectedCommands2);
             command.Is_A_If_Statement();
-            command.ValidateCommandName();
-            command.ValidateParameters();
+
+            //Assert
             Assert.IsTrue(command.Is_A_If_Statement());       
         }
 
@@ -1435,13 +1444,16 @@ namespace Graphical_Programming_Language_Unit_Test
             Assert.IsTrue(command.Is_A_Variable());
             Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
 
+
             //Arrange 
             string expectedCommands2 = "if radius = 50";
             command.IsMultiLine = true;
             command.Command = form.SplitCommand(expectedCommands2);
+
+            //Act
             command.Is_A_If_Statement();
-            command.ValidateCommandName();
-            command.ValidateParameters();
+
+            //Assert
             Assert.IsFalse(command.Is_A_If_Statement());
         }
 
@@ -1451,17 +1463,199 @@ namespace Graphical_Programming_Language_Unit_Test
         [TestMethod]
         public void ValidEndIfStatement()
         {
+
             //Arrange
             CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
             Form_SPL form = new Form_SPL();
             CommandParser command = new CommandParser(stringErrorMessage, form);
 
-            //Act
-            string expectedCommand1 = "endif";
+            //Act - Variable Assignment
+            string expectedCommand1 = "radius = 100";
             command.Command = form.SplitCommand(expectedCommand1);
+            command.Is_A_Variable();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
+
+            //Arrange 
+            string expectedCommands2 = "if radius > 50";
+            command.IsMultiLine = true;
+            command.Command = form.SplitCommand(expectedCommands2);
+
+            //Act - Declaring if statement
+            command.Is_A_If_Statement();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_If_Statement());
+
+
+            //Arrange
+            string expectedCommand3 = "endif";
+            command.Command = form.SplitCommand(expectedCommand3);
+
+            //Act
+            command.Is_A_EndIf_Statement();
 
             //Assert
             Assert.IsTrue(command.Is_A_EndIf_Statement());
         }
-    }
+
+        /// <summary>
+        /// Test method to check a invalid command endif statement.
+        /// </summary>
+        [TestMethod]
+        public void InvalidEndIfStatement()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand1 = "endif";
+            command.Command = form.SplitCommand(expectedCommand1);
+
+            //Act
+            command.Is_A_EndIf_Statement();
+
+            //Assert
+            Assert.IsFalse(command.Is_A_EndIf_Statement());
+        }
+
+        /// <summary>
+        /// Test method to check a valid command while loop.
+        /// </summary>
+        [TestMethod]
+        public void ValidWhileLoop()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string expectedCommand1 = "count = 0";
+            command.Command = form.SplitCommand(expectedCommand1);
+            command.Is_A_Variable();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
+
+            //Arrange 
+            string expectedCommands2 = "while count <= 3";
+            command.IsMultiLine = true;
+
+            //Act
+            command.Command = form.SplitCommand(expectedCommands2);
+            command.Is_A_While_Loop();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_While_Loop());
+        }
+
+        /// <summary>
+        /// Test method to check a invalid command while loop.
+        /// </summary>
+        [TestMethod]
+        public void InvalidWhileLoop()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string expectedCommand1 = "count = 1";
+            command.Command = form.SplitCommand(expectedCommand1);
+            command.Is_A_Variable();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
+
+            //Arrange 
+            string expectedCommands2 = "while count ! 3";
+            command.IsMultiLine = true;
+
+            //Act
+            command.Command = form.SplitCommand(expectedCommands2);
+            command.Is_A_While_Loop();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsFalse(command.Is_A_While_Loop());
+        }
+
+        /// <summary>
+        /// Test method to check a end loop.
+        /// </summary>
+        [TestMethod]
+        public void ValidEndLoop()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+
+            //Act - Variable Assignment
+            string expectedCommand1 = "count = 1";
+            command.Command = form.SplitCommand(expectedCommand1);
+            command.Is_A_Variable();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Variable());
+            Assert.IsTrue(command.VariablesAndValues.ContainsKey(command.Command[0]));
+
+
+            //Arrange 
+            string expectedCommands2 = "while count <= 3";
+            command.IsMultiLine = true;
+
+            //Act - Declaring while loop
+            command.Command = form.SplitCommand(expectedCommands2);
+            command.Is_A_While_Loop();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_While_Loop());
+
+
+            //Arrange
+            string expectedCommand3 = "endloop";
+            command.Command = form.SplitCommand(expectedCommand3);
+
+            //Act
+            command.Is_A_End_Loop();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_End_Loop());
+        }
+
+        /// <summary>
+        /// Test method to check a invalid command end loop.
+        /// </summary>
+        [TestMethod]
+        public void InvalidEndLoop()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand1 = "endloop";
+            command.Command = form.SplitCommand(expectedCommand1);
+
+            //Act
+            command.Is_A_End_Loop();
+
+            //Assert
+            Assert.IsFalse(command.Is_A_End_Loop());
+        }
+    }    
 }

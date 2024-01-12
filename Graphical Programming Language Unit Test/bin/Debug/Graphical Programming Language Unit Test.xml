@@ -353,12 +353,37 @@
         </member>
         <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.InvalidIfStatement">
             <summary>
-            
+             Test method to check a invalid command if statement.
             </summary>
         </member>
         <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.ValidEndIfStatement">
             <summary>
             Test method to check a valid command endif statement.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.InvalidEndIfStatement">
+            <summary>
+            Test method to check a invalid command endif statement.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.ValidWhileLoop">
+            <summary>
+            Test method to check a valid command while loop.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.InvalidWhileLoop">
+            <summary>
+            Test method to check a invalid command while loop.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.ValidEndLoop">
+            <summary>
+            Test method to check a end loop.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.InvalidEndLoop">
+            <summary>
+            Test method to check a invalid command end loop.
             </summary>
         </member>
     </members>
