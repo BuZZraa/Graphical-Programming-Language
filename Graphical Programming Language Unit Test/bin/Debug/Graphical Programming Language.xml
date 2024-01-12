@@ -139,9 +139,24 @@
             Variable to set the flag of the command if statement being valid.
             </summary>
         </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isIfTriggered">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:Graphical_Programming_Language.CommandParser.isEndIfStatement">
             <summary>
             Variable to set the flag of the command endif statement being valid.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isWhileStatement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isEndLoopStatement">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.isConditionTrue">

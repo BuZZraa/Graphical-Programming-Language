@@ -61,15 +61,32 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Static variable to store the number of forms created by child thread.
         /// </summary>
-        private static int formCount = 1;  
+        private static int formCount = 1;
 
         /// <summary>
         /// Static variable which stores an object used for thread safe access to a single form.
         /// </summary>
         private static readonly object formMonitor = new object();
 
-        private List<string> conditionTrueCommands = new List<string>();
-        string[] runConditionTrueCommand;
+        /// <summary>
+        /// 
+        /// </summary>
+        private List<string> ifConditionTrueCommands = new List<string>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        string[] runIfConditionTrueCommand;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private List<string> whileConditionTrueCommands = new List<string>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        string[] runWhileConditionTrueCommand;
 
         /// <summary>
         /// Empty Constructor to initialize on instance of the Form_SPL class.
@@ -80,12 +97,11 @@ namespace Graphical_Programming_Language
             InitializeComponent();
             g = pnl_Paint.CreateGraphics();
             syntaxChecked = false;
-            command = new CommandParser(new DisplayMessageBox(),this);
+            command = new CommandParser(new DisplayMessageBox(), this);
             canvasColour = new ColorDialog();
             canvasColour.Color = SystemColors.ActiveBorder;
             penSizes.SelectedItem = "1";
         }
-
 
         /// <summary>
         /// Panel paint event listener to draw and persist the drawing in the panel.
@@ -97,7 +113,7 @@ namespace Graphical_Programming_Language
             g.Clear(canvasColour.Color);
 
             Shapes = command.GetShapes();
-            for (int i =0; i < Shapes.Count; i++)
+            for (int i = 0; i < Shapes.Count; i++)
             {
                 Shapes[i].Draw(g);
             }
@@ -121,7 +137,7 @@ namespace Graphical_Programming_Language
         /// <param name="sender">The object that triggered the event of syntax button being clicked.</param>
         /// <param name="e">The arguments of the syntax button click event.</param>
         private void Btn_Syntax_Click(object sender, EventArgs e)
-        {          
+        {
             try
             {
                 if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length == 0)
@@ -139,7 +155,7 @@ namespace Graphical_Programming_Language
                     throw new Exception("Please enter run to run multi-line commands.");
                 }
 
-                else if(textBox_SingleCmd.Text.Length == 0 && textBox_MultiCmd.Text.Length == 0)
+                else if (textBox_SingleCmd.Text.Length == 0 && textBox_MultiCmd.Text.Length == 0)
                 {
                     throw new Exception("Please enter a command.");
                 }
@@ -156,10 +172,12 @@ namespace Graphical_Programming_Language
                             command.Is_A_Variable();
                             command.Is_A_If_Statement();
                             command.Is_A_EndIf_Statement();
+                            command.Is_A_While_Loop();
+                            command.Is_A_End_Loop();
                             command.ValidateCommandName();
                             command.ValidateParameters();
-                            syntaxChecked = true;
                         }
+                        syntaxChecked = true;
                     }
 
                     else
@@ -187,7 +205,8 @@ namespace Graphical_Programming_Language
         {
             try
             {
-                Boolean run = true;
+                Boolean isIfTrue = false;
+                Boolean isWhileTrue = false;
                 if (syntaxChecked == true)
                 {
                     if (command.IsValidCommand && command.IsValidParameters)
@@ -197,53 +216,92 @@ namespace Graphical_Programming_Language
                             command.IsMultiLine = true;
                             for (int i = 0; i < multiCommands.Length; i++)
                             {
-                                command.Command = multiCommands[i].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-                                command.Is_A_Variable();
+                                command.Command = SplitCommand(multiCommands[i]);
                                 command.Is_A_If_Statement();
                                 command.Is_A_EndIf_Statement();
-                                command.ValidateCommandName();
-                                command.ValidateParameters();
-                            
+                                command.Is_A_While_Loop();
+                                command.Is_A_End_Loop();
+
+
                                 if (command.Is_A_If_Statement())
                                 {
-                                    run = false;                                                                   
+                                    isIfTrue = true;
                                 }
 
                                 else if (command.Is_A_EndIf_Statement())
                                 {
-                                    run = true; 
-                                    runConditionTrueCommand = conditionTrueCommands.ToArray();
-                                    if(runConditionTrueCommand.Length > 0)
+                                    isIfTrue = false;
+                                    runIfConditionTrueCommand = ifConditionTrueCommands.ToArray();
+                                    if (command.IsIfConditionTrue)
                                     {
-                                        for (int j = 0; j < runConditionTrueCommand.Length; j++)
+                                        for (int j = 1; j < runIfConditionTrueCommand.Length; j++)
                                         {
-                                            command.Command = runConditionTrueCommand[j].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                            command.Command = SplitCommand(runIfConditionTrueCommand[j]);
                                             command.Is_A_Variable();
                                             command.Is_A_If_Statement();
                                             command.Is_A_EndIf_Statement();
+                                            command.Is_A_While_Loop();
+                                            command.Is_A_End_Loop();
                                             command.ValidateCommandName();
                                             command.ValidateParameters();
-                                            command.RunCommand(g, Convert.ToInt32(penSizes.Text));                                       
+                                            command.RunCommand(g, Convert.ToInt32(penSizes.Text));
                                         }
                                     }
-                                    conditionTrueCommands.Clear();
+                                    ifConditionTrueCommands.Clear();
                                 }
 
-                                if(run)
+                                if (command.Is_A_While_Loop())
                                 {
-                                
-                                    command.Command = multiCommands[i].ToLower().Trim().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                    isWhileTrue = true;
+                                }
+
+
+                                else if (command.Is_A_End_Loop())
+                                {
+                                    isWhileTrue = false;
+                                    runWhileConditionTrueCommand = whileConditionTrueCommands.ToArray();
+
+                                    if (command.IsWhileConditionTrue)
+                                    {
+                                        while (command.IsWhileConditionTrue)
+                                        {
+                                            for (int j = 0; j < runWhileConditionTrueCommand.Length; j++)
+                                            {
+                                                if (command.IsWhileConditionTrue)
+                                                {
+                                                    command.Command = SplitCommand(runWhileConditionTrueCommand[j]);
+                                                    command.Is_A_Variable();
+                                                    command.Is_A_If_Statement();
+                                                    command.Is_A_EndIf_Statement();
+                                                    command.Is_A_While_Loop();
+                                                    command.Is_A_End_Loop();
+                                                    command.ValidateCommandName();
+                                                    command.ValidateParameters();
+                                                    command.RunCommand(g, Convert.ToInt32(penSizes.Text));
+                                                }
+                                            }
+                                        }       
+                                    }
+                                    whileConditionTrueCommands.Clear();
+                                }
+
+                                if (!isIfTrue && !isWhileTrue)
+                                {
                                     command.Is_A_Variable();
-                                    command.Is_A_If_Statement();
-                                    command.Is_A_EndIf_Statement();
                                     command.ValidateCommandName();
                                     command.ValidateParameters();
+                                    command.Command = SplitCommand(multiCommands[i]);
                                     command.RunCommand(g, Convert.ToInt32(penSizes.Text));
-                                } 
+                                }
 
-                                else if (!run)
+                                else if (isIfTrue)
                                 {
-                                    conditionTrueCommands.Add(multiCommands[i]);
+                                    ifConditionTrueCommands.Add(multiCommands[i]);
+                                }
+
+                                else if (isWhileTrue)
+                                {
+                                    whileConditionTrueCommands.Add(multiCommands[i]);
                                 }
 
                             }
@@ -258,16 +316,16 @@ namespace Graphical_Programming_Language
 
                     }
                     syntaxChecked = false;
-                    command.IsMultiLine = false; 
+                    command.IsMultiLine = false;
                 }
 
                 else
                 {
-                    throw new Exception ("Please check syntax before running the file.");
+                    throw new Exception("Please check syntax before running the file.");
                 }
             }
 
-            catch(Exception err2)
+            catch (Exception err2)
             {
                 MessageBox.Show(err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -347,7 +405,7 @@ namespace Graphical_Programming_Language
 
         private void DuplicateProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Monitor.Enter(formMonitor); 
+            Monitor.Enter(formMonitor);
             try
             {
                 if (formCount < 2)
@@ -363,7 +421,7 @@ namespace Graphical_Programming_Language
             }
             finally
             {
-                Monitor.Exit(formMonitor); 
+                Monitor.Exit(formMonitor);
             }
         }
 
@@ -393,7 +451,7 @@ namespace Graphical_Programming_Language
             {
                 shape.Draw(g);
                 Shapes.Add(shape);
-                pnl_Paint.Invalidate(); 
+                pnl_Paint.Invalidate();
             }
         }
 
@@ -404,7 +462,7 @@ namespace Graphical_Programming_Language
         /// <param name="e">The arguments of the form closed event.</param>
         private void Form_SPL_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Monitor.Enter(formMonitor); 
+            Monitor.Enter(formMonitor);
             try
             {
                 formCount--;
@@ -413,7 +471,7 @@ namespace Graphical_Programming_Language
 
             finally
             {
-                Monitor.Exit(formMonitor);               
+                Monitor.Exit(formMonitor);
             }
         }
 

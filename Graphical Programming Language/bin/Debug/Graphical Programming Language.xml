@@ -139,14 +139,39 @@
             Variable to set the flag of the command if statement being valid.
             </summary>
         </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isIfTriggered">
+            <summary>
+            Variable to set the flag of the command if statement being triggered.
+            </summary>
+        </member>
         <member name="F:Graphical_Programming_Language.CommandParser.isEndIfStatement">
             <summary>
             Variable to set the flag of the command endif statement being valid.
             </summary>
         </member>
-        <member name="F:Graphical_Programming_Language.CommandParser.isConditionTrue">
+        <member name="F:Graphical_Programming_Language.CommandParser.isWhileLoop">
+            <summary>
+            Variable to set the flag of the command while loop being valid.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isWhileTriggered">
+            <summary>
+            Variable to set the flag of the command while loop being triggered.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isEndLoop">
+            <summary>
+            Variable to set the flag of the command end loop being valid.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isIfConditionTrue">
             <summary>
             Variable to set the flag of the command if statement condition being true.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.CommandParser.isWhileConditionTrue">
+            <summary>
+            Variable to set the flag of the command while condition being true.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.CommandParser.result">
@@ -206,7 +231,12 @@
             Getter and setter methods for the command array to get or set the current command with its values.
             </summary>
         </member>
-        <member name="P:Graphical_Programming_Language.CommandParser.IsConditionTrue">
+        <member name="P:Graphical_Programming_Language.CommandParser.IsIfConditionTrue">
+            <summary>
+            Getter and setter methods to get or set the command if statement condition being true.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.IsWhileConditionTrue">
             <summary>
             Getter and setter methods to get or set the command if statement condition being true.
             </summary>
@@ -250,6 +280,18 @@
             <returns>Returns true if the command if statement is valid else returns false.</returns>
         </member>
         <member name="M:Graphical_Programming_Language.CommandParser.Is_A_EndIf_Statement">
+            <summary>
+            Boolean method to verify command endif statement or the end of if statement. 
+            </summary>
+            <returns>Returns true if the if statement is ended properly else returns false.</returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.Is_A_While_Loop">
+            <summary>
+            Boolean method to verify a valid command if statement.
+            </summary>
+            <returns>Returns true if the command if statement is valid else returns false.</returns>
+        </member>
+        <member name="M:Graphical_Programming_Language.CommandParser.Is_A_End_Loop">
             <summary>
             Boolean method to verify command endif statement or the end of if statement. 
             </summary>
@@ -348,6 +390,26 @@
         <member name="F:Graphical_Programming_Language.Form_SPL.formMonitor">
             <summary>
             Static variable which stores an object used for thread safe access to a single form.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.ifConditionTrueCommands">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.runIfConditionTrueCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.whileConditionTrueCommands">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Form_SPL.runWhileConditionTrueCommand">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Graphical_Programming_Language.Form_SPL.#ctor">

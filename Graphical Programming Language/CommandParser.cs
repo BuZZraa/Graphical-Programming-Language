@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Windows.Shapes;
+using System.Windows;
 
 namespace Graphical_Programming_Language
 {
@@ -25,7 +24,7 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Array if valid arithmetic operators for assignment of variable.
         /// </summary>
-        private string[] validArithmeticOperators = { "+", "-", "/", "*", "%"};
+        private string[] validArithmeticOperators = { "+", "-", "/", "*", "%" };
 
         /// <summary>
         /// Variable to set the flag if multiline textbox is not empty. 
@@ -115,14 +114,39 @@ namespace Graphical_Programming_Language
         private Boolean isIfStatement = false;
 
         /// <summary>
+        /// Variable to set the flag of the command if statement being triggered.
+        /// </summary>
+        private Boolean isIfTriggered = false;
+
+        /// <summary>
         /// Variable to set the flag of the command endif statement being valid.
         /// </summary>
         private Boolean isEndIfStatement = false;
 
         /// <summary>
+        /// Variable to set the flag of the command while loop being valid.
+        /// </summary>
+        private Boolean isWhileLoop = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command while loop being triggered.
+        /// </summary>
+        private Boolean isWhileTriggered = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command end loop being valid.
+        /// </summary>
+        private Boolean isEndLoop = false;
+
+        /// <summary>
         /// Variable to set the flag of the command if statement condition being true.
         /// </summary>
-        private Boolean isConditionTrue = false;
+        private Boolean isIfConditionTrue = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command while condition being true.
+        /// </summary>
+        private Boolean isWhileConditionTrue = false;
 
         /// <summary>
         /// Variable to store the current int conversion value. 
@@ -196,12 +220,20 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Getter and setter methods to get or set the command if statement condition being true.
         /// </summary>
-        public Boolean IsConditionTrue
+        public Boolean IsIfConditionTrue
         {
-            set { isConditionTrue = value; }
-            get { return isConditionTrue; }
+            set { isIfConditionTrue = value; }
+            get { return isIfConditionTrue; }
         }
 
+        /// <summary>
+        /// Getter and setter methods to get or set the command if statement condition being true.
+        /// </summary>
+        public Boolean IsWhileConditionTrue
+        {
+            set { isWhileConditionTrue = value; }
+            get { return isWhileConditionTrue; }
+        }
 
         /// <summary>
         /// Getter and setter methods to get or set the current pen colour.
@@ -254,7 +286,6 @@ namespace Graphical_Programming_Language
         public Boolean Is_A_Variable()
         {
             isVariable = false;
-           
             try
             {
                 if (command.Length == 3)
@@ -320,6 +351,7 @@ namespace Graphical_Programming_Language
                                             value2 = variablesAndValues[oprand2];
                                         }
 
+
                                         switch (operators)
                                         {
                                             case "+":
@@ -338,7 +370,6 @@ namespace Graphical_Programming_Language
                                                 variablesAndValues[commandName] = value1 % value2;
                                                 break;
                                         }
-
                                         isVariable = true;
                                     }
 
@@ -360,7 +391,7 @@ namespace Graphical_Programming_Language
                             }
                         }
                     }
-                }           
+                }
             }
             catch (Exception error1)
             {
@@ -379,7 +410,7 @@ namespace Graphical_Programming_Language
             isIfStatement = false;
             try
             {
-                if(isMultiLine)
+                if (isMultiLine)
                 {
                     if (command.Length == 4)
                     {
@@ -395,7 +426,98 @@ namespace Graphical_Programming_Language
                                 {
                                     if (variablesAndValues.ContainsKey(oprand2) || int.TryParse(oprand2, out result))
                                     {
-                                        isIfStatement = true;  
+                                        isIfStatement = true;
+                                        isIfTriggered = true;
+                                        int value1 = 0, value2 = 0;
+                                        if (int.TryParse(oprand1, out result))
+                                        {
+                                            value1 = Convert.ToInt32(oprand1);
+                                        }
+
+                                        if (!int.TryParse(oprand1, out result))
+                                        {
+                                            value1 = variablesAndValues[oprand1];
+                                        }
+
+                                        if (int.TryParse(oprand2, out result))
+                                        {
+                                            value2 = Convert.ToInt32(oprand2);
+                                        }
+
+                                        if (!int.TryParse(oprand2, out result))
+                                        {
+                                            value2 = variablesAndValues[oprand2];
+                                        }
+
+                                        switch (operators)
+                                        {
+                                            case "<":
+                                                if (value1 < value2)
+                                                {
+                                                    isIfConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isIfConditionTrue = false;
+                                                }
+                                                break;
+                                            case ">":
+                                                if (value1 > value2)
+                                                {
+                                                    isIfConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isIfConditionTrue = false;
+                                                }
+                                                break;
+                                            case "<=":
+                                                if (value1 <= value2)
+                                                {
+                                                    isIfConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isIfConditionTrue = false;
+                                                }
+                                                break;
+                                            case ">=":
+                                                if (value1 >= value2)
+                                                {
+                                                    isIfConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isIfConditionTrue = false;
+                                                }
+                                                break;
+                                            case "==":
+                                                if (value1 == value2)
+                                                {
+                                                    isIfConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isIfConditionTrue = false;
+                                                }
+                                                break;
+                                            case "!=":
+                                                if (value1 != value2)
+                                                {
+                                                    isIfConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isIfConditionTrue = false;
+                                                }
+                                                break;
+                                        }
                                     }
                                 }
 
@@ -411,14 +533,14 @@ namespace Graphical_Programming_Language
                             }
                         }
                     }
-                }                                         
+                }
             }
 
-            catch(Exception error2)
+            catch (Exception error2)
             {
                 _messageDisplayer.DisplayMessage(error2.Message);
             }
-           
+
             return isIfStatement;
         }
 
@@ -429,79 +551,191 @@ namespace Graphical_Programming_Language
         public Boolean Is_A_EndIf_Statement()
         {
             isEndIfStatement = false;
-            if(command.Length == 1)
+            if (command.Length == 1)
             {
                 commandName = command[0];
-                if(commandName == "endif")
+                if (commandName == "endif")
                 {
-                    isEndIfStatement = true;
-                    if(isIfStatement)
-                    {
-                        int value1 = 0, value2 = 0;
-                        if (int.TryParse(oprand1, out result))
-                        {
-                            value1 = Convert.ToInt32(oprand1);
-                        }
-
-                        if (!int.TryParse(oprand1, out result))
-                        {
-                            value1 = variablesAndValues[oprand1];
-                        }
-
-                        if (int.TryParse(oprand2, out result))
-                        {
-                            value2 = Convert.ToInt32(oprand2);
-                        }
-
-                        if (!int.TryParse(oprand2, out result))
-                        {
-                            value2 = variablesAndValues[oprand2];
-                        }
-
-                        switch (operators)
-                        {
-                            case "<":
-                                if (value1 < value2)
-                                {
-                                    isConditionTrue = true;
-                                }
-                                break;
-                            case ">":
-                                if (value1 > value2)
-                                {
-                                    isConditionTrue = true;
-                                }
-                                break;
-                            case "<=":
-                                if (value1 <= value2)
-                                {
-                                    isConditionTrue = true;
-                                }
-                                break;
-                            case ">=":
-                                if (value1 >= value2)
-                                {
-                                    isConditionTrue = true;
-                                }
-                                break;
-                            case "==":
-                                if (value1 == value2)
-                                {
-                                    isConditionTrue = true;
-                                }
-                                break;
-                            case "!=":
-                                if (value1 != value2)
-                                {
-                                    isConditionTrue = true;
-                                }
-                                break;
-                        }
+                    if (isIfTriggered)
+                    {                       
+                        isEndIfStatement = true;
                     }
                 }
             }
             return isEndIfStatement;
-        } 
+
+        }
+
+        /// <summary>
+        /// Boolean method to verify a valid command if statement.
+        /// </summary>
+        /// <returns>Returns true if the command if statement is valid else returns false.</returns>
+        public Boolean Is_A_While_Loop()
+        {
+            isWhileLoop = false;
+            try
+            {
+                if (isMultiLine)
+                {
+                    if (command.Length == 4)
+                    {
+                        commandName = command[0];
+                        oprand1 = command[1];
+                        operators = command[2];
+                        oprand2 = command[3];
+                        if (commandName == "while")
+                        {
+                            if (variablesAndValues.ContainsKey(oprand1) || int.TryParse(oprand1, out result))
+                            {
+                                if (validRelationalOperators.Contains(operators))
+                                {
+                                    if (variablesAndValues.ContainsKey(oprand2) || int.TryParse(oprand2, out result))
+                                    {
+                                        isWhileLoop = true;
+                                        isWhileTriggered = true;
+                                        int value1 = 0, value2 = 0;
+                                        if (int.TryParse(oprand1, out result))
+                                        {
+                                            value1 = Convert.ToInt32(oprand1);
+                                        }
+
+                                        if (!int.TryParse(oprand1, out result))
+                                        {
+                                            value1 = variablesAndValues[oprand1];
+                                        }
+
+                                        if (int.TryParse(oprand2, out result))
+                                        {
+                                            value2 = Convert.ToInt32(oprand2);
+                                        }
+
+                                        if (!int.TryParse(oprand2, out result))
+                                        {
+                                            value2 = variablesAndValues[oprand2];
+                                        }
+
+                                        switch (operators)
+                                        {
+                                            case "<":
+                                                if (value1 < value2)
+                                                {
+                                                    isWhileConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isWhileConditionTrue = false;
+                                                }
+
+                                                break;
+                                            case ">":
+                                                if (value1 > value2)
+                                                {
+                                                    isWhileConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isWhileConditionTrue = false;
+                                                }
+
+                                                break;
+                                            case "<=":
+                                                if (value1 <= value2)
+                                                {
+                                                    isWhileConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isWhileConditionTrue = false;
+                                                }
+
+                                                break;
+                                            case ">=":
+                                                if (value1 >= value2)
+                                                {
+                                                    isWhileConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isWhileConditionTrue = false;
+                                                }
+
+                                                break;
+                                            case "==":
+                                                if (value1 == value2)
+                                                {
+                                                    isWhileConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isWhileConditionTrue = false;
+                                                }
+
+                                                break;
+                                            case "!=":
+                                                if (value1 != value2)
+                                                {
+                                                    isWhileConditionTrue = true;
+                                                }
+
+                                                else
+                                                {
+                                                    isWhileConditionTrue = false;
+                                                }
+
+                                                break;
+                                        }
+                                    }
+                                }
+
+                                else
+                                {
+                                    throw new Exception($"Please enter a valid operator instead of {command[2]} in {string.Join(" ", command)}.");
+                                }
+                            }
+
+                            else
+                            {
+                                throw new Exception($"Please enter a valid variable or number instead of {command[1]} in {string.Join(" ", command)}.");
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (Exception error3)
+            {
+                _messageDisplayer.DisplayMessage(error3.Message);
+            }
+
+            return isWhileLoop;
+        }
+
+        /// <summary>
+        /// Boolean method to verify command endif statement or the end of if statement. 
+        /// </summary>
+        /// <returns>Returns true if the if statement is ended properly else returns false.</returns>
+        public Boolean Is_A_End_Loop()
+        {          
+            
+            isEndLoop = false;
+            if (command.Length == 1)
+            {
+                commandName = command[0];
+                if (commandName == "endloop")
+                {
+                    if (isWhileTriggered)
+                    {                        
+                        isEndLoop = true;
+                    }
+                }
+            }
+            return isEndLoop;
+        }
 
         /// <summary>
         /// Boolean method to verify if a command name is valid or not by passing it and checking if it is in the validCommands array.
@@ -520,12 +754,12 @@ namespace Graphical_Programming_Language
                         isValidCommand = true;
                     }
 
-                    else if(isVariable)
+                    else if (isVariable)
                     {
                         isValidCommand = true;
                     }
 
-                    else if(isIfStatement)
+                    else if (isIfStatement)
                     {
                         isValidCommand = true;
                     }
@@ -535,17 +769,27 @@ namespace Graphical_Programming_Language
                         isValidCommand = true;
                     }
 
+                    else if (isWhileLoop)
+                    {
+                        isValidCommand = true;
+                    }
+
+                    else if (isEndLoop)
+                    {
+                        isValidCommand = true;
+                    }
+
 
                     else
                     {
                         throw new Exception($"Please enter a valid command instead of {commandName} in {string.Join(" ", command)}.");
                     }
-                }                     
+                }
             }
 
-            catch (Exception error3)
+            catch (Exception error4)
             {
-                _messageDisplayer.DisplayMessage(error3.Message);
+                _messageDisplayer.DisplayMessage(error4.Message);
             }
             return isValidCommand;
         }
@@ -562,7 +806,7 @@ namespace Graphical_Programming_Language
             {
 
                 if (isValidCommand)
-                {             
+                {
                     if (commandName.Equals("clear") || commandName.Equals("reset"))
                     {
 
@@ -605,17 +849,27 @@ namespace Graphical_Programming_Language
                         }
                     }
 
-                    else if(isVariable)
+                    else if (isVariable)
                     {
                         isValidParameters = true;
                     }
 
-                    else if(isIfStatement)
+                    else if (isIfStatement)
                     {
                         isValidParameters = true;
                     }
 
                     else if (isEndIfStatement)
+                    {
+                        isValidParameters = true;
+                    }
+
+                    else if (isWhileLoop)
+                    {
+                        isValidParameters = true;
+                    }
+
+                    else if (isEndLoop)
                     {
                         isValidParameters = true;
                     }
@@ -629,10 +883,10 @@ namespace Graphical_Programming_Language
                             commandValues.Clear();
                             for (int i = 1; i < command.Length; i++)
                             {
-                                if(int.TryParse(command[i], out result))
+                                if (int.TryParse(command[i], out result))
                                 {
                                     int value = int.Parse(command[i]);
-                                    if(value >= 0)
+                                    if (value >= 0)
                                     {
                                         commandValues.Add(value);
                                     }
@@ -642,31 +896,31 @@ namespace Graphical_Programming_Language
                                         throw new NegativeParametersException($"Please enter positive integer parameter for {commandName} commannd in {string.Join(" ", command)}.");
                                     }
                                 }
-                                
-                               
+
+
                                 else if (variablesAndValues.ContainsKey(command[i]))
                                 {
                                     commandValues.Add(variablesAndValues[command[i]]);
-                                }                            
+                                }
 
-                                else 
+                                else
                                 {
                                     throw new InvalidParameterException($"Please enter positive integer parameter for {commandName} command in {string.Join(" ", command)}.");
                                 }
 
                             }
-                        
+
                         }
 
-                        catch (Exception err1)
+                        catch (Exception error4)
                         {
-                            _messageDisplayer.DisplayMessage(err1.Message);                           
+                            _messageDisplayer.DisplayMessage(error4.Message);
                         }
 
                         try
                         {
-                           
-                           
+
+
                             if (commandName.Equals("circle") || commandName.Equals("rotate"))
                             {
 
@@ -684,7 +938,7 @@ namespace Graphical_Programming_Language
                                             throw new Exception($"Please enter a valid value within 360 for {commandName} command in {string.Join(" ", command)}.");
                                         }
                                     }
-                                    
+
                                     else if (commandName.Equals("circle"))
                                     {
                                         isValidParameters = true;
@@ -709,20 +963,20 @@ namespace Graphical_Programming_Language
                                 {
                                     throw new MultipleParametersException($"Please enter two valid parameters for {commandName} command in {string.Join(" ", command)}.");
                                 }
-                            }                       
+                            }
                         }
-                           
-                        catch (Exception error4)
+
+                        catch (Exception error5)
                         {
-                            _messageDisplayer.DisplayMessage(error4.Message);
+                            _messageDisplayer.DisplayMessage(error5.Message);
                         }
                     }
-                }        
+                }
             }
 
-            catch (Exception error5)
+            catch (Exception error6)
             {
-                _messageDisplayer.DisplayMessage(error5.Message);
+                _messageDisplayer.DisplayMessage(error6.Message);
             }
             return isValidParameters;
         }
@@ -744,7 +998,7 @@ namespace Graphical_Programming_Language
                     Shapes.Add(shape);
                     return shape;
                 case "clear":
-                    g.Clear(SystemColors.ActiveBorder);
+                    g.Clear(System.Drawing.SystemColors.ActiveBorder);
                     Shapes.Clear();
                     color = Color.Black;
                     return null;
@@ -794,9 +1048,6 @@ namespace Graphical_Programming_Language
                     Form.UpdateDrawing(runCommand);
                 }
             }
-
-            isValidCommand = false;
-            isValidParameters = false;
         }
     }
 }

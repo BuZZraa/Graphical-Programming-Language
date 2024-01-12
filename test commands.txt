@@ -1,0 +1,19 @@
+Test if
+size = 100
+count = 100
+if count >= 100
+size = size - 50
+rectangle size, size
+circle 100
+endif
+
+Test while
+clear
+reset
+size = 100
+count = 1
+while count < 3
+rectangle size, size
+size = size + 50
+count = count + 1
+endloop
