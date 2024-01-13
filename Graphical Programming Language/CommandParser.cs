@@ -177,6 +177,10 @@ namespace Graphical_Programming_Language
         /// </summary>
         private Color color = Color.Black;
 
+        public Boolean isMethod = false;
+        public Boolean isMethodTriggered = false;
+        public Boolean isEndMethod = false;
+
         /// <summary>
         /// Instance of IMessageDisplayer interface created used to display error message.
         /// </summary>
@@ -195,7 +199,7 @@ namespace Graphical_Programming_Language
         }
 
         /// <summary>
-        /// Getter method to return instancce of the Form_SPL class.
+        /// Getter method to return instance of the Form_SPL class.
         /// </summary>
         private Form_SPL Form { get; set; }
 
@@ -470,71 +474,23 @@ namespace Graphical_Programming_Language
                                         switch (operators)
                                         {
                                             case "<":
-                                                if (value1 < value2)
-                                                {
-                                                    isIfConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isIfConditionTrue = false;
-                                                }
-                                                break;
+                                                isIfConditionTrue = value1 < value2;
+                                            break;
                                             case ">":
-                                                if (value1 > value2)
-                                                {
-                                                    isIfConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isIfConditionTrue = false;
-                                                }
-                                                break;
+                                                isIfConditionTrue = value1 > value2;
+                                            break;
                                             case "<=":
-                                                if (value1 <= value2)
-                                                {
-                                                    isIfConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isIfConditionTrue = false;
-                                                }
-                                                break;
+                                                isIfConditionTrue = value1 <= value2;
+                                            break;
                                             case ">=":
-                                                if (value1 >= value2)
-                                                {
-                                                    isIfConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isIfConditionTrue = false;
-                                                }
-                                                break;
+                                                isIfConditionTrue = value1 >= value2;
+                                            break;
                                             case "==":
-                                                if (value1 == value2)
-                                                {
-                                                    isIfConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isIfConditionTrue = false;
-                                                }
-                                                break;
+                                                isIfConditionTrue = value1 == value2;
+                                            break;
                                             case "!=":
-                                                if (value1 != value2)
-                                                {
-                                                    isIfConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isIfConditionTrue = false;
-                                                }
-                                                break;
+                                                isIfConditionTrue = value1 != value2;
+                                            break;
                                         }
                                     }
                                 }
@@ -569,19 +525,22 @@ namespace Graphical_Programming_Language
         public Boolean Is_A_EndIf_Statement()
         {
             isEndIfStatement = false;
-            if (command.Length == 1)
+            if(isMultiLine)
             {
-                commandName = command[0];
-                if (commandName == "endif")
+                if (command.Length == 1)
                 {
-                    if (isIfTriggered)
-                    {                       
-                        isEndIfStatement = true;
+                    commandName = command[0];
+                    if (commandName == "endif")
+                    {
+                        if (isIfTriggered)
+                        {
+                            isEndIfStatement = true;
+                        }
                     }
                 }
-            }
+            }     
+            
             return isEndIfStatement;
-
         }
 
         /// <summary>
@@ -635,77 +594,23 @@ namespace Graphical_Programming_Language
                                         switch (operators)
                                         {
                                             case "<":
-                                                if (value1 < value2)
-                                                {
-                                                    isWhileConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isWhileConditionTrue = false;
-                                                }
-
+                                                isWhileConditionTrue = value1 < value2;                                                
                                                 break;
                                             case ">":
-                                                if (value1 > value2)
-                                                {
-                                                    isWhileConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isWhileConditionTrue = false;
-                                                }
-
+                                                isWhileConditionTrue = value1 > value2;
                                                 break;
                                             case "<=":
-                                                if (value1 <= value2)
-                                                {
-                                                    isWhileConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isWhileConditionTrue = false;
-                                                }
-
-                                                break;
+                                                isWhileConditionTrue = value1 <= value2;                                   
+                                             break;
                                             case ">=":
-                                                if (value1 >= value2)
-                                                {
-                                                    isWhileConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isWhileConditionTrue = false;
-                                                }
-
-                                                break;
+                                                isWhileConditionTrue = value1 >= value2;
+                                            break;
                                             case "==":
-                                                if (value1 == value2)
-                                                {
-                                                    isWhileConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isWhileConditionTrue = false;
-                                                }
-
-                                                break;
+                                                isWhileConditionTrue = value1 == value2;
+                                            break;
                                             case "!=":
-                                                if (value1 != value2)
-                                                {
-                                                    isWhileConditionTrue = true;
-                                                }
-
-                                                else
-                                                {
-                                                    isWhileConditionTrue = false;
-                                                }
-
-                                                break;
+                                                isWhileConditionTrue = value1 != value2;
+                                            break;
                                         }
                                     }
                                 }
@@ -738,21 +643,86 @@ namespace Graphical_Programming_Language
         /// </summary>
         /// <returns>Returns true if the if statement is ended properly else returns false.</returns>
         public Boolean Is_A_End_Loop()
-        {          
-            
+        {                   
             isEndLoop = false;
-            if (command.Length == 1)
+            if(isMultiLine)
             {
-                commandName = command[0];
-                if (commandName == "endloop")
+                if (command.Length == 1)
                 {
-                    if (isWhileTriggered)
-                    {                        
-                        isEndLoop = true;
+                    commandName = command[0];
+                    if (commandName == "endloop")
+                    {
+                        if (isWhileTriggered)
+                        {
+                            isEndLoop = true;
+                        }
+                    }
+                }
+            }          
+            return isEndLoop;
+        }
+
+        public Boolean Is_A_Method()
+        {
+            isMethod = false;
+            try
+            {
+                if (isMultiLine)
+                {
+                    if (command.Length == 3)
+                    {
+                        commandName = command[0];
+                        string methodName = command[1];
+                        if (commandName == "method")
+                        {
+                            if (!int.TryParse(methodName, out result))
+                            {
+                                if (command[2] == "()")
+                                {
+                                    isMethod = true;
+                                    isMethodTriggered = true;
+                                }
+
+                                else
+                                {
+                                    throw new Exception($"Please enter () brackets instead of {command[2]} in {string.Join(" ", command)}.");
+                                }
+                            }
+
+                            else
+                            {
+                                throw new Exception($"Please enter a valid name for method instead of {methodName} in {string.Join(" ", command)}.");
+                            }
+                        }
                     }
                 }
             }
-            return isEndLoop;
+            
+            catch(Exception error)
+            {
+                _messageDisplayer.DisplayMessage(error.Message);
+            }
+            return isMethod;
+        }
+
+        public Boolean Is_A_End_Method()
+        {
+            isEndMethod = false;
+            if (isMultiLine)
+            {
+                if (command.Length == 1)
+                {
+                    commandName = command[0];
+                    if(commandName == "endmethod")
+                    {
+                        if(isMethodTriggered)
+                        {
+                            isEndMethod = true;
+                        }                      
+                    }
+                }
+            }
+            return isEndMethod;
         }
 
         /// <summary>
@@ -797,6 +767,15 @@ namespace Graphical_Programming_Language
                         isValidCommand = true;
                     }
 
+                    else if(isMethod)
+                    {
+                        isValidCommand = true;
+                    }
+
+                    else if(isEndMethod)
+                    {
+                        isValidCommand = true;
+                    }
 
                     else
                     {
@@ -888,6 +867,16 @@ namespace Graphical_Programming_Language
                     }
 
                     else if (isEndLoop)
+                    {
+                        isValidParameters = true;
+                    }
+
+                    else if (isMethod)
+                    {
+                        isValidParameters = true;
+                    }
+
+                    else if (isEndMethod)
                     {
                         isValidParameters = true;
                     }

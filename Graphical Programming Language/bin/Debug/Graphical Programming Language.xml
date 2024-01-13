@@ -218,7 +218,7 @@
         </member>
         <member name="P:Graphical_Programming_Language.CommandParser.Form">
             <summary>
-            Getter method to return instancce of the Form_SPL class.
+            Getter method to return instance of the Form_SPL class.
             </summary>
         </member>
         <member name="P:Graphical_Programming_Language.CommandParser.IsMultiLine">
