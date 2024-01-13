@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -8,7 +9,6 @@ using System.Windows.Input;
 
 namespace Graphical_Programming_Language
 {
-
 
     /// <summary>
     /// Form_SPL class to represent the Graphical Programming Language UI and its features.
@@ -32,6 +32,7 @@ namespace Graphical_Programming_Language
         /// </summary>
         private CommandParser command;
 
+        private ColorDialog penColour;
 
         /// <summary>
         /// Instance of ColorDialog class to create a color dialogue box and store the color value.
@@ -69,22 +70,22 @@ namespace Graphical_Programming_Language
         private static readonly object formMonitor = new object();
 
         /// <summary>
-        /// 
+        /// List to store the commands inside if command block.
         /// </summary>
         private List<string> ifConditionTrueCommands = new List<string>();
 
         /// <summary>
-        /// 
+        /// Array to store the commands to be run inside if command block.
         /// </summary>
         string[] runIfConditionTrueCommand;
 
         /// <summary>
-        /// 
+        /// List to store the commands inside while command block.
         /// </summary>
         private List<string> whileConditionTrueCommands = new List<string>();
 
         /// <summary>
-        /// 
+        /// Array to store the commands to be run inside while command block.
         /// </summary>
         string[] runWhileConditionTrueCommand;
 
@@ -101,6 +102,8 @@ namespace Graphical_Programming_Language
             canvasColour = new ColorDialog();
             canvasColour.Color = SystemColors.ActiveBorder;
             penSizes.SelectedItem = "1";
+            xValue.Text = Convert.ToString(command.XPos);
+            yValue.Text = Convert.ToString(command.YPos);
         }
 
         /// <summary>
@@ -203,6 +206,7 @@ namespace Graphical_Programming_Language
         /// <param name="e">The arguments of the run button click event.</param>
         private void Btn_Run_Click(object sender, EventArgs e)
         {
+
             try
             {
                 Boolean isIfTrue = false;
@@ -211,6 +215,7 @@ namespace Graphical_Programming_Language
                 {
                     if (command.IsValidCommand && command.IsValidParameters)
                     {
+
                         if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)
                         {
                             command.IsMultiLine = true;
@@ -277,6 +282,9 @@ namespace Graphical_Programming_Language
                                                     command.Is_A_End_Loop();
                                                     command.ValidateCommandName();
                                                     command.ValidateParameters();
+                                                    command.Color = btn_PenColour.BackColor;
+                                                    command.XPos = Convert.ToInt32(xValue.Text);
+                                                    command.YPos = Convert.ToInt32(yValue.Text);
                                                     command.RunCommand(g, Convert.ToInt32(penSizes.Text));
                                                 }
                                             }
@@ -329,6 +337,10 @@ namespace Graphical_Programming_Language
             {
                 MessageBox.Show(err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            xValue.Text = Convert.ToString(command.XPos);
+            yValue.Text = Convert.ToString(command.YPos);
+            command.Color = btn_PenColour.BackColor;
+            btn_PenColour.BackColor = command.Color;
         }
 
         /// <summary>
@@ -431,6 +443,7 @@ namespace Graphical_Programming_Language
         private void InitializeSecondWindow()
         {
             Form_SPL_Form2 = new Form_SPL();
+            Form_SPL_Form2.Text = "Duplicate Simple Programming Language";
             UpdateDrawingDelegate updateDrawingDelegate = new UpdateDrawingDelegate(Form_SPL_Form2.UpdateDrawing);
             Form_SPL_Form2.command = new CommandParser(new DisplayMessageBox(), this);
             Application.Run(Form_SPL_Form2);
@@ -482,7 +495,7 @@ namespace Graphical_Programming_Language
         /// <param name="e">The arguments of the pen colour button being clicked.</param>
         private void Btn_PenColour_Click(object sender, EventArgs e)
         {
-            ColorDialog penColour = new ColorDialog();
+            penColour = new ColorDialog();
             if (penColour.ShowDialog() == DialogResult.OK)
             {
                 command.Color = penColour.Color;
@@ -504,5 +517,25 @@ namespace Graphical_Programming_Language
                 btn_CanvasColour.BackColor = canvasColour.Color;
             }
         }
+
+        /// <summary>
+        /// Event handler for the event of X-Axis value being changed.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of X-Axis value being changed.</param>
+        /// <param name="e">The arguments of the form closed event.</param>
+        private void XValue_ValueChanged(object sender, EventArgs e)
+        {
+            command.XPos = Convert.ToInt32(xValue.Text);
+        }
+
+        /// <summary>
+        /// Event handler for the event of Y-Axis value being changed.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of Y-Axis value being changed.</param>
+        /// <param name="e">The arguments of the form closed event.</param>
+        private void YValue_ValueChanged(object sender, EventArgs e)
+        {
+            command.YPos = Convert.ToInt32(yValue.Text);
+        }      
     }
 }

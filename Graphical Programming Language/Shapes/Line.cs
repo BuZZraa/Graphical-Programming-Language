@@ -27,7 +27,7 @@ namespace Graphical_Programming_Language
         /// The color, fill, x and y parameters are passed to base class Shape constructor.
         /// </summary>
         /// <param name="colour">Colour of the line.</param>
-        /// <param name="fill">Fill not used inherited from abstract class shape.</param>
+        /// <param name="fill">Fill not used but inherited from abstract class shape.</param>
         /// <param name="x">X coordinate from where the line will be drawn.</param>
         /// <param name="y">Y coordinate from where the line will be drawn.</param>
         /// <param name="rotationAngle">Angle for line to be rotated.</param>

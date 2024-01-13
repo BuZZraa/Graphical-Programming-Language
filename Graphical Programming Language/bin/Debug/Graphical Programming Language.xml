@@ -23,8 +23,8 @@
             <param name="fill">For circle to be filled or not.</param>
             <param name="x">X coordinate from where the circle will be drawn.</param>
             <param name="y">Y coordinate from where the circle will be drawn.</param>
-            <param name="rotationAngle">Angle for circle to be rotated.</param>
-            <param name="radius">Radius for the size of the circle.</param>
+            <param name="rotationAngle">Angle for circle to be rotated not used but inherited from abstract class shape.</param>
+            <param name="radius">Angle for circle to be rotated.</param>
         </member>
         <member name="M:Graphical_Programming_Language.Circle.Draw(System.Drawing.Graphics)">
             <summary>
@@ -231,6 +231,16 @@
             Getter and setter methods for the command array to get or set the current command with its values.
             </summary>
         </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.XPos">
+            <summary>
+            Getter and setter methods for X-axis.
+            </summary>
+        </member>
+        <member name="P:Graphical_Programming_Language.CommandParser.YPos">
+            <summary>
+            Getter and setter methods for Y-axis.
+            </summary>
+        </member>
         <member name="P:Graphical_Programming_Language.CommandParser.IsIfConditionTrue">
             <summary>
             Getter and setter methods to get or set the command if statement condition being true.
@@ -394,22 +404,22 @@
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.ifConditionTrueCommands">
             <summary>
-            
+            List to store the commands inside if command block.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.runIfConditionTrueCommand">
             <summary>
-            
+            Array to store the commands to be run inside if command block.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.whileConditionTrueCommands">
             <summary>
-            
+            List to store the commands inside while command block.
             </summary>
         </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.runWhileConditionTrueCommand">
             <summary>
-            
+            Array to store the commands to be run inside while command block.
             </summary>
         </member>
         <member name="M:Graphical_Programming_Language.Form_SPL.#ctor">
@@ -518,6 +528,20 @@
             <param name="sender">The object that triggered the event of canvas colour button being clicked.</param>
             <param name="e">The arguments of the form closed event.</param>
         </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.XValue_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of X-Axis value being changed.
+            </summary>
+            <param name="sender">The object that triggered the event of X-Axis value being changed.</param>
+            <param name="e">The arguments of the form closed event.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Form_SPL.YValue_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for the event of Y-Axis value being changed.
+            </summary>
+            <param name="sender">The object that triggered the event of Y-Axis value being changed.</param>
+            <param name="e">The arguments of the form closed event.</param>
+        </member>
         <member name="F:Graphical_Programming_Language.Form_SPL.components">
             <summary>
             Required designer variable.
@@ -578,7 +602,7 @@
             The color, fill, x and y parameters are passed to base class Shape constructor.
             </summary>
             <param name="colour">Colour of the line.</param>
-            <param name="fill">Fill not used inherited from abstract class shape.</param>
+            <param name="fill">Fill not used but inherited from abstract class shape.</param>
             <param name="x">X coordinate from where the line will be drawn.</param>
             <param name="y">Y coordinate from where the line will be drawn.</param>
             <param name="rotationAngle">Angle for line to be rotated.</param>
@@ -752,6 +776,34 @@
             Intializes an instance of Single Parameter Exception class and sets the error message to the base class.
             </summary>
             <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Star">
+            <summary>
+            Derived class Star which inherits abstract class Shape to represent star shape being drawn on graphics.
+            </summary>
+        </member>
+        <member name="F:Graphical_Programming_Language.Star.size">
+            <summary>
+            Variable to store the size of the star.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Star.#ctor(System.Drawing.Color,System.Boolean,System.Int32,System.Int32,System.Single,System.Int32)">
+            <summary>
+            Parameterized constructor Star which initializes an instance of the class Star with specified parameters. 
+            The color, fill, x and y parameters are passed to base class Shape constructor.
+            </summary>
+            <param name="colour">Colour of the star.</param>
+            <param name="fill">For star to be filled or not.</param>
+            <param name="x">X coordinate from where the star will be drawn.</param>
+            <param name="y">Y coordinate from where the star will be drawn.</param>
+            <param name="rotationAngle">Angle for star to be rotated.</param>
+            <param name="size">Angle for star to be rotated.</param>
+        </member>
+        <member name="M:Graphical_Programming_Language.Star.Draw(System.Drawing.Graphics)">
+            <summary>
+            Abstract method draw inherited from base class to be overriden in derived class Star to draw star on the graphics.
+            </summary>
+            <param name="g">Graphics object on which the star will be drawn.</param>
         </member>
         <member name="T:Graphical_Programming_Language.Triangle">
             <summary>

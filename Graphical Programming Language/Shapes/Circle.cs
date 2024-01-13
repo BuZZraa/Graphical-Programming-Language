@@ -26,8 +26,8 @@ namespace Graphical_Programming_Language
         /// <param name="fill">For circle to be filled or not.</param>
         /// <param name="x">X coordinate from where the circle will be drawn.</param>
         /// <param name="y">Y coordinate from where the circle will be drawn.</param>
-        /// <param name="rotationAngle">Angle for circle to be rotated.</param>
-        /// <param name="radius">Radius for the size of the circle.</param>
+        /// <param name="rotationAngle">Angle for circle to be rotated not used but inherited from abstract class shape.</param>
+        /// <param name="radius">Angle for circle to be rotated.</param>
         public Circle(Color colour, bool fill, int x, int y, float rotationAngle, int radius) : base(colour, fill, x, y, rotationAngle)
         {
             this.radius = radius;

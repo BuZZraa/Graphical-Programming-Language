@@ -14,7 +14,7 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Array of valid command name that can used.
         /// </summary>
-        private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "pen", "fill", "rotate" };
+        private string[] validCommands = { "moveto", "drawto", "clear", "reset", "rectangle", "circle", "triangle", "star", "pen", "fill", "rotate" };
 
         /// <summary>
         /// Array of valid relational operators for if statement and while loop.
@@ -215,6 +215,24 @@ namespace Graphical_Programming_Language
         {
             set { command = value; }
             get { return command; }
+        }
+
+        /// <summary>
+        /// Getter and setter methods for X-axis.
+        /// </summary>
+        public int XPos
+        {
+            get { return xPos; }
+            set { xPos = value; }
+        }
+
+        /// <summary>
+        /// Getter and setter methods for Y-axis.
+        /// </summary>
+        public int YPos
+        {
+            get { return yPos; }
+            set { yPos = value; }
         }
 
         /// <summary>
@@ -921,7 +939,7 @@ namespace Graphical_Programming_Language
                         {
 
 
-                            if (commandName.Equals("circle") || commandName.Equals("rotate"))
+                            if (commandName.Equals("circle") || commandName.Equals("rotate") || commandName.Equals("star"))
                             {
 
                                 if (commandValues.Count() == 1)
@@ -940,6 +958,11 @@ namespace Graphical_Programming_Language
                                     }
 
                                     else if (commandName.Equals("circle"))
+                                    {
+                                        isValidParameters = true;
+                                    }
+
+                                    else if (commandName.Equals("star"))
                                     {
                                         isValidParameters = true;
                                     }
@@ -993,6 +1016,7 @@ namespace Graphical_Programming_Language
                 case "circle":
                 case "triangle":
                 case "drawto":
+                case "star":
                     ShapeFactory shapeFactory = new ShapeFactory();
                     Shape shape = shapeFactory.ShapeType(commandName, color, fill, xPos, yPos, rotationAngle, commandValues);
                     Shapes.Add(shape);
@@ -1005,6 +1029,7 @@ namespace Graphical_Programming_Language
 
                 case "reset":
                     xPos = 0; yPos = 0;
+                    rotationAngle = 0;
                     color = Color.Black;
                     return null;
 

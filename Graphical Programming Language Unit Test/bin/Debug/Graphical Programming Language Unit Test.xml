@@ -161,6 +161,41 @@
             Test method to test the circle parameters being null.
             </summary>
         </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidStarCommandName">
+            <summary>
+            Test method to test the valid star command name.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsNotCaseSensitiveStarCommandName">
+            <summary>
+            Test method to test the star command name being non-case sensitive.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidStarParameters">
+            <summary>
+            Test method to test the star parameters being valid.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsInvalidStringStarParameters">
+            <summary>
+            Test method to test the invalid string star parameters.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsEmptyOrMissingStarParameters">
+            <summary>
+            Test method to test the star parameters being empty or missing parameter.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsStarNegativeParameters">
+            <summary>
+            Test method to test the star parameters being negative.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsStarNullParameters">
+            <summary>
+            Test method to test the star parameters being null.
+            </summary>
+        </member>
         <member name="M:Graphical_Programming_Language_Unit_Test.CommandParserUnitTest.IsValidMoveToCommandName">
             <summary>
             Test method to test the valid moveto command name.

@@ -572,6 +572,145 @@ namespace Graphical_Programming_Language_Unit_Test
         }
 
         /// <summary>
+        /// Test method to test the valid star command name.
+        /// </summary>
+        [TestMethod]
+        public void IsValidStarCommandName()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "star 35";
+
+            //Act
+            command.Command = form.SplitCommand(expectedCommand);
+
+            //Assert
+            Assert.IsTrue(command.ValidateCommandName());
+        }
+
+        /// <summary>
+        /// Test method to test the star command name being non-case sensitive.
+        /// </summary>
+        [TestMethod]
+        public void IsNotCaseSensitiveStarCommandName()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "STAR 35";
+
+            //Act
+            command.Command = form.SplitCommand(expectedCommand);
+
+            //Assert
+            Assert.IsTrue(command.ValidateCommandName());
+        }
+
+        /// <summary>
+        /// Test method to test the star parameters being valid.
+        /// </summary>
+        [TestMethod]
+        public void IsValidStarParameters()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "star 35";
+
+            // Act
+            command.Command = form.SplitCommand(expectedCommand);
+            command.ValidateCommandName();
+
+            // Assert
+            Assert.IsTrue(command.ValidateParameters());
+        }
+
+        /// <summary>
+        /// Test method to test the invalid string star parameters.
+        /// </summary>
+        [TestMethod]
+        public void IsInvalidStringStarParameters()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "star thirty";
+
+            // Act
+            command.Command = form.SplitCommand(expectedCommand);
+            command.ValidateCommandName();
+
+            // Assert
+            Assert.IsFalse(command.ValidateParameters());
+        }
+
+        /// <summary>
+        /// Test method to test the star parameters being empty or missing parameter.
+        /// </summary>
+        [TestMethod]
+        public void IsEmptyOrMissingStarParameters()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "star";
+
+            // Act
+            command.Command = form.SplitCommand(expectedCommand);
+            command.ValidateCommandName();
+
+            // Assert
+            Assert.IsFalse(command.ValidateParameters());
+        }
+
+
+        /// <summary>
+        /// Test method to test the star parameters being negative.
+        /// </summary>
+        [TestMethod]
+        public void IsStarNegativeParameters()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "star -75";
+
+            // Act
+            command.Command = form.SplitCommand(expectedCommand);
+            command.ValidateCommandName();
+
+            // Assert
+            Assert.IsFalse(command.ValidateParameters());
+        }
+
+        /// <summary>
+        /// Test method to test the star parameters being null.
+        /// </summary>
+        [TestMethod]
+        public void IsStarNullParameters()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand = "star null";
+
+            // Act
+            command.Command = form.SplitCommand(expectedCommand);
+            command.ValidateCommandName();
+
+            // Assert
+            Assert.IsFalse(command.ValidateParameters());
+        }
+
+        /// <summary>
         /// Test method to test the valid moveto command name.
         /// </summary>
         [TestMethod]
