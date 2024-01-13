@@ -36,10 +36,13 @@ namespace Graphical_Programming_Language
                     return new Circle(color, fill, xPos, yPos, rotationAngle, commandValues[0]);
 
                 case "triangle":
-                    return new Triangle(color, fill, xPos, yPos, rotationAngle, commandValues[0], commandValues[1]);
+                    return new Triangle(color, fill, xPos + commandValues[0], yPos, rotationAngle, commandValues[0], commandValues[1]);
 
                 case "drawto":
                     return new Line(color, fill, xPos, yPos, rotationAngle, commandValues[0], commandValues[1]);
+
+                case "star":
+                    return new Star(color, fill, xPos + commandValues[0], yPos + commandValues[0], rotationAngle, commandValues[0]);
 
                 default:
                     throw new ArgumentException($"Please enter a valid command instead of {shape}");
