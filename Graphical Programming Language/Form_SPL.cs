@@ -77,7 +77,7 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Array to store the commands to be run inside if command block.
         /// </summary>
-        string[] runIfConditionTrueCommand;
+        private string[] runIfConditionTrueCommand;
 
         /// <summary>
         /// List to store the commands inside while command block.
@@ -87,7 +87,11 @@ namespace Graphical_Programming_Language
         /// <summary>
         /// Array to store the commands to be run inside while command block.
         /// </summary>
-        string[] runWhileConditionTrueCommand;
+        private string[] runWhileConditionTrueCommand;
+
+        private List<string> methodCommands= new List<string>();
+
+        private string[] runMethodCommands;
 
         /// <summary>
         /// Empty Constructor to initialize on instance of the Form_SPL class.
@@ -177,6 +181,8 @@ namespace Graphical_Programming_Language
                             command.Is_A_EndIf_Statement();
                             command.Is_A_While_Loop();
                             command.Is_A_End_Loop();
+                            command.Is_A_Method();
+                            command.Is_A_End_Method();
                             command.ValidateCommandName();
                             command.ValidateParameters();
                         }
@@ -211,6 +217,7 @@ namespace Graphical_Programming_Language
             {
                 Boolean isIfTrue = false;
                 Boolean isWhileTrue = false;
+                Boolean isMethodTrue = false;
                 if (syntaxChecked == true)
                 {
                     if (command.IsValidCommand && command.IsValidParameters)
@@ -226,6 +233,8 @@ namespace Graphical_Programming_Language
                                 command.Is_A_EndIf_Statement();
                                 command.Is_A_While_Loop();
                                 command.Is_A_End_Loop();
+                                command.Is_A_Method();
+                                command.Is_A_End_Method();
 
 
                                 if (command.Is_A_If_Statement())
@@ -247,6 +256,8 @@ namespace Graphical_Programming_Language
                                             command.Is_A_EndIf_Statement();
                                             command.Is_A_While_Loop();
                                             command.Is_A_End_Loop();
+                                            command.Is_A_Method();
+                                            command.Is_A_End_Method();
                                             command.ValidateCommandName();
                                             command.ValidateParameters();
                                             command.RunCommand(g, Convert.ToInt32(penSizes.Text));
@@ -280,6 +291,8 @@ namespace Graphical_Programming_Language
                                                     command.Is_A_EndIf_Statement();
                                                     command.Is_A_While_Loop();
                                                     command.Is_A_End_Loop();
+                                                    command.Is_A_Method();
+                                                    command.Is_A_End_Method();
                                                     command.ValidateCommandName();
                                                     command.ValidateParameters();
                                                     command.Color = btn_PenColour.BackColor;
@@ -293,13 +306,26 @@ namespace Graphical_Programming_Language
                                     whileConditionTrueCommands.Clear();
                                 }
 
-                                if (!isIfTrue && !isWhileTrue)
+                                if(command.Is_A_Method())
+                                {
+                                    isMethodTrue = true;
+                                }
+
+                                else if(command.Is_A_End_Method())
+                                {
+                                    isMethodTrue = false;
+                                    runMethodCommands = methodCommands.ToArray();
+                                }
+
+
+                                if (!isIfTrue && !isWhileTrue && !isMethodTrue)
                                 {
                                     command.Is_A_Variable();
                                     command.ValidateCommandName();
                                     command.ValidateParameters();
                                     command.Command = SplitCommand(multiCommands[i]);
                                     command.RunCommand(g, Convert.ToInt32(penSizes.Text));
+                                    MessageBox.Show(string.Join(" ", runMethodCommands));
                                 }
 
                                 else if (isIfTrue)
@@ -312,6 +338,10 @@ namespace Graphical_Programming_Language
                                     whileConditionTrueCommands.Add(multiCommands[i]);
                                 }
 
+                                else if (isMethodTrue)
+                                {
+                                    methodCommands.Add(multiCommands[i]);
+                                }
                             }
 
                         }
