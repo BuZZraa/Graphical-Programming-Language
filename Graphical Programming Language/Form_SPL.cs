@@ -152,6 +152,7 @@ namespace Graphical_Programming_Language
                     command.Command = SplitCommand(textBox_SingleCmd.Text);
                     command.IsMultiLine = false;
                     command.Is_A_Variable();
+                    command.Is_Method_Called();
                     command.ValidateCommandName();
                     command.ValidateParameters();
                     syntaxChecked = true;
@@ -183,6 +184,7 @@ namespace Graphical_Programming_Language
                             command.Is_A_End_Loop();
                             command.Is_A_Method();
                             command.Is_A_End_Method();
+                            command.Is_Method_Called();
                             command.ValidateCommandName();
                             command.ValidateParameters();
                         }
@@ -235,6 +237,7 @@ namespace Graphical_Programming_Language
                                 command.Is_A_End_Loop();
                                 command.Is_A_Method();
                                 command.Is_A_End_Method();
+                                command.Is_Method_Called();
 
 
                                 if (command.Is_A_If_Statement())
@@ -258,6 +261,7 @@ namespace Graphical_Programming_Language
                                             command.Is_A_End_Loop();
                                             command.Is_A_Method();
                                             command.Is_A_End_Method();
+                                            command.Is_Method_Called();
                                             command.ValidateCommandName();
                                             command.ValidateParameters();
                                             command.RunCommand(g, Convert.ToInt32(penSizes.Text));
@@ -298,7 +302,7 @@ namespace Graphical_Programming_Language
                                                     command.Color = btn_PenColour.BackColor;
                                                     command.XPos = Convert.ToInt32(xValue.Text);
                                                     command.YPos = Convert.ToInt32(yValue.Text);
-                                                    command.RunCommand(g, Convert.ToInt32(penSizes.Text));
+                                                    command.RunCommand(g, Convert.ToInt32(penSizes.Text));                                                    
                                                 }
                                             }
                                         }       
@@ -308,15 +312,48 @@ namespace Graphical_Programming_Language
 
                                 if(command.Is_A_Method())
                                 {
-                                    isMethodTrue = true;
+                                    isMethodTrue = true;                                    
                                 }
 
                                 else if(command.Is_A_End_Method())
                                 {
                                     isMethodTrue = false;
-                                    runMethodCommands = methodCommands.ToArray();
+                                    if(command.Methods.ContainsKey(command.MethodName))
+                                    {
+                                        command.Methods[command.MethodName] = methodCommands.ToArray();
+                                        runMethodCommands  = command.Methods[command.MethodCallName];
+                                        methodCommands.Clear();
+                                    }
+                                    
                                 }
 
+                                if(command.Is_Method_Called())
+                                {
+                                    if(runMethodCommands.Length > 0)
+                                    {
+
+                                        for (int j = 1; j < runMethodCommands.Length; j++)
+                                        {
+                                            CommandParser innerCommand = new CommandParser(new DisplayMessageBox(), this);
+
+                                            innerCommand.Command = SplitCommand(runMethodCommands[j]);
+                                            innerCommand.Is_A_Variable();
+                                            innerCommand.Is_A_If_Statement();
+                                            innerCommand.Is_A_EndIf_Statement();
+                                            innerCommand.Is_A_While_Loop();
+                                            innerCommand.Is_A_End_Loop();
+                                            innerCommand.Is_A_Method();
+                                            innerCommand.Is_A_End_Method();
+                                            innerCommand.Is_Method_Called();
+                                            innerCommand.ValidateCommandName();
+                                            innerCommand.ValidateParameters();
+                                            innerCommand.RunCommand(g, Convert.ToInt32(penSizes.Text));
+                                        }
+                                    
+
+                                    }
+
+                                }
 
                                 if (!isIfTrue && !isWhileTrue && !isMethodTrue)
                                 {
@@ -325,7 +362,6 @@ namespace Graphical_Programming_Language
                                     command.ValidateParameters();
                                     command.Command = SplitCommand(multiCommands[i]);
                                     command.RunCommand(g, Convert.ToInt32(penSizes.Text));
-                                    MessageBox.Show(string.Join(" ", runMethodCommands));
                                 }
 
                                 else if (isIfTrue)

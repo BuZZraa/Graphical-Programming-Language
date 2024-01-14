@@ -177,9 +177,13 @@ namespace Graphical_Programming_Language
         /// </summary>
         private Color color = Color.Black;
 
-        public Boolean isMethod = false;
-        public Boolean isMethodTriggered = false;
-        public Boolean isEndMethod = false;
+        private Boolean isMethod = false;
+        private Boolean isMethodTriggered = false;
+        private Boolean isEndMethod = false;
+        private Boolean isMethodCalled = false;
+        private string methodName;
+        private string methodCallName;
+        private Dictionary<string, string[]> methods = new Dictionary<string, string[]>();
 
         /// <summary>
         /// Instance of IMessageDisplayer interface created used to display error message.
@@ -211,7 +215,6 @@ namespace Graphical_Programming_Language
             set { isMultiLine = value; }
         }
 
-
         /// <summary>
         /// Getter and setter methods for the command array to get or set the current command with its values.
         /// </summary>
@@ -219,6 +222,16 @@ namespace Graphical_Programming_Language
         {
             set { command = value; }
             get { return command; }
+        }
+
+        public string MethodName
+        {
+            get { return methodName; }
+        }
+
+        public string MethodCallName
+        {
+            get { return methodCallName; }
         }
 
         /// <summary>
@@ -299,6 +312,13 @@ namespace Graphical_Programming_Language
         public List<Shape> GetShapes()
         {
             return Shapes;
+        }
+
+
+        public Dictionary<string, string[]> Methods
+        {
+            set { methods = value; }
+            get { return methods; }
         }
 
         /// <summary>
@@ -491,6 +511,9 @@ namespace Graphical_Programming_Language
                                             case "!=":
                                                 isIfConditionTrue = value1 != value2;
                                             break;
+                                            default:
+                                                isIfConditionTrue = false;
+                                            break;
                                         }
                                     }
                                 }
@@ -525,20 +548,33 @@ namespace Graphical_Programming_Language
         public Boolean Is_A_EndIf_Statement()
         {
             isEndIfStatement = false;
-            if(isMultiLine)
+            try
             {
-                if (command.Length == 1)
+                if (isMultiLine)
                 {
-                    commandName = command[0];
-                    if (commandName == "endif")
+                    if (command.Length == 1)
                     {
-                        if (isIfTriggered)
+                        commandName = command[0];
+                        if (commandName == "endif")
                         {
-                            isEndIfStatement = true;
+                            if (isIfTriggered)
+                            {
+                                isEndIfStatement = true;
+                            }
+
+                            else
+                            {
+                                throw new Exception($"If statement must be declared before endif command.");
+                            }
                         }
                     }
                 }
-            }     
+            }
+
+            catch(Exception error)
+            {
+                _messageDisplayer.DisplayMessage(error.Message);
+            } 
             
             return isEndIfStatement;
         }
@@ -611,6 +647,9 @@ namespace Graphical_Programming_Language
                                             case "!=":
                                                 isWhileConditionTrue = value1 != value2;
                                             break;
+                                            default:
+                                                isWhileConditionTrue = false;
+                                            break;
                                         }
                                     }
                                 }
@@ -645,20 +684,33 @@ namespace Graphical_Programming_Language
         public Boolean Is_A_End_Loop()
         {                   
             isEndLoop = false;
-            if(isMultiLine)
+            try
             {
-                if (command.Length == 1)
+                if (isMultiLine)
                 {
-                    commandName = command[0];
-                    if (commandName == "endloop")
+                    if (command.Length == 1)
                     {
-                        if (isWhileTriggered)
+                        commandName = command[0];
+                        if (commandName == "endloop")
                         {
-                            isEndLoop = true;
+                            if (isWhileTriggered)
+                            {
+                                isEndLoop = true;
+                            }
+
+                            else
+                            {
+                                throw new Exception($"While loop must be declared before endloop command.");
+                            }
                         }
                     }
                 }
-            }          
+            }
+
+            catch (Exception error)
+            {
+                _messageDisplayer.DisplayMessage(error.Message);
+            }              
             return isEndLoop;
         }
 
@@ -672,7 +724,6 @@ namespace Graphical_Programming_Language
                     if (command.Length == 3)
                     {
                         commandName = command[0];
-                        string methodName = command[1];
                         if (commandName == "method")
                         {
                             if (!int.TryParse(methodName, out result))
@@ -681,6 +732,8 @@ namespace Graphical_Programming_Language
                                 {
                                     isMethod = true;
                                     isMethodTriggered = true;
+                                    methodName = command[1];
+                                    methods[methodName] = new string[] {};
                                 }
 
                                 else
@@ -708,21 +761,52 @@ namespace Graphical_Programming_Language
         public Boolean Is_A_End_Method()
         {
             isEndMethod = false;
-            if (isMultiLine)
+            try
             {
-                if (command.Length == 1)
+                if (isMultiLine)
                 {
-                    commandName = command[0];
-                    if(commandName == "endmethod")
+                    if (command.Length == 1)
                     {
-                        if(isMethodTriggered)
+                        commandName = command[0];
+                        if (commandName == "endmethod")
                         {
-                            isEndMethod = true;
-                        }                      
+                            if (isMethodTriggered)
+                            {
+                                isEndMethod = true;
+                            }
+
+                            else
+                            {
+                                throw new Exception($"Method should be declared before endmethod command.");
+                            }
+                        }
                     }
                 }
             }
+
+            catch(Exception error)
+            {
+                _messageDisplayer.DisplayMessage(error.Message);
+            }
+           
             return isEndMethod;
+        }
+
+        public Boolean Is_Method_Called()
+        {
+            isMethodCalled = false;
+            if(command.Length == 2)
+            {
+                commandName = command[0];
+                string brackets = command[1];
+
+                if(methods.ContainsKey(commandName) && brackets.Equals("()"))
+                {
+                    isMethodCalled = true;
+                    methodCallName = commandName;
+                }
+            }
+            return isMethodCalled;
         }
 
         /// <summary>
@@ -773,6 +857,11 @@ namespace Graphical_Programming_Language
                     }
 
                     else if(isEndMethod)
+                    {
+                        isValidCommand = true;
+                    }
+
+                    else if(isMethodCalled)
                     {
                         isValidCommand = true;
                     }
@@ -877,6 +966,11 @@ namespace Graphical_Programming_Language
                     }
 
                     else if (isEndMethod)
+                    {
+                        isValidParameters = true;
+                    }
+
+                    else if(isMethodCalled)
                     {
                         isValidParameters = true;
                     }
@@ -1062,6 +1156,7 @@ namespace Graphical_Programming_Language
                     Form.UpdateDrawing(runCommand);
                 }
             }
+            isWhileTriggered = false;
         }
     }
 }
