@@ -17,3 +17,11 @@ rectangle size, size
 size = size + 50
 count = count + 1
 endloop
+
+Test Method 
+method rect ()
+rectangle 100, 100
+circle 100
+endmethod
+
+rect ()
