@@ -10,18 +10,23 @@ endif
 Test while
 clear
 reset
-size = 100
-count = 1
-while count < 3
-rectangle size, size
-size = size + 50
-count = count + 1
+angle = 0
+while angle <= 360
+rotate angle
+triangle 100,100
+angle = angle + 15
 endloop
 
 Test Method 
 method rect ()
-rectangle 100, 100
-circle 100
+size = 100
+rectangle size, size
+endmethod
+
+method circ ()
+size = 100
+circle size
 endmethod
 
 rect ()
+circ ()

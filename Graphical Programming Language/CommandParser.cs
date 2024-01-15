@@ -119,6 +119,11 @@ namespace Graphical_Programming_Language
         private Boolean isIfTriggered = false;
 
         /// <summary>
+        /// Variable to set the flag of the command if statement condition being true.
+        /// </summary>
+        private Boolean isIfConditionTrue = false;
+
+        /// <summary>
         /// Variable to set the flag of the command endif statement being valid.
         /// </summary>
         private Boolean isEndIfStatement = false;
@@ -134,19 +139,14 @@ namespace Graphical_Programming_Language
         private Boolean isWhileTriggered = false;
 
         /// <summary>
-        /// Variable to set the flag of the command end loop being valid.
-        /// </summary>
-        private Boolean isEndLoop = false;
-
-        /// <summary>
-        /// Variable to set the flag of the command if statement condition being true.
-        /// </summary>
-        private Boolean isIfConditionTrue = false;
-
-        /// <summary>
         /// Variable to set the flag of the command while condition being true.
         /// </summary>
         private Boolean isWhileConditionTrue = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command end loop being valid.
+        /// </summary>
+        private Boolean isEndLoop = false;            
 
         /// <summary>
         /// Variable to store the current int conversion value. 
@@ -177,12 +177,34 @@ namespace Graphical_Programming_Language
         /// </summary>
         private Color color = Color.Black;
 
+        /// <summary>
+        /// Variable to set the flag of the method command being valid.
+        /// </summary>
         private Boolean isMethod = false;
+
+        /// <summary>
+        /// Variable to set the flag of the command method being triggered.
+        /// </summary>
         private Boolean isMethodTriggered = false;
+
+        /// <summary>
+        /// Variable to set the flag of the endmethod command being valid.
+        /// </summary>
         private Boolean isEndMethod = false;
+
+        /// <summary>
+        /// Variable to set the flag of the method command being called.
+        /// </summary>
         private Boolean isMethodCalled = false;
+
+        /// <summary>
+        /// Variable to store the curret method name.
+        /// </summary>
         private string methodName;
-        private string methodCallName;
+
+        /// <summary>
+        /// Dictionary to save valid method and its block.
+        /// </summary>
         private Dictionary<string, string[]> methods = new Dictionary<string, string[]>();
 
         /// <summary>
@@ -224,14 +246,13 @@ namespace Graphical_Programming_Language
             get { return command; }
         }
 
+        /// <summary>
+        ///  Getter and setter methods to get or set the current method name.
+        /// </summary>
         public string MethodName
         {
+            set {  methodName = value; }
             get { return methodName; }
-        }
-
-        public string MethodCallName
-        {
-            get { return methodCallName; }
         }
 
         /// <summary>
@@ -279,7 +300,6 @@ namespace Graphical_Programming_Language
             get { return color; }
         }
 
-
         /// <summary>
         /// Getter and setter methods to get or set the dicitionary that stores command variables in key value pair.
         /// </summary>
@@ -314,7 +334,9 @@ namespace Graphical_Programming_Language
             return Shapes;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Dictionary<string, string[]> Methods
         {
             set { methods = value; }
@@ -714,6 +736,10 @@ namespace Graphical_Programming_Language
             return isEndLoop;
         }
 
+        /// <summary>
+        /// Boolean method to verify command method. 
+        /// </summary>
+        /// <returns>Returns true if the method is valid else returns false.</returns>
         public Boolean Is_A_Method()
         {
             isMethod = false;
@@ -758,6 +784,10 @@ namespace Graphical_Programming_Language
             return isMethod;
         }
 
+        /// <summary>
+        /// Boolean method to verify command endmethod. 
+        /// </summary>
+        /// <returns>Returns true if the method is ended properly else returns false.</returns>
         public Boolean Is_A_End_Method()
         {
             isEndMethod = false;
@@ -792,6 +822,10 @@ namespace Graphical_Programming_Language
             return isEndMethod;
         }
 
+        /// <summary>
+        /// Boolean method to verify valid command method being called. 
+        /// </summary>
+        /// <returns></returns>
         public Boolean Is_Method_Called()
         {
             isMethodCalled = false;
@@ -803,7 +837,7 @@ namespace Graphical_Programming_Language
                 if(methods.ContainsKey(commandName) && brackets.Equals("()"))
                 {
                     isMethodCalled = true;
-                    methodCallName = commandName;
+                    methodName = commandName;
                 }
             }
             return isMethodCalled;
@@ -1156,7 +1190,7 @@ namespace Graphical_Programming_Language
                     Form.UpdateDrawing(runCommand);
                 }
             }
-            isWhileTriggered = false;
+
         }
     }
 }
