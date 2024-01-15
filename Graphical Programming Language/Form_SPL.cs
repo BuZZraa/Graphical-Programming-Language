@@ -275,6 +275,9 @@ namespace Graphical_Programming_Language
                                             command.Is_Method_Called();
                                             command.ValidateCommandName();
                                             command.ValidateParameters();
+                                            command.Color = btn_PenColour.BackColor;
+                                            command.XPos = Convert.ToInt32(xValue.Text);
+                                            command.YPos = Convert.ToInt32(yValue.Text);
                                             command.RunCommand(g, Convert.ToInt32(penSizes.Text));
                                         }
                                     }
@@ -354,7 +357,7 @@ namespace Graphical_Programming_Language
                                             methodComm.Is_A_End_Loop();
                                             methodComm.ValidateCommandName();
                                             methodComm.ValidateParameters();
-                                            methodComm.Color = btn_PenColour.BackColor;
+                                            methodComm.Color = command.Color;
                                             methodComm.XPos = Convert.ToInt32(xValue.Text);
                                             methodComm.YPos = Convert.ToInt32(yValue.Text);
                                             methodComm.Methods = command.Methods;

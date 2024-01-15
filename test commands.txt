@@ -1,13 +1,22 @@
-Test if
+size = 100
+circle size
+
+clear
+reset
+
+size = 50
+size = size + 50
+circle size 
+
 size = 100
 count = 100
-if count >= 100
+if count == 100
 size = size - 50
 rectangle size, size
-circle 100
+circle 50
 endif
 
-Test while
+
 clear
 reset
 angle = 0
@@ -17,16 +26,13 @@ triangle 100,100
 angle = angle + 15
 endloop
 
-Test Method 
-method rect ()
+clear
+reset
+method createShapes ()
 size = 100
 rectangle size, size
-endmethod
-
-method circ ()
-size = 100
 circle size
+triangle size, size
 endmethod
 
-rect ()
-circ ()
+createShapes ()
