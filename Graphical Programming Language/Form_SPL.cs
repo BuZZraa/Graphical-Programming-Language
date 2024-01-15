@@ -32,10 +32,13 @@ namespace Graphical_Programming_Language
         /// </summary>
         private CommandParser command;
 
+        /// <summary>
+        /// Instance of ColorDialog class to create a color dialogue box and store the pen color value.
+        /// </summary>
         private ColorDialog penColour;
 
         /// <summary>
-        /// Instance of ColorDialog class to create a color dialogue box and store the color value.
+        /// Instance of ColorDialog class to create a color dialogue box and store the canvas color value.
         /// </summary>
         private ColorDialog canvasColour;
 
@@ -89,8 +92,14 @@ namespace Graphical_Programming_Language
         /// </summary>
         private string[] runWhileConditionTrueCommand;
 
+        /// <summary>
+        /// List to store the commands inside method command block.
+        /// </summary>
         private List<string> methodCommands= new List<string>();
 
+        /// <summary>
+        /// Array to store the commands to be run inside while command block.
+        /// </summary>
         private string[] runMethodCommands;
 
         /// <summary>
@@ -108,6 +117,7 @@ namespace Graphical_Programming_Language
             penSizes.SelectedItem = "1";
             xValue.Text = Convert.ToString(command.XPos);
             yValue.Text = Convert.ToString(command.YPos);
+            btn_PenColour.BackColor = Color.Black;
         }
 
         /// <summary>
@@ -321,43 +331,41 @@ namespace Graphical_Programming_Language
                                     if(command.Methods.ContainsKey(command.MethodName))
                                     {
                                         command.Methods[command.MethodName] = methodCommands.ToArray();
-                                        runMethodCommands  = command.Methods[command.MethodCallName];
-                                        methodCommands.Clear();
+                                        runMethodCommands = command.Methods[command.MethodName];
                                     }
-                                    
+                                    methodCommands.Clear();
+
                                 }
 
                                 if(command.Is_Method_Called())
                                 {
                                     if(runMethodCommands.Length > 0)
                                     {
-
-                                        for (int j = 1; j < runMethodCommands.Length; j++)
+                                        for (int j = 1; j < command.Methods[command.MethodName].Length; j++)
                                         {
-                                            CommandParser innerCommand = new CommandParser(new DisplayMessageBox(), this);
-
-                                            innerCommand.Command = SplitCommand(runMethodCommands[j]);
-                                            innerCommand.Is_A_Variable();
-                                            innerCommand.Is_A_If_Statement();
-                                            innerCommand.Is_A_EndIf_Statement();
-                                            innerCommand.Is_A_While_Loop();
-                                            innerCommand.Is_A_End_Loop();
-                                            innerCommand.Is_A_Method();
-                                            innerCommand.Is_A_End_Method();
-                                            innerCommand.Is_Method_Called();
-                                            innerCommand.ValidateCommandName();
-                                            innerCommand.ValidateParameters();
-                                            innerCommand.RunCommand(g, Convert.ToInt32(penSizes.Text));
+                                            CommandParser methodComm = new CommandParser(new DisplayMessageBox(), this);
+                                            methodComm.VariablesAndValues = command.VariablesAndValues;
+                                            methodComm.Command = SplitCommand(command.Methods[command.MethodName][j]);
+                                            methodComm.Is_A_Variable();
+                                            methodComm.Is_A_If_Statement();
+                                            methodComm.Is_A_EndIf_Statement();
+                                            methodComm.Is_A_While_Loop();
+                                            methodComm.Is_A_End_Loop();
+                                            methodComm.ValidateCommandName();
+                                            methodComm.ValidateParameters();
+                                            methodComm.Color = btn_PenColour.BackColor;
+                                            methodComm.XPos = Convert.ToInt32(xValue.Text);
+                                            methodComm.YPos = Convert.ToInt32(yValue.Text);
+                                            methodComm.Methods = command.Methods;
+                                            methodComm.RunCommand(g, Convert.ToInt32(penSizes.Text));
                                         }
-                                    
-
                                     }
-
                                 }
 
                                 if (!isIfTrue && !isWhileTrue && !isMethodTrue)
                                 {
                                     command.Is_A_Variable();
+                                    command.Is_Method_Called();
                                     command.ValidateCommandName();
                                     command.ValidateParameters();
                                     command.Command = SplitCommand(multiCommands[i]);
@@ -481,6 +489,11 @@ namespace Graphical_Programming_Language
                 "© All Rights Reserved.", "About", MessageBoxButtons.OK);
         }
 
+        /// <summary>
+        /// Event handler for the event of about duplicateProgram option being clicked.
+        /// </summary>
+        /// <param name="sender">The object that triggered the event of duplicateProgram menu option being clicked.</param>
+        /// <param name="e">The arguments of the duplicateProgram menu option click event.</param>
         private void DuplicateProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Monitor.Enter(formMonitor);
