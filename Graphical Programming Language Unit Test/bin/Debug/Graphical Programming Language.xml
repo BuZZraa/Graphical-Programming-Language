@@ -4,6 +4,116 @@
         <name>Graphical Programming Language</name>
     </assembly>
     <members>
+        <member name="T:Graphical_Programming_Language.Exceptions.EmptyCommandsException">
+            <summary>
+            Empty Commands Exception class to catch exception of commands not being provided.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.EmptyCommandsException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Empty Commands Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.FormLimitException">
+            <summary>
+            Form Limit Exception class to catch exception of maximum number of forms being created.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.FormLimitException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Form Limit Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.InvalidCommandException">
+            <summary>
+            Invalid Command Exception class to catch the exception of invalid commands being passed.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.InvalidCommandException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Invalid Command Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.InvalidEndDeclarationException">
+            <summary>
+            Invalid End Declaration Exception class to catch the exception of invalid end statements.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.InvalidEndDeclarationException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Invalid End Declaration Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.InvalidNameException">
+            <summary>
+            Invalid Name Exception class to catch the exception of invalid name being assigned.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.InvalidNameException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Invalid Name Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.InvalidOperatorException">
+            <summary>
+            Invalid Operator Exception class to catch exception of invalid operator being provided.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.InvalidOperatorException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Invalid Operator Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.InvalidValueException">
+            <summary>
+            Invalid Value Exception class to catch exception of invalid value being provided.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.InvalidValueException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Invalid Value Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.MissingBracketsException">
+            <summary>
+            Missing Brackets Exception class to catch the exception of brackets not being provided.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.MissingBracketsException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Missing Brackets Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.MissingRunException">
+            <summary>
+            Missing Run Exception class to catch run not being provided for multline commands.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.MissingRunException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Missing Run Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
+        <member name="T:Graphical_Programming_Language.Exceptions.SyntaxCheckException">
+            <summary>
+            Syntax Check Exception class to catch exception of syntax button not being clicked before run button.
+            </summary>
+        </member>
+        <member name="M:Graphical_Programming_Language.Exceptions.SyntaxCheckException.#ctor(System.String)">
+            <summary>
+            Intializes an instance of Syntax Check Exception class and sets the error message to the base class.
+            </summary>
+            <param name="message">Sets the error message.</param>
+        </member>
         <member name="T:Graphical_Programming_Language.Circle">
             <summary>
             Derived class Circle which inherits abstract class Shape to represent circle shape being drawn on graphics.

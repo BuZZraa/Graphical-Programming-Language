@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graphical_Programming_Language.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -369,7 +370,7 @@ namespace Graphical_Programming_Language
 
                             else
                             {
-                                throw new Exception($"Please enter a integer value to be assigned instead of {value} in {string.Join(" ", command)}.");
+                                throw new InvalidValueException($"Please enter a integer value to be assigned instead of {value} in {string.Join(" ", command)}.");
                             }
 
                         }
@@ -439,19 +440,19 @@ namespace Graphical_Programming_Language
 
                                     else
                                     {
-                                        throw new Exception($"Please enter a valid variable or value for operation instead of {oprand2} in {string.Join(" ", command)}.");
+                                        throw new InvalidValueException($"Please enter a valid variable or value for operation instead of {oprand2} in {string.Join(" ", command)}.");
                                     }
                                 }
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a valid arithmetic operator instead of {operators} in {string.Join(" ", command)}.");
+                                    throw new InvalidValueException($"Please enter a valid arithmetic operator instead of {operators} in {string.Join(" ", command)}.");
                                 }
                             }
 
                             else
                             {
-                                throw new Exception($"Please enter a valid variable or value for operation instead of {oprand1} in {string.Join(" ", command)}.");
+                                throw new InvalidValueException($"Please enter a valid variable or value for operation instead of {oprand1} in {string.Join(" ", command)}.");
                             }
                         }
                     }
@@ -538,17 +539,22 @@ namespace Graphical_Programming_Language
                                             break;
                                         }
                                     }
+
+                                    else
+                                    {
+                                        throw new InvalidValueException($"Please enter a valid variable or number instead of {oprand2} in {string.Join(" ", command)}.");
+                                    }
                                 }
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a valid operator instead of {command[2]} in {string.Join(" ", command)}.");
+                                    throw new InvalidOperatorException($"Please enter a valid operator instead of {operators} in {string.Join(" ", command)}.");
                                 }
                             }
 
                             else
                             {
-                                throw new Exception($"Please enter a valid variable or number instead of {command[1]} in {string.Join(" ", command)}.");
+                                throw new InvalidValueException($"Please enter a valid variable or number instead of {oprand1} in {string.Join(" ", command)}.");
                             }
                         }
                     }
@@ -586,16 +592,16 @@ namespace Graphical_Programming_Language
 
                             else
                             {
-                                throw new Exception($"If statement must be declared before endif command.");
+                                throw new InvalidEndDeclarationException($"If statement must be declared before endif command.");
                             }
                         }
                     }
                 }
             }
 
-            catch(Exception error)
+            catch(Exception error3)
             {
-                _messageDisplayer.DisplayMessage(error.Message);
+                _messageDisplayer.DisplayMessage(error3.Message);
             } 
             
             return isEndIfStatement;
@@ -678,22 +684,22 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception($"Please enter a valid operator instead of {command[2]} in {string.Join(" ", command)}.");
+                                    throw new InvalidOperatorException($"Please enter a valid operator instead of {command[2]} in {string.Join(" ", command)}.");
                                 }
                             }
 
                             else
                             {
-                                throw new Exception($"Please enter a valid variable or number instead of {command[1]} in {string.Join(" ", command)}.");
+                                throw new InvalidValueException($"Please enter a valid variable or number instead of {command[1]} in {string.Join(" ", command)}.");
                             }
                         }
                     }
                 }
             }
 
-            catch (Exception error3)
+            catch (Exception error4)
             {
-                _messageDisplayer.DisplayMessage(error3.Message);
+                _messageDisplayer.DisplayMessage(error4.Message);
             }
 
             return isWhileLoop;
@@ -722,16 +728,16 @@ namespace Graphical_Programming_Language
 
                             else
                             {
-                                throw new Exception($"While loop must be declared before endloop command.");
+                                throw new InvalidEndDeclarationException($"While loop must be declared before endloop command.");
                             }
                         }
                     }
                 }
             }
 
-            catch (Exception error)
+            catch (Exception error5)
             {
-                _messageDisplayer.DisplayMessage(error.Message);
+                _messageDisplayer.DisplayMessage(error5.Message);
             }              
             return isEndLoop;
         }
@@ -750,9 +756,11 @@ namespace Graphical_Programming_Language
                     if (command.Length == 3)
                     {
                         commandName = command[0];
+                        string declaredMethodName = command[1];
+                        string brackets = command[2];
                         if (commandName == "method")
                         {
-                            if (!int.TryParse(methodName, out result))
+                            if (!int.TryParse(declaredMethodName, out result))
                             {
                                 if (command[2] == "()")
                                 {
@@ -764,22 +772,22 @@ namespace Graphical_Programming_Language
 
                                 else
                                 {
-                                    throw new Exception($"Please enter () brackets instead of {command[2]} in {string.Join(" ", command)}.");
+                                    throw new MissingBracketsException($"Please enter () brackets instead of {brackets} in {string.Join(" ", command)}.");
                                 }
                             }
 
                             else
                             {
-                                throw new Exception($"Please enter a valid name for method instead of {methodName} in {string.Join(" ", command)}.");
+                                throw new InvalidNameException($"Please enter a valid name for method instead of {declaredMethodName} in {string.Join(" ", command)}.");
                             }
                         }
                     }
                 }
             }
             
-            catch(Exception error)
+            catch(Exception error6)
             {
-                _messageDisplayer.DisplayMessage(error.Message);
+                _messageDisplayer.DisplayMessage(error6.Message);
             }
             return isMethod;
         }
@@ -807,16 +815,16 @@ namespace Graphical_Programming_Language
 
                             else
                             {
-                                throw new Exception($"Method should be declared before endmethod command.");
+                                throw new InvalidEndDeclarationException($"Method should be declared before endmethod command.");
                             }
                         }
                     }
                 }
             }
 
-            catch(Exception error)
+            catch(Exception error7)
             {
-                _messageDisplayer.DisplayMessage(error.Message);
+                _messageDisplayer.DisplayMessage(error7.Message);
             }
            
             return isEndMethod;
@@ -829,17 +837,35 @@ namespace Graphical_Programming_Language
         public Boolean Is_Method_Called()
         {
             isMethodCalled = false;
-            if(command.Length == 2)
+            try
             {
-                commandName = command[0];
-                string brackets = command[1];
-
-                if(methods.ContainsKey(commandName) && brackets.Equals("()"))
+                if (command.Length == 2)
                 {
-                    isMethodCalled = true;
-                    methodName = commandName;
+                    commandName = command[0];
+                    string brackets = command[1];
+
+                    if (methods.ContainsKey(commandName))
+                    {
+                        if (brackets.Equals("()"))
+                        {
+                            isMethodCalled = true;
+                            methodName = commandName;
+                        }
+
+                        else
+                        {
+                            throw new MissingBracketsException($"Please enter () brackets instead of {brackets} in {string.Join(" ", command)}.");
+                        }
+
+                    }
                 }
             }
+
+            catch(Exception error8)
+            {
+                _messageDisplayer.DisplayMessage(error8.Message);
+            }
+            
             return isMethodCalled;
         }
 
@@ -902,14 +928,14 @@ namespace Graphical_Programming_Language
 
                     else
                     {
-                        throw new Exception($"Please enter a valid command instead of {commandName} in {string.Join(" ", command)}.");
+                        throw new InvalidCommandException($"Please enter a valid command instead of {commandName} in {string.Join(" ", command)}.");
                     }
                 }
             }
 
-            catch (Exception error4)
+            catch (Exception error9)
             {
-                _messageDisplayer.DisplayMessage(error4.Message);
+                _messageDisplayer.DisplayMessage(error9.Message);
             }
             return isValidCommand;
         }
@@ -1047,9 +1073,9 @@ namespace Graphical_Programming_Language
 
                         }
 
-                        catch (Exception error4)
+                        catch (Exception error10)
                         {
-                            _messageDisplayer.DisplayMessage(error4.Message);
+                            _messageDisplayer.DisplayMessage(error10.Message);
                         }
 
                         try
@@ -1106,17 +1132,17 @@ namespace Graphical_Programming_Language
                             }
                         }
 
-                        catch (Exception error5)
+                        catch (Exception error11)
                         {
-                            _messageDisplayer.DisplayMessage(error5.Message);
+                            _messageDisplayer.DisplayMessage(error11.Message);
                         }
                     }
                 }
             }
 
-            catch (Exception error6)
+            catch (Exception error12)
             {
-                _messageDisplayer.DisplayMessage(error6.Message);
+                _messageDisplayer.DisplayMessage(error12.Message);
             }
             return isValidParameters;
         }
