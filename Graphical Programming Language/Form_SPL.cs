@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graphical_Programming_Language.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Drawing;
@@ -170,12 +171,12 @@ namespace Graphical_Programming_Language
 
                 else if (textBox_SingleCmd.Text.Length == 0 && textBox_MultiCmd.Text.Length != 0)
                 {
-                    throw new Exception("Please enter run to run multi-line commands.");
+                    throw new MissingRunException("Please enter run in single line command box to run multi-line commands.");
                 }
 
                 else if (textBox_SingleCmd.Text.Length == 0 && textBox_MultiCmd.Text.Length == 0)
                 {
-                    throw new Exception("Please enter a command.");
+                    throw new EmptyCommandsException("Please enter a command.");
                 }
 
                 else if (textBox_SingleCmd.Text.Length != 0 && textBox_MultiCmd.Text.Length != 0)
@@ -203,14 +204,14 @@ namespace Graphical_Programming_Language
 
                     else
                     {
-                        throw new Exception("Please enter run in single line command box to run multi-line commands.");
+                        throw new MissingRunException("Please enter run in single line command box to run multi-line commands.");
                     }
                 }
             }
 
-            catch (Exception err1)
+            catch (Exception error1)
             {
-                MessageBox.Show(err1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error1.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -403,13 +404,13 @@ namespace Graphical_Programming_Language
 
                 else
                 {
-                    throw new Exception("Please check syntax before running the file.");
+                    throw new SyntaxCheckException("Please check syntax before running the file.");
                 }
             }
 
-            catch (Exception err2)
+            catch (Exception error2)
             {
-                MessageBox.Show(err2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error2.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             xValue.Text = Convert.ToString(command.XPos);
             yValue.Text = Convert.ToString(command.YPos);
@@ -453,9 +454,9 @@ namespace Graphical_Programming_Language
                 MessageBox.Show("Commands saved to commands.txt.", "File Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            catch (Exception err3)
+            catch (Exception error3)
             {
-                MessageBox.Show("An error occured: " + err3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occured: " + error3.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -472,9 +473,9 @@ namespace Graphical_Programming_Language
                 textBox_MultiCmd.Text = commandsFile;
             }
 
-            catch (Exception err4)
+            catch (Exception error4)
             {
-                MessageBox.Show("An error occured: " + err4.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occured: " + error4.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -505,11 +506,18 @@ namespace Graphical_Programming_Language
                     Thread newThread = new Thread(InitializeSecondWindow);
                     newThread.Start();
                 }
+
                 else
                 {
-                    MessageBox.Show("Maximum forms already created.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    throw new FormLimitException("Maximum number of forms already created.");
                 }
             }
+
+            catch (Exception error5)
+            {
+                MessageBox.Show(error5.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             finally
             {
                 Monitor.Exit(formMonitor);

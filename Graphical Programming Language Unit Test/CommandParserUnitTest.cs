@@ -1,6 +1,7 @@
 ﻿using Graphical_Programming_Language;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -1364,9 +1365,7 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act - Variable Assignment
             string expectedCommand1 = "radius = 50";
             command.Command = form.SplitCommand(expectedCommand1);
-            command.Is_A_Variable();
-            command.ValidateCommandName();
-            command.ValidateParameters();         
+            command.Is_A_Variable();     
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
@@ -1401,8 +1400,6 @@ namespace Graphical_Programming_Language_Unit_Test
             string expectedCommand1 = "radius = 100";
             command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
-            command.ValidateCommandName();
-            command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
@@ -1437,8 +1434,6 @@ namespace Graphical_Programming_Language_Unit_Test
             string expectedCommand1 = "radius = 20";
             command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
-            command.ValidateCommandName();
-            command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
@@ -1473,8 +1468,6 @@ namespace Graphical_Programming_Language_Unit_Test
             string expectedCommand1 = "radius = 200";
             command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
-            command.ValidateCommandName();
-            command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
@@ -1509,8 +1502,6 @@ namespace Graphical_Programming_Language_Unit_Test
             string expectedCommand1 = "radius = 110";
             command.Command = form.SplitCommand(expectedCommand1);
             command.Is_A_Variable();
-            command.ValidateCommandName();
-            command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_Variable());
@@ -1531,7 +1522,7 @@ namespace Graphical_Programming_Language_Unit_Test
         }
 
         /// <summary>
-        /// Test method to check a valid command if statement.
+        /// Test method to check a valid if statement command.
         /// </summary>
         [TestMethod]
         public void ValidIfStatement()
@@ -1564,7 +1555,7 @@ namespace Graphical_Programming_Language_Unit_Test
         }
 
         /// <summary>
-        ///  Test method to check a invalid command if statement.
+        ///  Test method to check a invalid if statement command.
         /// </summary>
         [TestMethod]
         public void InvalidIfStatement()
@@ -1597,7 +1588,7 @@ namespace Graphical_Programming_Language_Unit_Test
         }
 
         /// <summary>
-        /// Test method to check a valid command endif statement.
+        /// Test method to check a valid endif statement command.
         /// </summary>
         [TestMethod]
         public void ValidEndIfStatement()
@@ -1642,7 +1633,7 @@ namespace Graphical_Programming_Language_Unit_Test
         }
 
         /// <summary>
-        /// Test method to check a invalid command endif statement.
+        /// Test method to check a invalid endif statement command.
         /// </summary>
         [TestMethod]
         public void InvalidEndIfStatement()
@@ -1662,7 +1653,7 @@ namespace Graphical_Programming_Language_Unit_Test
         }
 
         /// <summary>
-        /// Test method to check a valid command while loop.
+        /// Test method to check a valid while loop command.
         /// </summary>
         [TestMethod]
         public void ValidWhileLoop()
@@ -1689,15 +1680,13 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act
             command.Command = form.SplitCommand(expectedCommands2);
             command.Is_A_While_Loop();
-            command.ValidateCommandName();
-            command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_While_Loop());
         }
 
         /// <summary>
-        /// Test method to check a invalid command while loop.
+        /// Test method to check a invalid while loop command.
         /// </summary>
         [TestMethod]
         public void InvalidWhileLoop()
@@ -1724,15 +1713,13 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act
             command.Command = form.SplitCommand(expectedCommands2);
             command.Is_A_While_Loop();
-            command.ValidateCommandName();
-            command.ValidateParameters();
 
             //Assert
             Assert.IsFalse(command.Is_A_While_Loop());
         }
 
         /// <summary>
-        /// Test method to check a end loop.
+        /// Test method to check a valid end loop.
         /// </summary>
         [TestMethod]
         public void ValidEndLoop()
@@ -1759,8 +1746,6 @@ namespace Graphical_Programming_Language_Unit_Test
             //Act - Declaring while loop
             command.Command = form.SplitCommand(expectedCommands2);
             command.Is_A_While_Loop();
-            command.ValidateCommandName();
-            command.ValidateParameters();
 
             //Assert
             Assert.IsTrue(command.Is_A_While_Loop());
@@ -1795,6 +1780,191 @@ namespace Graphical_Programming_Language_Unit_Test
 
             //Assert
             Assert.IsFalse(command.Is_A_End_Loop());
+        }
+
+        /// <summary>
+        /// Test method to check a valid method.
+        /// </summary>
+        [TestMethod]
+        public void ValidMethod()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            command.IsMultiLine = true;
+
+            //Act
+            string expectedCommands1 = "method createShapes ()";
+            command.Command = form.SplitCommand(expectedCommands1);
+            command.Is_A_Method();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Method());
+        }
+
+        /// <summary>
+        /// Test method to check a invalid method command.
+        /// </summary>
+        [TestMethod]
+        public void InvalidMethod()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            command.IsMultiLine = true;
+
+            //Act
+            string expectedCommands1 = "method createShapes";
+            command.Command = form.SplitCommand(expectedCommands1);
+            command.Is_A_Method();
+
+            //Assert
+            Assert.IsFalse(command.Is_A_Method());
+        }
+
+        /// <summary>
+        /// Test method to check a valid end method command.
+        /// </summary>
+        [TestMethod]
+        public void ValidEndMethod()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            command.IsMultiLine = true;
+
+            //Act - Declaring method
+            string expectedCommands1 = "method createShapes ()";
+            command.Command = form.SplitCommand(expectedCommands1);
+            command.Is_A_Method();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Method());
+
+
+            //Arrange
+            string expectedCommand2 = "endmethod";
+            command.Command = form.SplitCommand(expectedCommand2);
+
+            //Act
+            command.Is_A_End_Method();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_End_Method());
+        }
+
+        /// <summary>
+        /// Test method to check a invalid end method command.
+        /// </summary>
+        [TestMethod]
+        public void InvalidEndMethod()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            string expectedCommand1 = "endmethod";
+            command.Command = form.SplitCommand(expectedCommand1);
+
+            //Act
+            command.Is_A_End_Method();
+
+            //Assert
+            Assert.IsFalse(command.Is_A_End_Method());
+        }
+
+        /// <summary>
+        /// Test method to check a valid method call.
+        /// </summary>
+        [TestMethod]
+        public void ValidMethodCall()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            command.IsMultiLine = true;
+
+            //Act - Method Declaration
+            string expectedCommands1 = "method createShapes ()";
+            command.Command = form.SplitCommand(expectedCommands1);
+            command.Is_A_Method();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Method());
+
+
+            //Arrange
+            string expectedCommand2 = "endmethod";
+            command.Command = form.SplitCommand(expectedCommand2);
+
+            //Act - Method declaration ended
+            command.Is_A_End_Method();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_End_Method());
+            
+
+            //Arrange
+            string expectedCommand3 = "createShapes ()";
+            command.Command = form.SplitCommand(expectedCommand3);
+
+            //Act
+            command.Is_Method_Called();
+
+            //Assert
+            Assert.IsTrue(command.Is_Method_Called());
+        }
+
+
+        /// <summary>
+        /// Test method to check a invalid method call.
+        /// </summary>
+        [TestMethod]
+        public void InvalidMethodCall()
+        {
+            //Arrange
+            CommandParserUnitTest stringErrorMessage = new CommandParserUnitTest();
+            Form_SPL form = new Form_SPL();
+            CommandParser command = new CommandParser(stringErrorMessage, form);
+            command.IsMultiLine = true;
+
+            //Act - Method Declaration
+            string expectedCommands1 = "method createShapes ()";
+            command.Command = form.SplitCommand(expectedCommands1);
+            command.Is_A_Method();
+            command.ValidateCommandName();
+            command.ValidateParameters();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_Method());
+
+
+            //Arrange
+            string expectedCommand2 = "endmethod";
+            command.Command = form.SplitCommand(expectedCommand2);
+
+            //Act - Method declaration ended
+            command.Is_A_End_Method();
+
+            //Assert
+            Assert.IsTrue(command.Is_A_End_Method());
+
+
+            //Arrange
+            string expectedCommand3 = "createShapes";
+            command.Command = form.SplitCommand(expectedCommand3);
+
+            //Act - Method declaration ended
+            command.Is_Method_Called();
+
+            //Assert
+            Assert.IsFalse(command.Is_Method_Called());
         }
     }    
 }

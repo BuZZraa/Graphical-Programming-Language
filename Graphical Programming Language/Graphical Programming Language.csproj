@@ -63,6 +63,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\EmptyCommandsException.cs" />
+    <Compile Include="Exceptions\FormLimitException.cs" />
+    <Compile Include="Exceptions\InvalidCommandException.cs" />
+    <Compile Include="Exceptions\InvalidEndDeclarationException.cs" />
+    <Compile Include="Exceptions\InvalidNameException.cs" />
+    <Compile Include="Exceptions\InvalidOperatorException.cs" />
+    <Compile Include="Exceptions\InvalidValueException.cs" />
+    <Compile Include="Exceptions\MissingBracketsException.cs" />
+    <Compile Include="Exceptions\MissingRunException.cs" />
+    <Compile Include="Exceptions\SyntaxCheckException.cs" />
     <Compile Include="Shapes\Circle.cs" />
     <Compile Include="CommandParser.cs" />
     <Compile Include="DisplayMessageBox.cs" />
